@@ -83,7 +83,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Pane layoutX="254.0" layoutY="31.0" prefHeight="358.0" prefWidth="638.0" style="-fx-background-color: black;" />
+      <Pane fx:id="googleMapPane" layoutX="254.0" layoutY="31.0" prefHeight="358.0" prefWidth="638.0" style="-fx-background-color: black;" />
       <TextField fx:id="gjatesiaGjeo" layoutX="509.0" layoutY="397.0" promptText="Gjatësia gjeografike">
          <font>
             <Font size="15.0" />

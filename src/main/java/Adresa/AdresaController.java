@@ -7,11 +7,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import Models.Adresa;
+import javafx.scene.layout.Pane;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 public class AdresaController {
 
@@ -42,7 +46,19 @@ public class AdresaController {
     public Button shtoAdresen;
 
     @FXML
+    public Pane googleMapPane;
+
+    @FXML
     public Button shtoLokacionin;
+
+    public void initialize(){
+        WebView webView = new WebView();
+        WebEngine webEngine = webView.getEngine();
+        webEngine.load("https://maps.google.com");
+        googleMapPane.getChildren().add(webView);
+
+
+    }
 
     @FXML
     void shtoAdresen(ActionEvent event) {
