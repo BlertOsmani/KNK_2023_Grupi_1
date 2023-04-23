@@ -7,63 +7,105 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="602.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Adresa.AdresaController">
+<AnchorPane prefHeight="608.0" prefWidth="920.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Adresa.AdresaController">
    <children>
-      <TextField fx:id="qyteti" layoutX="36.0" layoutY="109.0">
+      <TextField fx:id="qyteti" layoutX="36.0" layoutY="128.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="36.0" layoutY="78.0" text="Qyteti:">
+      <Label layoutX="36.0" layoutY="98.0" text="Qyteti:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="rruga" layoutX="37.0" layoutY="194.0">
+      <TextField fx:id="rruga" layoutX="36.0" layoutY="207.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="37.0" layoutY="163.0" text="Rruga:">
+      <Label layoutX="37.0" layoutY="178.0" text="Rruga:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="numriPostal" layoutX="36.0" layoutY="361.0">
+      <TextField fx:id="numriPostal" layoutX="36.0" layoutY="363.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="37.0" layoutY="247.0" text="Numri i Shtëpisë/Banesës:">
+      <Label layoutX="37.0" layoutY="253.0" text="Numri i Shtëpisë/Banesës:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="shtoAdresen" layoutX="712.0" layoutY="539.0" mnemonicParsing="false" onAction="#shtoAdresen" prefHeight="31.0" prefWidth="180.0" style="-fx-background-color: #a782ec;" text="Save" textFill="WHITE">
+      <Button fx:id="shtoAdresen" layoutX="773.0" layoutY="531.0" mnemonicParsing="false" onAction="#shtoAdresen" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #a782ec; -fx-background-radius: 5;" text="Next &gt;&gt;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
+         <effect>
+            <DropShadow height="4.92" radius="1.2999999999999998" width="2.28">
+               <color>
+                  <Color opacity="0.5" />
+               </color>
+            </DropShadow>
+         </effect>
       </Button>
-      <Label layoutX="36.0" layoutY="40.0" text="Shto Adresën">
+      <Label layoutX="37.0" layoutY="51.0" text="Shto Adresën">
          <font>
             <Font name="DejaVu Sans Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="36.0" layoutY="329.0" text="Numri Postal:">
+      <Label layoutX="39.0" layoutY="334.0" text="Numri Postal:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="numri" layoutX="36.0" layoutY="283.0">
+      <TextField fx:id="numri" layoutX="36.0" layoutY="288.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <MenuBar layoutY="1.0" prefHeight="26.0" prefWidth="920.0">
+      <Button fx:id="shtoLokacionin" layoutX="254.0" layoutY="449.0" mnemonicParsing="false" onAction="#shtoLokacionin" prefHeight="31.0" prefWidth="180.0" style="-fx-background-color: #5ec5d4; -fx-background-radius: 5;" text="Shto Lokacionin" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <DropShadow height="10.47" radius="3.2725" width="4.62">
+               <color>
+                  <Color red="0.550000011920929" green="0.550000011920929" blue="0.550000011920929" opacity="0.7234346270561218" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Pane fx:id="googleMapPane" layoutX="254.0" layoutY="51.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="638.0" style="-fx-background-color: black;" />
+      <TextField fx:id="gjatesiaGjeo" layoutX="509.0" layoutY="449.0" promptText="Gjatësia gjeografike" style="-fx-background-radius: 5;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="gjeresiaGjeo" layoutX="705.0" layoutY="449.0" promptText="Gjerësia gjeografike" style="-fx-background-radius: 5;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <RadioButton fx:id="Perhershem" layoutX="39.0" layoutY="414.0" mnemonicParsing="false" text="Vendbanim i përhershëm">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="Perkohshem" layoutX="37.0" layoutY="455.0" mnemonicParsing="false" text="Vendbanim i përkohshëm">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </RadioButton>
+      <MenuBar layoutY="-1.0" prefHeight="26.0" prefWidth="920.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -78,31 +120,5 @@
             </Menu>
         </menus>
       </MenuBar>
-      <Button fx:id="shtoLokacionin" layoutX="254.0" layoutY="397.0" mnemonicParsing="false" onAction="#shtoLokacionin" prefHeight="31.0" prefWidth="180.0" style="-fx-background-color: #5ec5d4;" text="Shto Lokacionin" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Button>
-      <Pane fx:id="googleMapPane" layoutX="254.0" layoutY="31.0" prefHeight="358.0" prefWidth="638.0" style="-fx-background-color: black;" />
-      <TextField fx:id="gjatesiaGjeo" layoutX="509.0" layoutY="397.0" promptText="Gjatësia gjeografike">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="gjeresiaGjeo" layoutX="705.0" layoutY="397.0" promptText="Gjerësia gjeografike">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <RadioButton fx:id="Perhershem" layoutX="36.0" layoutY="420.0" mnemonicParsing="false" text="Vendbanim i përhershëm">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </RadioButton>
-      <RadioButton fx:id="Perkohshem" layoutX="36.0" layoutY="458.0" mnemonicParsing="false" text="Vendbanim i përkohshëm">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </RadioButton>
    </children>
 </AnchorPane>

@@ -55,9 +55,12 @@ public class AdresaController {
         WebView webView = new WebView();
         WebEngine webEngine = webView.getEngine();
         webEngine.load("https://maps.google.com");
+        double parentWidth = googleMapPane.getWidth();
+        double parentHeight = googleMapPane.getHeight();
+
+        webView.setMaxWidth(638);
+        webView.setMaxHeight(358);
         googleMapPane.getChildren().add(webView);
-
-
     }
 
     @FXML
