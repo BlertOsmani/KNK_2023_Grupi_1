@@ -4,6 +4,7 @@ import DbConnection.ConnectionUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import Models.Adresa;
@@ -14,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
@@ -59,7 +61,7 @@ public class AdresaController {
         double parentHeight = googleMapPane.getHeight();
 
         webView.setMaxWidth(638);
-        webView.setMaxHeight(358);
+        webView.setMaxHeight(390);
         googleMapPane.getChildren().add(webView);
     }
 
