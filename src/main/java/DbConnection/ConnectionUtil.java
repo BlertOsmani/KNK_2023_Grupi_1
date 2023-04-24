@@ -11,7 +11,7 @@ public class ConnectionUtil {
         if (connection == null || connection.isClosed()) {
             String url = "jdbc:mysql://localhost:3306/KNKProjekti";
             String user = "root";
-            String password = "b13rt-Osmani";
+            String password = "123456";
             connection = DriverManager.getConnection(url, user, password);
             System.out.println("Connection successfull");
         }
