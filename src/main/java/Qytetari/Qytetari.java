@@ -19,7 +19,6 @@ public class Qytetari extends Application {
         stage.setTitle("Aplikacion per regjistrimin e adresave dhe vendbanimeve");
         stage.setScene(scene);
         stage.show();
-
     }
     public static void main(String[]args) throws SQLException {
         launch();

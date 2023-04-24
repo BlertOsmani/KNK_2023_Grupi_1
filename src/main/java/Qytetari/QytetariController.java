@@ -1,16 +1,38 @@
 package Qytetari;
 
 import DbConnection.ConnectionUtil;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.skin.TextFieldSkin;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.function.UnaryOperator;
+import javafx.scene.control.TextField;
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.util.converter.NumberStringConverter;
+
+import java.text.DecimalFormat;
+import java.text.ParsePosition;
+import java.util.function.UnaryOperator;
+import javafx.scene.control.TextFormatter;
+import java.util.function.UnaryOperator;
+import javafx.scene.control.TextFormatter.Change;
+import javafx.util.converter.NumberStringConverter;
 
 public class QytetariController {
 
@@ -55,46 +77,76 @@ public class QytetariController {
     @FXML
     public Label errorNrPersonal;
 
-    public void initialize(){
-        // create a TextField
-        TextField phoneNumberTextField = new TextField();
+    public String currentText;
 
-// create a TextFormatter with the phone number mask
-        String phoneRegex = "(\\d{0,3})(\\d{0,2})(\\d{0,3})(\\d{0,3})"; // mask for phone number
-        UnaryOperator<TextFormatter.Change> filter = c -> {
-            String newText = c.getControlNewText();
-            if (newText.matches(phoneRegex)) {
-                // remove any existing formatting characters
-                newText = newText.replaceAll("[^\\d]", "");
+    @FXML
+    public Label ditelindjaError;
 
-                // apply the phone number format
-                StringBuilder formattedText = new StringBuilder("+");
-                int length = newText.length();
-                for (int i = 0; i < length; i++) {
-                    char ch = newText.charAt(i);
-                    if (i == 3 || i == 5 || i == 8) {
-                        formattedText.append(" ");
+    @FXML
+    public Label emailError;
+
+    @FXML
+    public Label emriBabaitError;
+
+    @FXML
+    public Label emriNenesError;
+
+    @FXML
+    public Label errorEmri;
+
+    @FXML
+    public Label gjiniaError;
+
+    @FXML
+    public Label mbiemriError;
+
+    @FXML
+    public Label nrTelError;
+
+    public void initialize() {
+        currentText = "";
+        // Add a listener to the text property to enforce the mask
+        NrTel.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                // Strip all non-digit characters from the input
+                String strippedText = newValue.replaceAll("[^\\d]", "");
+
+                // Insert the spaces between the segments of the mask
+                StringBuilder formattedText = new StringBuilder();
+                for (int i = 0; i < strippedText.length(); i++) {
+                    if (i == 0) {
+                        formattedText.append("+").append(strippedText.charAt(i));
+                    } else if (i == 3 || i == 5 || i == 8) {
+                        formattedText.append(" ").append(strippedText.charAt(i));
+                    } else {
+                        formattedText.append(strippedText.charAt(i));
                     }
-                    formattedText.append(ch);
                 }
 
-                // update the change object with the formatted text
-                c.setText(formattedText.toString());
-                c.setRange(0, length);
-                c.setCaretPosition(formattedText.length());
-                c.setAnchor(formattedText.length());
-
-                return c;
-            } else {
-                return null;
+                // Set the new text on the TextField
+                if (!formattedText.toString().equals(currentText)) {
+                    currentText = formattedText.toString();
+                    NrTel.setText(currentText);
+                    NrTel.positionCaret(currentText.length());
+                }
             }
-        };
-        TextFormatter<String> formatter = new TextFormatter<>(filter);
+        });
 
-// set the TextFormatter for the TextField
-        NrTel.setTextFormatter(formatter);
+        Femer.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                Mashkull.setSelected(false);
+            }
+        });
+        Mashkull.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                Femer.setSelected(false);
+            }
+        });
+
 
     }
+
 
     @FXML
     void ruaj(ActionEvent event) {
@@ -107,8 +159,12 @@ public class QytetariController {
             String emriNenes = EmriNenes.getText();
             String mbiemri = Mbiemri.getText();
             LocalDate ditelindja = Ditelindja.getValue();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/mm/yyyy");
-            String ditelindjaStr = ditelindja.format(formatter);
+            DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+                    .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                    .toFormatter();
+            String ditelindjaStr = ditelindja == null ? null : ditelindja.format(formatter);
+
+
 
             String email = Email.getText();
             String nrTel = NrTel.getText();
@@ -122,6 +178,50 @@ public class QytetariController {
             }
             if(nrPersonal.length() < 10 || nrPersonal.length() > 10){
                 errorNrPersonal.setVisible(true);
+                errorNrPersonal.setText("Numri Personal Gabim!");
+                return;
+            }
+            else if(nrPersonal == null || nrPersonal == ""){
+                errorNrPersonal.setVisible(true);
+                errorNrPersonal.setText("Kerkohet numri personal!");
+                return;
+            }
+            else if(emri == null || emri.equals("")){
+                errorEmri.setVisible(true);
+                errorEmri.setText("Kerkohet emri!");
+                return;
+            }
+            else if(emriBabait == null || emriBabait.equals("")){
+                emriBabaitError.setVisible(true);
+                emriBabaitError.setText("Kerkohet emri i babait!");
+                return;
+            }
+            else if(emriNenes == null || emriNenes.equals("")){
+                emriNenesError.setVisible(true);
+                emriNenesError.setText("Kerkohet emri i nenes!");
+                return;
+            }
+            else if(mbiemri == null || mbiemri.equals("")){
+                mbiemriError.setVisible(true);
+                mbiemriError.setText("Kerkohet mbiemri!");
+            }
+            else if(ditelindjaStr == null || ditelindjaStr.equals("")){
+                ditelindjaError.setVisible(true);
+                ditelindjaError.setText("Kerkohet ditelindja!");
+            }
+            else if(email == null || email.equals("")){
+                emailError.setVisible(true);
+                emailError.setText("Kerkohet email!");
+                return;
+            }
+            else if(nrTel == null || nrTel.equals("")){
+                nrTelError.setVisible(true);
+                nrTelError.setText("Kerkohet numri i telefonit!");
+                return;
+            }
+            else if(gjinia == null || gjinia.equals("")){
+                gjiniaError.setVisible(true);
+                gjiniaError.setText("Kerkohet gjinia!");
                 return;
             }
             Connection connection = ConnectionUtil.getConnection();
