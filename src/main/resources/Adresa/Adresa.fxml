@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="608.0" prefWidth="920.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Adresa.AdresaController">
+<AnchorPane prefHeight="608.0" prefWidth="920.0" style="-fx-background-color: white;" stylesheets="@adresa.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Adresa.AdresaController">
    <children>
       <TextField fx:id="qyteti" layoutX="34.0" layoutY="114.0" style="-fx-background-radius: 5;">
          <font>
@@ -45,7 +45,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="shtoAdresen" layoutX="773.0" layoutY="531.0" mnemonicParsing="false" onAction="#shtoAdresen" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #658864; -fx-background-radius: 5;" text="Next &gt;&gt;" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="shtoAdresen" layoutX="773.0" layoutY="531.0" mnemonicParsing="false" onAction="#shtoAdresen" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #429750; -fx-background-radius: 5;" text="Next &gt;&gt;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -67,7 +67,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Button fx:id="shtoLokacionin" layoutX="254.0" layoutY="487.0" mnemonicParsing="false" onAction="#shtoLokacionin" prefHeight="31.0" prefWidth="180.0" style="-fx-background-color: #B7B78A; -fx-background-radius: 5;" text="Shto Lokacionin" textFill="WHITE">
+      <Button fx:id="shtoLokacionin" layoutX="254.0" layoutY="487.0" mnemonicParsing="false" onAction="#shtoLokacionin" prefHeight="31.0" prefWidth="180.0" style="-fx-background-color: #195eab; -fx-background-radius: 5;" text="Shto Lokacionin" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -90,17 +90,17 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <RadioButton fx:id="Perhershem" layoutX="40.0" layoutY="435.0" mnemonicParsing="false" text="Vendbanim i përhershëm">
+      <RadioButton fx:id="Perhershem" layoutX="36.0" layoutY="435.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="Vendbanim i përhershëm">
          <font>
             <Font size="13.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="Perkohshem" layoutX="37.0" layoutY="462.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="Vendbanim i përkohshëm">
+      <RadioButton fx:id="Perkohshem" layoutX="35.0" layoutY="462.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="180.0" text="Vendbanim i përkohshëm">
          <font>
             <Font size="13.0" />
          </font>
       </RadioButton>
-      <MenuBar layoutY="-1.0" prefHeight="26.0" prefWidth="920.0" style="-fx-background-color: #dddddd;">
+      <MenuBar layoutY="-1.0" prefHeight="26.0" prefWidth="920.0" style="-fx-background-color: #474749;">
         <menus>
           <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
             <items>
@@ -127,7 +127,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="37.0" layoutY="39.0" prefHeight="22.0" prefWidth="99.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #5ec5d4;" text="Adresa">
+      <Label alignment="CENTER" layoutX="37.0" layoutY="39.0" prefHeight="22.0" prefWidth="99.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #195eab;" text="Adresa">
          <font>
             <Font size="14.0" />
          </font>

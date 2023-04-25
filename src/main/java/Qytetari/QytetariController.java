@@ -1,16 +1,21 @@
 package Qytetari;
 
+import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.skin.TextFieldSkin;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -24,6 +29,8 @@ import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import javafx.util.converter.NumberStringConverter;
 
 import java.text.DecimalFormat;
@@ -103,6 +110,11 @@ public class QytetariController {
     @FXML
     public Label nrTelError;
 
+    public String qytetiValue;
+    public String rrugaValue;
+    public String numriValue;
+    public String numriPostalValue;
+
     public void initialize() {
         currentText = "";
         // Add a listener to the text property to enforce the mask
@@ -147,6 +159,16 @@ public class QytetariController {
 
     }
 
+    public void setAddressInfo(String qytetiValue, String rrugaValue, String numriValue,String numriPostalValue){
+        this.qytetiValue = qytetiValue;
+        this.rrugaValue = rrugaValue;
+        this.numriValue = numriValue;
+        this.numriPostalValue = numriPostalValue;
+
+        String adresaValue = qytetiValue + ", " + rrugaValue + ", " + numriValue + ", " + numriPostalValue;
+        Adresa.setText(adresaValue);
+    }
+
 
     @FXML
     void ruaj(ActionEvent event) {
@@ -176,6 +198,9 @@ public class QytetariController {
             if(Mashkull.isSelected()){
                 gjinia = "Mashkull";
             }
+
+            //Nese njera prej textfieldave eshte i zbrazet
+
             if(nrPersonal.length() < 10 || nrPersonal.length() > 10){
                 errorNrPersonal.setVisible(true);
                 errorNrPersonal.setText("Numri Personal Gabim!");
@@ -224,6 +249,7 @@ public class QytetariController {
                 gjiniaError.setText("Kerkohet gjinia!");
                 return;
             }
+
             Connection connection = ConnectionUtil.getConnection();
 
             if (connection != null) {
@@ -250,4 +276,17 @@ public class QytetariController {
         }
     }
 
+    @FXML
+    void backToAdresa(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Adresa.class.getResource("Adresa.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
+        }
+    }
 }

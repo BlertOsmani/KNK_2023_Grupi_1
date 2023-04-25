@@ -35,7 +35,7 @@
                 <Font size="15.0" />
             </font>
         </Label>
-        <TextField fx:id="Adresa" layoutX="217.0" layoutY="120.0" prefHeight="31.0" prefWidth="485.0" style="-fx-background-radius: 5;">
+        <TextField fx:id="Adresa" editable="false" layoutX="217.0" layoutY="120.0" prefHeight="31.0" prefWidth="485.0" style="-fx-background-radius: 5;">
             <font>
                 <Font size="15.0" />
             </font>
@@ -45,7 +45,7 @@
                 <Font size="15.0" />
             </font>
         </Label>
-        <Button fx:id="Ruaj" layoutX="773.0" layoutY="531.0" mnemonicParsing="false" onAction="#ruaj" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #0092CA; -fx-background-radius: 5;" text="Save" textAlignment="CENTER" textFill="WHITE">
+        <Button fx:id="Ruaj" layoutX="773.0" layoutY="531.0" mnemonicParsing="false" onAction="#ruaj" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #429750; -fx-background-radius: 5;" text="Save" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font size="15.0" />
             </font>
@@ -77,7 +77,7 @@
                 <Font size="13.0" />
             </font>
         </RadioButton>
-        <MenuBar layoutY="-1.0" prefHeight="26.0" prefWidth="920.0" styleClass="menu-bar">
+        <MenuBar layoutY="-1.0" prefHeight="26.0" prefWidth="920.0" style="-fx-background-color: #474749;" styleClass="menu-bar">
             <menus>
                 <Menu mnemonicParsing="false" styleClass="menu" text="File">
                     <items>
@@ -99,7 +99,7 @@
                 </DropShadow>
             </effect>
         </MenuBar>
-        <Label alignment="CENTER" layoutX="139.0" layoutY="40.0" prefHeight="20.0" prefWidth="161.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #0092CA;" text="Te dhënat personale">
+        <Label alignment="CENTER" layoutX="139.0" layoutY="40.0" prefHeight="20.0" prefWidth="161.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #195eab;" text="Te dhënat personale">
             <font>
                 <Font size="14.0" />
             </font>
@@ -159,7 +159,7 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="back" layoutX="37.0" layoutY="531.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #393E46; -fx-background-radius: 5;" text="&lt;&lt; Back" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="back" layoutX="37.0" layoutY="531.0" mnemonicParsing="false" onAction="#backToAdresa" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #195eab; -fx-background-radius: 5;" text="&lt;&lt; Back" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

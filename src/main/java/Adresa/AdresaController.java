@@ -1,8 +1,13 @@
 package Adresa;
 
 import DbConnection.ConnectionUtil;
+import Qytetari.Qytetari;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
@@ -10,6 +15,7 @@ import javafx.scene.control.TextField;
 import Models.Adresa;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -18,6 +24,8 @@ import java.sql.Statement;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import Qytetari.QytetariController;
 
 public class AdresaController {
 
@@ -67,7 +75,7 @@ public class AdresaController {
 
     @FXML
     void shtoAdresen(ActionEvent event) {
-        try {
+       try {
             // Get the values entered in the text fields
             String rrugaValue = rruga.getText();
             String numriValue = numri.getText();
@@ -97,6 +105,18 @@ public class AdresaController {
                 statement.setString(7, gjeresiaGjeoValue);
                 statement.executeUpdate();
                 System.out.println("Adresa u krijua me sukses");
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(Qytetari.class.getResource("Qytetari.fxml"));
+                    Pane pane = fxmlLoader.load();
+                    QytetariController qytetariController = fxmlLoader.getController();
+                    qytetariController.setAddressInfo(qytetiValue, rrugaValue, numriValue, numriPostalValue);
+                    Scene scene = new Scene(pane);
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    System.err.println("Error loading FXML file: " + e.getMessage());
+                }
             } else {
                 System.out.println("Failed to connect to the database.");
             }
