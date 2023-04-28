@@ -10,4 +10,6 @@ module com.example.knk_2023_grupi_1 {
     exports Adresa to javafx.graphics;
     opens Adresa to javafx.fxml;
     opens Qytetari to javafx.fxml;
+    exports Login;
+    opens Login to javafx.fxml;
 }

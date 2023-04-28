@@ -2,6 +2,8 @@ package Qytetari;
 
 import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
+import Models.QytetariModel;
+import Repositories.QytetariRepository;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -112,8 +114,12 @@ public class QytetariController {
 
     public String qytetiValue;
     public String rrugaValue;
-    public String numriValue;
-    public String numriPostalValue;
+    public int numriValue;
+    public int numriPostalValue;
+    public String komuna;
+    public String fshati;
+    public String objekti;
+    public String hyrja;
 
     public void initialize() {
         currentText = "";
@@ -159,16 +165,33 @@ public class QytetariController {
 
     }
 
-    public void setAddressInfo(String qytetiValue, String rrugaValue, String numriValue,String numriPostalValue){
+    public void setAddressInfo(String qytetiValue, String komuna, String fshati ,String rrugaValue,String objekti, String hyrja ,int numriValue,int numriPostalValue){
         this.qytetiValue = qytetiValue;
+        this.komuna = komuna;
+        this.fshati = fshati;
         this.rrugaValue = rrugaValue;
+        this.objekti = objekti;
+        this.hyrja = hyrja;
         this.numriValue = numriValue;
         this.numriPostalValue = numriPostalValue;
 
-        String adresaValue = qytetiValue + ", " + rrugaValue + ", " + numriValue + ", " + numriPostalValue;
+        String adresaValue = qytetiValue + ", " + komuna + ", " + fshati + ", " + rrugaValue + ", " + objekti + ", " + hyrja + ", " + numriValue + ", " + numriPostalValue;
         Adresa.setText(adresaValue);
     }
 
+
+    public void clearForm(){
+        NrPersonal.setText("");
+        Emri.setText("");
+        EmriBabait.setText("");
+        EmriNenes.setText("");
+        Mbiemri.setText("");
+        Ditelindja.setValue(null);
+        Email.setText("");
+        NrTel.setText("");
+        Femer.setSelected(false);
+        Mashkull.setSelected(false);
+    }
 
     @FXML
     void ruaj(ActionEvent event) {
@@ -254,20 +277,11 @@ public class QytetariController {
 
             if (connection != null) {
                 // Insert the new address into the database
-                String sql = "INSERT INTO qytetari(NrPersonal, Emri, EmriBabait, EmriNenes, Mbiemri, Ditelindja, Email, NrTelefonit, Gjinia, Adresa, Created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setString(1, nrPersonal);
-                statement.setString(2, emri);
-                statement.setString(3, emriBabait);
-                statement.setString(4, emriNenes);
-                statement.setString(5, mbiemri);
-                statement.setString(6, ditelindjaStr);
-                statement.setString(7, email);
-                statement.setString(8, nrTel);
-                statement.setString(9, gjinia);
-                statement.setString(10, adresa);
-                statement.executeUpdate();
+                QytetariModel qytetariModel = new QytetariModel(NrPersonal.getText(), Emri.getText(), EmriBabait.getText(), EmriNenes.getText(), Mbiemri.getText(), ditelindjaStr, Email.getText(), NrTel.getText(),gjinia, 1);
+                QytetariRepository qytetariRepository = new QytetariRepository();
+                qytetariRepository.insert(qytetariModel, connection);
                 System.out.println("Qytetari u krijua me sukses");
+                clearForm();
             } else {
                 System.out.println("Failed to connect to the database.");
             }

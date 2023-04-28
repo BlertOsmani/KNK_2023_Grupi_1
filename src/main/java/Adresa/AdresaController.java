@@ -2,6 +2,7 @@ package Adresa;
 
 import DbConnection.ConnectionUtil;
 import Qytetari.Qytetari;
+import Repositories.AdresaRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import Models.Adresa;
+import Models.AdresaModel;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -29,11 +30,16 @@ import Qytetari.QytetariController;
 
 public class AdresaController {
 
+
     @FXML
     public RadioButton Perhershem;
 
     @FXML
     public RadioButton Perkohshem;
+
+    @FXML
+    public TextField fshati;
+
     @FXML
     public TextField gjatesiaGjeo;
 
@@ -41,10 +47,22 @@ public class AdresaController {
     public TextField gjeresiaGjeo;
 
     @FXML
+    public Pane googleMapPane;
+
+    @FXML
+    public TextField hyrja;
+
+    @FXML
+    public TextField komuna;
+
+    @FXML
     public TextField numri;
 
     @FXML
     public TextField numriPostal;
+
+    @FXML
+    public TextField objekti;
 
     @FXML
     public TextField qyteti;
@@ -54,9 +72,6 @@ public class AdresaController {
 
     @FXML
     public Button shtoAdresen;
-
-    @FXML
-    public Pane googleMapPane;
 
     @FXML
     public Button shtoLokacionin;
@@ -77,13 +92,8 @@ public class AdresaController {
     void shtoAdresen(ActionEvent event) {
        try {
             // Get the values entered in the text fields
-            String rrugaValue = rruga.getText();
-            String numriValue = numri.getText();
-            String qytetiValue = qyteti.getText();
-            String numriPostalValue = numriPostal.getText();
-            String gjeresiaGjeoValue = gjeresiaGjeo.getText();
-            String gjatesiaGjeoValue = gjatesiaGjeo.getText();
             String llojiVendbanimit = "";
+            int numriValue = Integer.parseInt(numri.getText());
             if(Perhershem.isSelected()){
                 llojiVendbanimit = "1";
             }
@@ -91,25 +101,17 @@ public class AdresaController {
                 llojiVendbanimit = "0";
             }
             Connection connection = ConnectionUtil.getConnection();
+            if(connection !=null) {
 
-            if (connection != null) {
+                AdresaModel adresaModel = new AdresaModel(qyteti.getText(), komuna.getText(), fshati.getText(), rruga.getText(), objekti.getText(), hyrja.getText(), numriValue, Integer.parseInt(numriPostal.getText()), llojiVendbanimit, gjatesiaGjeo.getText(), gjeresiaGjeo.getText());
                 // Insert the new address into the database
-                String sql = "INSERT INTO adresa(Qyteti, Rruga, Numri, NumriPostal,LlojiVendbanimit, GjatesiaGjeografike, GjeresiaGjeografike) VALUES (?,?, ?, ?, ?, ?, ?)";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setString(1, qytetiValue);
-                statement.setString(2, rrugaValue);
-                statement.setString(3, numriValue);
-                statement.setString(4, numriPostalValue);
-                statement.setString(5, llojiVendbanimit);
-                statement.setString(6, gjatesiaGjeoValue);
-                statement.setString(7, gjeresiaGjeoValue);
-                statement.executeUpdate();
-                System.out.println("Adresa u krijua me sukses");
+                AdresaRepository adresaRepository = new AdresaRepository();
+                adresaRepository.insert(adresaModel, connection);
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(Qytetari.class.getResource("Qytetari.fxml"));
                     Pane pane = fxmlLoader.load();
                     QytetariController qytetariController = fxmlLoader.getController();
-                    qytetariController.setAddressInfo(qytetiValue, rrugaValue, numriValue, numriPostalValue);
+                    qytetariController.setAddressInfo(adresaModel.Qyteti, adresaModel.Komuna, adresaModel.Fshati, adresaModel.Rruga, adresaModel.Objekti, adresaModel.Hyrja, adresaModel.Numri, adresaModel.NumriPostal);
                     Scene scene = new Scene(pane);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);
@@ -117,10 +119,11 @@ public class AdresaController {
                 } catch (IOException e) {
                     System.err.println("Error loading FXML file: " + e.getMessage());
                 }
-            } else {
-                System.out.println("Failed to connect to the database.");
             }
-        } catch (SQLException e) {
+            else{
+                System.out.println("Failed to insert adress in the database");
+            }
+         }catch(SQLException e) {
             System.err.println("Error inserting address into database: " + e.getMessage());
         }
     }
