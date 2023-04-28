@@ -12,4 +12,6 @@ module com.example.knk_2023_grupi_1 {
     opens Qytetari to javafx.fxml;
     exports Login;
     opens Login to javafx.fxml;
+    exports Signup;
+    opens Signup to javafx.fxml;
 }

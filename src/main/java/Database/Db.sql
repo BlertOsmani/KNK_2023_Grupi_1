@@ -39,7 +39,7 @@ CREATE TABLE `user` (
   `Mbiemri` varchar(50) DEFAULT NULL,
   `Email` varchar(150) DEFAULT NULL,
   `Username` varchar(50) DEFAULT NULL,
-  `Password` varchar(50) DEFAULT NULL,
+  `Password` varchar(256) DEFAULT NULL,
   `Created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`Id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
