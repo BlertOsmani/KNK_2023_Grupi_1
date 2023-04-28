@@ -65,7 +65,7 @@
          <font>
             <Font size="15.0" />
          </font></TextField>
-      <Button fx:id="signupBtn" layoutX="89.0" layoutY="486.0" mnemonicParsing="false" onAction="#signup" prefHeight="31.0" prefWidth="366.0" style="-fx-background-radius: 5; -fx-background-color: #195eab;" text="Signup" textFill="WHITE">
+      <Button fx:id="signupBtn" layoutX="90.0" layoutY="488.0" mnemonicParsing="false" onAction="#signup" prefHeight="31.0" prefWidth="366.0" style="-fx-background-radius: 5; -fx-background-color: #195eab;" text="Signup" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -78,5 +78,10 @@
             <Font size="15.0" />
          </font>
       </PasswordField>
+      <Label fx:id="errorSignup" layoutX="174.0" layoutY="458.0" prefHeight="22.0" prefWidth="198.0" text="Kerkohen te gjitha te dhenat!" textFill="RED" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

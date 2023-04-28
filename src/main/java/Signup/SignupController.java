@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
@@ -42,34 +43,39 @@ public class SignupController {
 
     @FXML
     public Button signupBtn;
+    public Label errorSignup;
+
 
     @FXML
     void signup(ActionEvent event) {
-        try {
-            Connection connection = ConnectionUtil.getConnection();
-            if(connection !=null) {
-                String salt = PasswordHasher.generateSalt();
-                String saltedHash = PasswordHasher.generateSaltedHash(Password.getText(), salt);
-                UserModel userModel = new UserModel(nrPersonal.getText(), emri.getText(), mbiemri.getText(), email.getText(), Username.getText(), saltedHash);
-                UserRepository userRepository = new UserRepository();
-                userRepository.insert(userModel, connection);
-                try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Login.fxml"));
-                    Pane pane = fxmlLoader.load();
-                    Scene scene = new Scene(pane);
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
-                } catch (IOException e) {
-                    System.err.println("Error loading FXML file: " + e.getMessage());
+            try {
+                if (emri.getText().isEmpty() || mbiemri.getText().isEmpty() || email.getText().isEmpty() || Username.getText().isEmpty() || Password.getText().isEmpty() || nrPersonal.getText().isEmpty()) {
+                    errorSignup.setVisible(true);
+                    return;
                 }
+                Connection connection = ConnectionUtil.getConnection();
+                if (connection != null) {
+                    String salt = PasswordHasher.generateSalt();
+                    String saltedHash = PasswordHasher.generateSaltedHash(Password.getText(), salt);
+                    UserModel userModel = new UserModel(nrPersonal.getText(), emri.getText(), mbiemri.getText(), email.getText(), Username.getText(), saltedHash);
+                    UserRepository userRepository = new UserRepository();
+                    userRepository.insert(userModel, connection);
+                    try {
+                        FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Login.fxml"));
+                        Pane pane = fxmlLoader.load();
+                        Scene scene = new Scene(pane);
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        System.err.println("Error loading FXML file: " + e.getMessage());
+                    }
+                } else {
+                    System.out.println("Failed to insert user in the database");
+                }
+            } catch (SQLException e) {
+                System.err.println("Error inserting user into database: " + e.getMessage());
             }
-            else{
-                System.out.println("Failed to insert user in the database");
-            }
-        }catch(SQLException e) {
-            System.err.println("Error inserting user into database: " + e.getMessage());
-        }
     }
 
 }
