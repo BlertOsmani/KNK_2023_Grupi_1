@@ -55,9 +55,7 @@ public class SignupController {
                 }
                 Connection connection = ConnectionUtil.getConnection();
                 if (connection != null) {
-                    String salt = PasswordHasher.generateSalt();
-                    String saltedHash = PasswordHasher.generateSaltedHash(Password.getText(), salt);
-                    UserModel userModel = new UserModel(nrPersonal.getText(), emri.getText(), mbiemri.getText(), email.getText(), Username.getText(), saltedHash);
+                    UserModel userModel = new UserModel(nrPersonal.getText(), emri.getText(), mbiemri.getText(), email.getText(), Username.getText(), Password.getText());
                     UserRepository userRepository = new UserRepository();
                     userRepository.insert(userModel, connection);
                     try {
