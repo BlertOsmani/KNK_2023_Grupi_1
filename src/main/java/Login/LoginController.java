@@ -1,5 +1,6 @@
 package Login;
 
+import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
@@ -16,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -57,10 +59,9 @@ public class LoginController {
         catch (SQLException e) {
             System.err.println("Failed to login!");
 
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
-
-
-
     }
 
 }

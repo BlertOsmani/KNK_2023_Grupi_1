@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import Services.PasswordHasher;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -73,6 +74,8 @@ public class SignupController {
                 }
             } catch (SQLException e) {
                 System.err.println("Error inserting user into database: " + e.getMessage());
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException(e);
             }
     }
 
