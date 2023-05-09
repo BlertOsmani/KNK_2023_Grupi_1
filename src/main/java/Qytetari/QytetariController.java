@@ -174,8 +174,61 @@ public class QytetariController {
         this.hyrja = hyrja;
         this.numriValue = numriValue;
         this.numriPostalValue = numriPostalValue;
+        String adresaValue = "";
 
-        String adresaValue = qytetiValue + ", " + komuna + ", " + fshati + ", " + rrugaValue + ", " + objekti + ", " + hyrja + ", " + numriValue + ", " + numriPostalValue;
+        if (qytetiValue != null && !qytetiValue.isEmpty()) {
+            adresaValue += qytetiValue;
+        }
+
+        if (komuna != null && !komuna.isEmpty()) {
+            if (!adresaValue.isEmpty()) {
+                adresaValue += ", ";
+            }
+            adresaValue += komuna;
+        }
+
+        if (fshati != null && !fshati.isEmpty()) {
+            if (!adresaValue.isEmpty()) {
+                adresaValue += ", ";
+            }
+            adresaValue += fshati;
+        }
+
+        if (rrugaValue != null && !rrugaValue.isEmpty()) {
+            if (!adresaValue.isEmpty()) {
+                adresaValue += ", ";
+            }
+            adresaValue += rrugaValue;
+        }
+
+        if (objekti != null && !objekti.isEmpty()) {
+            if (!adresaValue.isEmpty()) {
+                adresaValue += ", ";
+            }
+            adresaValue += objekti;
+        }
+
+        if (hyrja != null && !hyrja.isEmpty()) {
+            if (!adresaValue.isEmpty()) {
+                adresaValue += ", ";
+            }
+            adresaValue += hyrja;
+        }
+
+        if (numriValue != 0) {
+            if (!adresaValue.isEmpty()) {
+                adresaValue += ", ";
+            }
+            adresaValue += String.valueOf(numriValue);
+        }
+
+        if (numriPostalValue != 0) {
+            if (!adresaValue.isEmpty()) {
+                adresaValue += ", ";
+            }
+            adresaValue += String.valueOf(numriPostalValue);
+        }
+
         Adresa.setText(adresaValue);
     }
 

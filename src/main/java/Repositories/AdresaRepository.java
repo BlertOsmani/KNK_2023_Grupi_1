@@ -20,7 +20,7 @@ public class AdresaRepository
 {
     public void insert(AdresaModel adresaModel, Connection connection) throws SQLException{
             // Insert the new address into the database
-            String sql = "INSERT INTO adresa(Qyteti, Komuna, Fshati, Rruga, Objekti, Hyrja, Numri, NumriPostal,LlojiVendbanimit, GjatesiaGjeografike, GjeresiaGjeografike) VALUES (?,?,?,?,?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO adresa(Qyteti, Komuna, Fshati, Rruga, Objekti, Hyrja, Numri, NumriPostal,LlojiVendbanimit) VALUES (?,?,?,?,?, ?, ?, ?, ?)";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, adresaModel.Qyteti);
             statement.setString(2, adresaModel.Komuna);
@@ -31,8 +31,6 @@ public class AdresaRepository
             statement.setInt(7, adresaModel.Numri);
             statement.setInt(8, adresaModel.NumriPostal);
             statement.setString(9, adresaModel.LlojiVendbanimit);
-            statement.setString(10, adresaModel.GjatesiaGjeografike);
-            statement.setString(11, adresaModel.GjeresiaGjeografike);
             statement.executeUpdate();
     }
 }

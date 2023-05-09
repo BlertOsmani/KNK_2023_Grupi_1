@@ -12,10 +12,8 @@ public class AdresaModel{
     public int Numri;
     public int NumriPostal;
     public String LlojiVendbanimit;
-    public String GjatesiaGjeografike;
-    public String GjeresiaGjeografike;
 
-    public AdresaModel(String qyteti, String komuna, String fshati, String rruga, String objekti, String hyrja, int numri, int numriPostal, String llojiVendbanimit, String gjatesiaGjeografike, String gjeresiaGjeografike) {
+    public AdresaModel(String qyteti, String komuna, String fshati, String rruga, String objekti, String hyrja, int numri, int numriPostal, String llojiVendbanimit) {
         Qyteti = qyteti;
         Komuna = komuna;
         Fshati = fshati;
@@ -25,8 +23,6 @@ public class AdresaModel{
         Numri = numri;
         NumriPostal = numriPostal;
         LlojiVendbanimit = llojiVendbanimit;
-        GjatesiaGjeografike = gjatesiaGjeografike;
-        GjeresiaGjeografike = gjeresiaGjeografike;
     }
 
 

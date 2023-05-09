@@ -14,6 +14,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import Models.AdresaModel;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -39,12 +41,6 @@ public class AdresaController {
 
     @FXML
     public TextField fshati;
-
-    @FXML
-    public TextField gjatesiaGjeo;
-
-    @FXML
-    public TextField gjeresiaGjeo;
 
     @FXML
     public Pane googleMapPane;
@@ -73,19 +69,21 @@ public class AdresaController {
     @FXML
     public Button shtoAdresen;
 
-    @FXML
-    public Button shtoLokacionin;
 
     public void initialize(){
-        WebView webView = new WebView();
-        WebEngine webEngine = webView.getEngine();
-        webEngine.load("https://maps.google.com");
-        double parentWidth = googleMapPane.getWidth();
-        double parentHeight = googleMapPane.getHeight();
+        Pane parent = (Pane) shtoAdresen.getParent();
+        parent.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                shtoAdresen.fire();
+                event.consume();
+            }
+        });
 
-        webView.setMaxWidth(638);
-        webView.setMaxHeight(390);
-        googleMapPane.getChildren().add(webView);
+        shtoAdresen.setOnKeyPressed(event -> {
+            if(event.getCode() == KeyCode.ENTER){
+                shtoAdresen(new ActionEvent());
+            }
+        });
     }
 
     @FXML
@@ -103,10 +101,11 @@ public class AdresaController {
             Connection connection = ConnectionUtil.getConnection();
             if(connection !=null) {
 
-                AdresaModel adresaModel = new AdresaModel(qyteti.getText(), komuna.getText(), fshati.getText(), rruga.getText(), objekti.getText(), hyrja.getText(), numriValue, Integer.parseInt(numriPostal.getText()), llojiVendbanimit, gjatesiaGjeo.getText(), gjeresiaGjeo.getText());
+                AdresaModel adresaModel = new AdresaModel(qyteti.getText(), komuna.getText(), fshati.getText(), rruga.getText(), objekti.getText(), hyrja.getText(), numriValue, Integer.parseInt(numriPostal.getText()), llojiVendbanimit);
                 // Insert the new address into the database
                 AdresaRepository adresaRepository = new AdresaRepository();
                 adresaRepository.insert(adresaModel, connection);
+                System.out.println("Adres u shtua me sukses");
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(Qytetari.class.getResource("Qytetari.fxml"));
                     Pane pane = fxmlLoader.load();

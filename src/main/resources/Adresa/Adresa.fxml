@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -9,43 +10,42 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="739.0" prefWidth="920.0" style="-fx-background-color: white;" stylesheets="@adresa.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Adresa.AdresaController">
+<AnchorPane prefHeight="577.0" prefWidth="894.0" style="-fx-background-color: white;" stylesheets="@adresa.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Adresa.AdresaController">
    <children>
-      <TextField fx:id="qyteti" layoutX="34.0" layoutY="114.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="qyteti" layoutX="251.0" layoutY="165.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="36.0" layoutY="92.0" text="Qyteti:">
+      <Label layoutX="251.0" layoutY="137.0" text="Qyteti:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="hyrja" layoutX="34.0" layoutY="434.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="hyrja" layoutX="486.0" layoutY="332.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="37.0" layoutY="412.0" text="Hyrja:">
+      <Label layoutX="488.0" layoutY="304.0" text="Hyrja:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="numriPostal" layoutX="34.0" layoutY="562.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="numriPostal" layoutX="486.0" layoutY="416.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="32.0" layoutY="482.0" text="Numri i Shtëpisë/Banesës:">
+      <Label layoutX="251.0" layoutY="387.0" text="Numri i Shtëpisë/Banesës:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="shtoAdresen" layoutX="772.0" layoutY="685.0" mnemonicParsing="false" onAction="#shtoAdresen" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #429750; -fx-background-radius: 5;" text="Next &gt;&gt;" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="shtoAdresen" layoutX="770.0" layoutY="523.0" mnemonicParsing="false" onAction="#shtoAdresen" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #429750; -fx-background-radius: 5;" text="Next &gt;&gt;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -57,45 +57,22 @@
             </DropShadow>
          </effect>
       </Button>
-      <Label layoutX="31.0" layoutY="540.0" text="Numri Postal:">
+      <Label layoutX="484.0" layoutY="387.0" text="Numri Postal:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="numri" layoutX="34.0" layoutY="502.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="numri" layoutX="251.0" layoutY="416.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Button fx:id="shtoLokacionin" layoutX="254.0" layoutY="487.0" mnemonicParsing="false" onAction="#shtoLokacionin" prefHeight="31.0" prefWidth="180.0" style="-fx-background-color: #195eab; -fx-background-radius: 5;" text="Shto Lokacionin" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-         <effect>
-            <DropShadow height="10.47" radius="3.2725" width="4.62">
-               <color>
-                  <Color red="0.550000011920929" green="0.550000011920929" blue="0.550000011920929" opacity="0.7234346270561218" />
-               </color>
-            </DropShadow>
-         </effect>
-      </Button>
-      <Pane fx:id="googleMapPane" layoutX="254.0" layoutY="92.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="390.0" prefWidth="638.0" style="-fx-background-color: black;" />
-      <TextField fx:id="gjatesiaGjeo" layoutX="508.0" layoutY="487.0" promptText="Gjatësia gjeografike" style="-fx-background-radius: 5;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="gjeresiaGjeo" layoutX="705.0" layoutY="487.0" promptText="Gjerësia gjeografike" style="-fx-background-radius: 5;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
-      <RadioButton fx:id="Perhershem" layoutX="32.0" layoutY="618.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="172.0" text="Vendbanim i përhershëm">
+      <RadioButton fx:id="Perhershem" layoutX="252.0" layoutY="479.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="186.0" text="Vendbanim i përhershëm">
          <font>
             <Font size="13.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="Perkohshem" layoutX="32.0" layoutY="644.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="180.0" text="Vendbanim i përkohshëm">
+      <RadioButton fx:id="Perkohshem" layoutX="489.0" layoutY="479.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="180.0" text="Vendbanim i përkohshëm">
          <font>
             <Font size="13.0" />
          </font>
@@ -132,45 +109,46 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="komuna" layoutX="34.0" layoutY="181.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="komuna" layoutX="486.0" layoutY="165.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="36.0" layoutY="159.0" text="Komuna:">
+      <Label layoutX="486.0" layoutY="137.0" text="Komuna:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="fshati" layoutX="34.0" layoutY="248.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="fshati" layoutX="251.0" layoutY="248.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="37.0" layoutY="226.0" text="Fshati:">
+      <Label layoutX="252.0" layoutY="220.0" text="Fshati:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="rruga" layoutX="34.0" layoutY="309.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="rruga" layoutX="486.0" layoutY="248.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="37.0" layoutY="287.0" text="Rruga:">
+      <Label layoutX="486.0" layoutY="220.0" text="Rruga:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="objekti" layoutX="34.0" layoutY="370.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="objekti" layoutX="251.0" layoutY="332.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="37.0" layoutY="348.0" text="Objekti:">
+      <Label layoutX="252.0" layoutY="304.0" text="Objekti:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
+      <ComboBox editable="true" layoutX="367.0" layoutY="102.0" prefHeight="26.0" prefWidth="186.0" promptText="Selekto llojin e vendbanimit" />
    </children>
 </AnchorPane>
