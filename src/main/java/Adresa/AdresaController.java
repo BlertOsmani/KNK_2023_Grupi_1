@@ -25,8 +25,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javafx.scene.paint.Color;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
+
 import javafx.stage.Stage;
 import Qytetari.QytetariController;
 
