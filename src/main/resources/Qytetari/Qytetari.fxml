@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="608.0" prefWidth="920.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Qytetari.QytetariController">
+<AnchorPane prefHeight="608.0" prefWidth="920.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.QytetariController">
     <children>
         <TextField fx:id="NrPersonal" layoutX="217.0" layoutY="198.0" prefHeight="31.0" prefWidth="211.0" style="-fx-background-radius: 5;">
             <font>

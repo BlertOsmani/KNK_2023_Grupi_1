@@ -15,4 +15,8 @@ module com.example.knk_2023_grupi_1 {
     opens Login to javafx.fxml;
     exports Signup;
     opens Signup to javafx.fxml;
+    exports AdminDashboard;
+    opens AdminDashboard to javafx.fxml;
+    opens Controllers to javafx.fxml;
+    exports Controllers;
 }

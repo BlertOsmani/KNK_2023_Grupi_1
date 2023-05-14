@@ -1,4 +1,4 @@
-package Signup;
+package Controllers;
 
 import DbConnection.ConnectionUtil;
 import Login.Login;
@@ -56,7 +56,7 @@ public class SignupController {
                 }
                 Connection connection = ConnectionUtil.getConnection();
                 if (connection != null) {
-                    UserModel userModel = new UserModel(nrPersonal.getText(), emri.getText(), mbiemri.getText(), email.getText(), Username.getText(), Password.getText());
+                    UserModel userModel = new UserModel(nrPersonal.getText(), emri.getText(), mbiemri.getText(), email.getText(), Username.getText(), PasswordHasher.generateSalt() ,Password.getText());
                     UserRepository userRepository = new UserRepository();
                     userRepository.insert(userModel, connection);
                     try {

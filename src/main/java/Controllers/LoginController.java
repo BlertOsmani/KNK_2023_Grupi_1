@@ -1,4 +1,4 @@
-package Login;
+package Controllers;
 
 import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
@@ -57,7 +57,7 @@ public class LoginController {
             }
         }
         catch (SQLException e) {
-            System.err.println("Failed to login!");
+            System.err.println(e.getMessage());
 
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);

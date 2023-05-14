@@ -1,4 +1,4 @@
-package Qytetari;
+package Controllers;
 
 import Adresa.Adresa;
 import DbConnection.ConnectionUtil;

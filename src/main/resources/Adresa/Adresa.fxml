@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="577.0" prefWidth="894.0" style="-fx-background-color: white;" stylesheets="@adresa.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Adresa.AdresaController">
+<AnchorPane prefHeight="577.0" prefWidth="894.0" style="-fx-background-color: white;" stylesheets="@adresa.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdresaController">
    <children>
       <TextField fx:id="qyteti" layoutX="251.0" layoutY="165.0" style="-fx-background-radius: 5;">
          <font>

@@ -1,20 +1,10 @@
 package Repositories;
 
-import DbConnection.ConnectionUtil;
 import Models.AdresaModel;
-import Qytetari.Qytetari;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import Qytetari.QytetariController;
 
 public class AdresaRepository
 {

@@ -1,4 +1,4 @@
-package Adresa;
+package Controllers;
 
 import DbConnection.ConnectionUtil;
 import Qytetari.Qytetari;
@@ -7,10 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import Models.AdresaModel;
@@ -20,14 +18,9 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
-
-import javafx.scene.paint.Color;
 
 import javafx.stage.Stage;
-import Qytetari.QytetariController;
 
 public class AdresaController {
 
