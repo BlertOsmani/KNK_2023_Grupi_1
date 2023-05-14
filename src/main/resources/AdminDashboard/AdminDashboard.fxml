@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -11,48 +12,51 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="650.0" stylesheets="@AdminDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminDashboard.AdminDashboardController">
+<AnchorPane prefHeight="532.0" prefWidth="1181.0" stylesheets="@AdminDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AdminDashboard.AdminDashboardController">
    <children>
       <Button alignment="CENTER" layoutX="24.0" layoutY="49.0" mnemonicParsing="false" styleClass="vendbanimi" text="Kerko vendbanimin e qytetarit" />
       <Button layoutX="215.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Gjej qytetaret sipas vendbanimit" />
-      <MenuBar   layoutX="-1.0" layoutY="1.0" prefHeight="25.0" prefWidth="650.0" style="-fx-background-color: #c20121;">
+      <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1181.0" style="-fx-background-color: #c20121;">
         <menus>
-          <Menu   mnemonicParsing="false"  text="File">
+          <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="close" mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu styleClass="gjuha" mnemonicParsing="false"  text="Gjuha">
+          <Menu mnemonicParsing="false" styleClass="gjuha" text="Gjuha">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+              <MenuItem fx:id="shqip" mnemonicParsing="false" text="Shqip" />
+                  <MenuItem fx:id="english" mnemonicParsing="false" text="English" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="46.0" layoutY="103.0" text="Emri:" />
-      <TextField layoutX="97.0" layoutY="99.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5px; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
-      <Label layoutX="24.0" layoutY="148.0" text="Mbiemri:" />
-      <TextField layoutX="97.0" layoutY="144.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5px; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
-      <Label layoutX="287.0" layoutY="104.0" text="Numri personal:" />
-      <TextField layoutX="400.0" layoutY="100.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5px; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
-      <Label layoutX="299.0" layoutY="148.0" text="Data e lindjes:" />
-      <TextField layoutX="400.0" layoutY="144.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5px; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
-      <TableView layoutX="8.0" layoutY="185.0" prefHeight="201.0" prefWidth="631.0" styleClass="Table">
+      <Label layoutX="354.0" layoutY="105.0" text="Emri:" />
+      <TextField fx:id="emri" layoutX="401.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5px; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
+      <Label layoutX="595.0" layoutY="105.0" text="Mbiemri:" />
+      <TextField fx:id="mbiemri" layoutX="652.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5px; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
+      <Label layoutX="27.0" layoutY="105.0" text="Numri personal:" />
+      <TextField fx:id="nrPersonal" layoutX="124.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5px; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
+      <Label layoutX="848.0" layoutY="103.0" text="Data e lindjes:" />
+      <TableView layoutX="25.0" layoutY="204.0" prefHeight="280.0" prefWidth="1132.0" styleClass="Table">
         <columns>
-            <TableColumn prefWidth="51.333343505859375" styleClass="column" text="ID" />
-          <TableColumn prefWidth="76.66665649414062" styleClass="column" text="Emri" />
-          <TableColumn prefWidth="86.0" styleClass="column" text="Mbiemri" />
-            <TableColumn prefWidth="78.0" styleClass="column" text="Qyteti" />
-            <TableColumn prefWidth="74.0" styleClass="column" text="Fshati" />
-            <TableColumn prefWidth="90.0" styleClass="column" text="Rruga" />
-            <TableColumn prefWidth="52.66668701171875" styleClass="column" text="Numri" />
-            <TableColumn prefWidth="124.0" styleClass="column" text="Lloji i Vendbanimit" />
+            <TableColumn fx:id="adresaId" prefWidth="51.333343505859375" styleClass="column" text="ID" />
+          <TableColumn fx:id="adresaQyteti" prefWidth="124.79998397827148" styleClass="column" text="Qyteti" />
+          <TableColumn fx:id="adresaKomuna" prefWidth="119.19999694824219" styleClass="column" text="Komuna" />
+            <TableColumn fx:id="adresaFshati" prefWidth="124.0" styleClass="column" text="Fshati" />
+            <TableColumn fx:id="adresaRruga" prefWidth="172.0" styleClass="column" text="Rruga" />
+            <TableColumn fx:id="adresaObjekti" minWidth="0.0" prefWidth="177.5999755859375" styleClass="column" text="Objekti" />
+            <TableColumn fx:id="adresaHyrja" minWidth="0.0" prefWidth="66.4000244140625" styleClass="column" text="Hyrja" />
+            <TableColumn fx:id="adresaNumri" minWidth="0.0" prefWidth="72.79998779296875" styleClass="column" text="Numri" />
+            <TableColumn fx:id="adresaNumriPostal" minWidth="0.0" prefWidth="93.60003662109375" styleClass="column" text="Numri Postal" />
+            <TableColumn fx:id="adresaVendbanimi" prefWidth="133.60015869140625" styleClass="column" text="Lloji i vendbanimit" />
         </columns>
          <opaqueInsets>
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </opaqueInsets>
       </TableView>
-      <Button layoutX="573.0" layoutY="145.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="59.0" styleClass="filter" text="Filter" />
+      <Button fx:id="filterBtn" layoutX="24.0" layoutY="159.0" mnemonicParsing="false" onAction="#filterAdresaTable" prefHeight="31.0" prefWidth="59.0" styleClass="filter" text="Filter" />
+      <DatePicker fx:id="ditelindja" layoutX="935.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" />
    </children>
    <opaqueInsets>
       <Insets />
