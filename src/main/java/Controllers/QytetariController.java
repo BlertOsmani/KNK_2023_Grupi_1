@@ -3,6 +3,7 @@ package Controllers;
 import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
 import Models.QytetariModel;
+import Models.dto.CreateQytetariDto;
 import Repositories.QytetariRepository;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
@@ -330,9 +331,9 @@ public class QytetariController {
 
             if (connection != null) {
                 // Insert the new address into the database
-                QytetariModel qytetariModel = new QytetariModel(NrPersonal.getText(), Emri.getText(), EmriBabait.getText(), EmriNenes.getText(), Mbiemri.getText(), ditelindjaStr, Email.getText(), NrTel.getText(),gjinia, 1);
+                CreateQytetariDto qytetariDto = new CreateQytetariDto(NrPersonal.getText(), Emri.getText(), EmriBabait.getText(), EmriNenes.getText(), Mbiemri.getText(), ditelindjaStr, Email.getText(), NrTel.getText(),gjinia, 1);
                 QytetariRepository qytetariRepository = new QytetariRepository();
-                qytetariRepository.insert(qytetariModel, connection);
+                qytetariRepository.insert(qytetariDto, connection);
                 System.out.println("Qytetari u krijua me sukses");
                 clearForm();
             } else {

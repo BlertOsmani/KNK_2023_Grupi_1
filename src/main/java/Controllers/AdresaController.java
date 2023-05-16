@@ -1,6 +1,7 @@
 package Controllers;
 
 import DbConnection.ConnectionUtil;
+import Models.dto.CreateAdresaDto;
 import Qytetari.Qytetari;
 import Repositories.AdresaRepository;
 import javafx.event.ActionEvent;
@@ -93,16 +94,16 @@ public class AdresaController {
             Connection connection = ConnectionUtil.getConnection();
             if(connection !=null) {
 
-                AdresaModel adresaModel = new AdresaModel(qyteti.getText(), komuna.getText(), fshati.getText(), rruga.getText(), objekti.getText(), hyrja.getText(), numriValue, Integer.parseInt(numriPostal.getText()), llojiVendbanimit);
+                CreateAdresaDto adresaDto = new CreateAdresaDto(qyteti.getText(), komuna.getText(), fshati.getText(), rruga.getText(), objekti.getText(), hyrja.getText(), numriValue, Integer.parseInt(numriPostal.getText()), llojiVendbanimit);
                 // Insert the new address into the database
                 AdresaRepository adresaRepository = new AdresaRepository();
-                adresaRepository.insert(adresaModel, connection);
-                System.out.println("Adres u shtua me sukses");
+                adresaRepository.insert(adresaDto, connection);
+                System.out.println("Adresa u shtua me sukses");
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(Qytetari.class.getResource("Qytetari.fxml"));
                     Pane pane = fxmlLoader.load();
                     QytetariController qytetariController = fxmlLoader.getController();
-                    qytetariController.setAddressInfo(adresaModel.Qyteti, adresaModel.Komuna, adresaModel.Fshati, adresaModel.Rruga, adresaModel.Objekti, adresaModel.Hyrja, adresaModel.Numri, adresaModel.NumriPostal);
+                    qytetariController.setAddressInfo(adresaDto.Qyteti, adresaDto.Komuna, adresaDto.Fshati, adresaDto.Rruga, adresaDto.Objekti, adresaDto.Hyrja, adresaDto.Numri, adresaDto.NumriPostal);
                     Scene scene = new Scene(pane);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);

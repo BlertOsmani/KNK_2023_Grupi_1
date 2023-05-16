@@ -9,19 +9,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import Models.dto.CreateUserDto;
 import Services.PasswordHasher;
 
 public class UserRepository {
-    public void insert(UserModel userModel, Connection connection) throws SQLException {
+    public void insert(CreateUserDto userDto, Connection connection) throws SQLException {
         String sql = "INSERT INTO user(NrPersonal, Emri, Mbiemri, Email, Username,Salt, Password, Created_at) VALUES (?, ?, ?, ?, ?, ?, ?,NOW())";
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, userModel.NrPersonal);
-        statement.setString(2, userModel.Emri);
-        statement.setString(3, userModel.Mbiemri);
-        statement.setString(4, userModel.Email);
-        statement.setString(5, userModel.Username);
-        statement.setString(6, userModel.Salt);
-        statement.setString(7, userModel.Password);
+        statement.setString(1, userDto.NrPersonal);
+        statement.setString(2, userDto.Emri);
+        statement.setString(3, userDto.Mbiemri);
+        statement.setString(4, userDto.Email);
+        statement.setString(5, userDto.Username);
+        statement.setString(6, userDto.Salt);
+        statement.setString(7, userDto.Password);
         statement.executeUpdate();
     }
 

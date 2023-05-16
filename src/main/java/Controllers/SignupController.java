@@ -3,6 +3,7 @@ package Controllers;
 import DbConnection.ConnectionUtil;
 import Login.Login;
 import Models.UserModel;
+import Models.dto.CreateUserDto;
 import Repositories.UserRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,9 +57,9 @@ public class SignupController {
                 }
                 Connection connection = ConnectionUtil.getConnection();
                 if (connection != null) {
-                    UserModel userModel = new UserModel(nrPersonal.getText(), emri.getText(), mbiemri.getText(), email.getText(), Username.getText(), PasswordHasher.generateSalt() ,Password.getText());
+                    CreateUserDto userDto = new CreateUserDto(nrPersonal.getText(), emri.getText(), mbiemri.getText(), email.getText(), Username.getText(), PasswordHasher.generateSalt() ,Password.getText());
                     UserRepository userRepository = new UserRepository();
-                    userRepository.insert(userModel, connection);
+                    userRepository.insert(userDto, connection);
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Login.fxml"));
                         Pane pane = fxmlLoader.load();

@@ -1,8 +1,6 @@
-package Models;
+package Models.dto;
 
-public class QytetariModel {
-
-    public int Id;
+public class CreateQytetariDto {
     public String NrPersonal;
     public String Emri;
     public String EmriBabait;
@@ -14,8 +12,7 @@ public class QytetariModel {
     public String Gjinia;
     public int Adresa;
 
-    public QytetariModel(int id,String nrPersonal, String emri, String emriBabait, String emriNenes, String mbiemri, String ditelindja, String email,String nrTel, String gjinia, int adresa) {
-        Id = id;
+    public CreateQytetariDto(String nrPersonal, String emri, String emriBabait, String emriNenes, String mbiemri, String ditelindja, String email,String nrTel, String gjinia, int adresa) {
         NrPersonal = nrPersonal;
         Emri = emri;
         EmriBabait = emriBabait;
