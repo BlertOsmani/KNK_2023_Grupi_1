@@ -9,9 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import Models.AdresaModel;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -20,6 +18,8 @@ import javafx.scene.layout.Pane;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javafx.stage.Stage;
 
@@ -61,6 +61,31 @@ public class AdresaController {
 
     @FXML
     public Button shtoAdresen;
+    @FXML
+    public Label qytetiLabel;
+    @FXML
+    public Label komunaLabel;
+    @FXML
+    public Label fshatiLabel;
+    @FXML
+    public Label rrugaLabel;
+    @FXML
+    public Label objektiLabel;
+    @FXML
+    public Label hyrjaLabel;
+    @FXML
+    public Label numriLabel;
+    @FXML
+    public Label numriPostalLabel;
+    @FXML
+    public Label adresaLabel;
+    @FXML
+    public Label teDhenatPersonale;
+    @FXML
+    public ComboBox<String> llojiVendbanimit;
+    @FXML
+    public Menu gjuha;
+
 
 
     public void initialize(){
@@ -125,6 +150,38 @@ public class AdresaController {
     @FXML
     void shtoLokacionin(ActionEvent event) {
 
+    }
+
+    public void translate() {
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("Translations.content", locale);
+
+        gjuha.setText(translate.getString("adresa.menu.gjuha"));
+        adresaLabel.setText(translate.getString("adresa.label.adresa"));
+        teDhenatPersonale.setText(translate.getString("adresa.label.teDhenatPersonale"));
+        String promptText = translate.getString("adresa.combobox.llojiVendbanimit");
+        llojiVendbanimit.setPromptText(promptText);
+        qytetiLabel.setText(translate.getString("adresa.label.qyteti"));
+        komunaLabel.setText(translate.getString("adresa.label.komuna"));
+        fshatiLabel.setText(translate.getString("adresa.label.fshati"));
+        rrugaLabel.setText(translate.getString("adresa.label.rruga"));
+        objektiLabel.setText(translate.getString("adresa.label.objekti"));
+        hyrjaLabel.setText(translate.getString("adresa.label.hyrja"));
+        numriLabel.setText(translate.getString("adresa.label.numri"));
+        numriPostalLabel.setText(translate.getString("adresa.label.numriPostal"));
+        Perhershem.setText(translate.getString("adresa.radiobutton.perhershem"));
+        Perkohshem.setText(translate.getString("adresa.radiobutton.perkohshem"));
+        shtoAdresen.setText(translate.getString("adresa.button.next"));
+    }
+
+    public void translateEn(ActionEvent event){
+        Locale.setDefault(new Locale("en"));
+        this.translate();
+    }
+
+    public void translateAl(ActionEvent event){
+        Locale.setDefault(new Locale("al"));
+        this.translate();
     }
 
 }

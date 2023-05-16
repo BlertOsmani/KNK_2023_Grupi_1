@@ -14,8 +14,8 @@
 
 <AnchorPane prefHeight="546.0" prefWidth="1400.0" stylesheets="@AdminDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminDashboardController">
    <children>
-      <Button alignment="CENTER" layoutX="24.0" layoutY="49.0" mnemonicParsing="false" styleClass="vendbanimi" text="Kerko vendbanimin e qytetarit" />
-      <Button layoutX="215.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Gjej qytetaret sipas vendbanimit" />
+      <Button fx:id="kerkoVendbanimin" alignment="CENTER" layoutX="24.0" layoutY="49.0" mnemonicParsing="false" styleClass="vendbanimi" text="Kerko vendbanimin e qytetarit" />
+      <Button fx:id="gjejQytetaret" layoutX="215.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Gjej qytetaret sipas vendbanimit" />
       <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1400.0" style="-fx-background-color: #c20121;">
         <menus>
           <Menu mnemonicParsing="false" text="File">
@@ -23,21 +23,21 @@
               <MenuItem fx:id="close" mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" styleClass="gjuha" text="Gjuha">
+          <Menu fx:id="gjuhaAdmin" mnemonicParsing="false" styleClass="gjuha" text="Gjuha">
             <items>
-              <MenuItem fx:id="shqip" mnemonicParsing="false" text="Shqip" />
-                  <MenuItem fx:id="english" mnemonicParsing="false" text="English" />
+              <MenuItem fx:id="shqip" mnemonicParsing="false" onAction="#translateAL" text="Shqip" />
+                  <MenuItem fx:id="english" mnemonicParsing="false" onAction="#translateEN" text="English" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <Label layoutX="354.0" layoutY="105.0" text="Emri:" />
+      <Label fx:id="emriLabel" layoutX="354.0" layoutY="105.0" text="Emri:" />
       <TextField fx:id="emri" layoutX="401.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
-      <Label layoutX="595.0" layoutY="105.0" text="Mbiemri:" />
+      <Label fx:id="mbiemriLabel" layoutX="595.0" layoutY="105.0" text="Mbiemri:" />
       <TextField fx:id="mbiemri" layoutX="652.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
-      <Label layoutX="27.0" layoutY="105.0" text="Numri personal:" />
+      <Label fx:id="nrPersonalLabel" layoutX="27.0" layoutY="105.0" text="Numri personal:" />
       <TextField fx:id="nrPersonal" layoutX="124.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
-      <Label layoutX="848.0" layoutY="103.0" text="Data e lindjes:" />
+      <Label fx:id="dataLindjes" layoutX="848.0" layoutY="103.0" text="Data e lindjes:" />
       <TableView fx:id="adresaTable" layoutX="25.0" layoutY="204.0" prefHeight="280.0" prefWidth="1349.0" styleClass="Table">
         <columns>
             <TableColumn fx:id="adresaId" prefWidth="62.39999008178711" styleClass="column" text="Id" />

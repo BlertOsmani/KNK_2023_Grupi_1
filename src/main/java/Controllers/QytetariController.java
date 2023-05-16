@@ -27,6 +27,8 @@ import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import javafx.scene.control.TextField;
 import javafx.fxml.FXML;
@@ -121,6 +123,32 @@ public class QytetariController {
     public String fshati;
     public String objekti;
     public String hyrja;
+    @FXML
+    public Label emriBabaitLabel;
+    @FXML
+    public Label emriLabel;
+    @FXML
+    public Label emriNenesLabel;
+    @FXML
+    public Label gjiniaLabel;
+    @FXML
+    public Label mbiemriLabel;
+    @FXML
+    public Menu menuGjuha;
+    @FXML
+    public Label nrPersonalLabel;
+    @FXML
+    public Label nrTelefonitLabel;
+    @FXML
+    public Label personalData;
+    @FXML
+    public Label qytetariAdresa;
+    @FXML
+    public Label ditelindjaLabel;
+    @FXML
+    public Label emailLabel;
+    @FXML
+    public Label qytetariAdresaLabel;
 
     public void initialize() {
         currentText = "";
@@ -356,5 +384,37 @@ public class QytetariController {
         } catch (IOException e) {
             System.err.println("Error loading FXML file: " + e.getMessage());
         }
+    }
+
+    public void translate() {
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("Translations.content", locale);
+
+        menuGjuha.setText(translate.getString("qytetari.menu.gjuha"));
+        qytetariAdresa.setText(translate.getString("qytetari.label.adresa"));
+        personalData.setText(translate.getString("qytetari.label.teDhenatPersonale"));
+        qytetariAdresaLabel.setText(translate.getString("qytetari.label.adresa1"));
+        nrPersonalLabel.setText(translate.getString("qytetari.label.nrPersonal"));
+        emriLabel.setText(translate.getString("qytetari.label.emri"));
+        emriBabaitLabel.setText(translate.getString("qytetari.label.emriBabait"));
+        emriNenesLabel.setText(translate.getString("qytetari.label.emriNenes"));
+        mbiemriLabel.setText(translate.getString("qytetari.label.mbiemri"));
+        ditelindjaLabel.setText(translate.getString("qytetari.label.ditelindja"));
+        emailLabel.setText(translate.getString("qytetari.label.email"));
+        nrTelefonitLabel.setText(translate.getString("qytetari.label.nrTelefonit"));
+        gjiniaLabel.setText(translate.getString("qytetari.label.gjinia"));
+        Femer.setText(translate.getString("qytetari.radiobutton.femer"));
+        Mashkull.setText(translate.getString("qytetari.radiobutton.mashkull"));
+        back.setText(translate.getString("qytetari.button.back"));
+        Ruaj.setText(translate.getString("qytetari.button.save"));
+    }
+    public void translateEn(ActionEvent event){
+        Locale.setDefault(new Locale("en"));
+        this.translate();
+    }
+
+    public void translateAl(ActionEvent event){
+        Locale.setDefault(new Locale("al"));
+        this.translate();
     }
 }
