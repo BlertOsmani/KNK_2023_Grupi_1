@@ -23,6 +23,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class AdminDashboardController implements Initializable {
@@ -85,6 +86,21 @@ public class AdminDashboardController implements Initializable {
     @FXML
     public MenuItem shqip;
 
+    @FXML
+    public Label emriLabel;
+    @FXML
+    public Button gjejQytetaret;
+    @FXML
+    public Menu gjuhaAdmin;
+    @FXML
+    public Button kerkoVendbanimin;
+    @FXML
+    public Label mbiemriLabel;
+    @FXML
+    public Label nrPersonalLabel;
+    @FXML
+    public Label dataLindjes;
+
 
 
     @FXML
@@ -146,4 +162,28 @@ public class AdminDashboardController implements Initializable {
         ObservableList<AdresaModel> adresaObservableList = FXCollections.observableList(adresaModelList);
         adresaTable.setItems(adresaObservableList);
     }
+
+    public void translate() {
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("Translations.content", locale);
+
+        gjuhaAdmin.setText(translate.getString("admin.menu.gjuha"));
+        kerkoVendbanimin.setText(translate.getString("admin.button.kerkoVendbanimin"));
+        gjejQytetaret.setText(translate.getString("admin.button.gjejQytetaret"));
+        nrPersonalLabel.setText(translate.getString("admin.label.nrPersonal"));
+        emriLabel.setText(translate.getString("admin.label.emri"));
+        mbiemriLabel.setText(translate.getString("admin.label.mbiemri"));
+        dataLindjes.setText(translate.getString("admin.label.ditelindja"));
+    }
+
+    public void translateEN(ActionEvent event){
+        Locale.setDefault(new Locale("en"));
+        this.translate();
+    }
+
+    public void translateAL(ActionEvent event){
+        Locale.setDefault(new Locale("al"));
+        this.translate();
+    }
+
 }

@@ -8,15 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="470.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
+<AnchorPane prefHeight="437.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.LoginController">
    <children>
       <TextField fx:id="username" layoutX="66.0" layoutY="167.0" prefHeight="31.0" prefWidth="318.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="password" layoutX="66.0" layoutY="275.0" prefHeight="31.0" prefWidth="318.0" style="-fx-background-radius: 5;">
+      <PasswordField fx:id="password" layoutX="65.0" layoutY="253.0" prefHeight="31.0" prefWidth="318.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
@@ -26,17 +25,17 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="68.0" layoutY="246.0" text="Password:">
+      <Label layoutX="68.0" layoutY="224.0" text="Password:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="188.0" layoutY="46.0" style="-fx-text-fill: #0096c9;" text="Login">
+      <Label layoutX="185.0" layoutY="56.0" style="-fx-text-fill: #0096c9;" text="Login">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="loginBtn" graphicTextGap="0.0" layoutX="66.0" layoutY="356.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="318.0" style="-fx-background-color: #195eab; -fx-background-radius: 5;" text="Login" textFill="WHITE">
+      <Button fx:id="loginBtn" graphicTextGap="0.0" layoutX="65.0" layoutY="324.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="318.0" style="-fx-background-color: #195eab; -fx-background-radius: 5;" text="Login" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

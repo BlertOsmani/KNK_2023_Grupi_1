@@ -20,7 +20,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="251.0" layoutY="137.0" text="Qyteti:">
+      <Label fx:id="qytetiLabel" layoutX="251.0" layoutY="137.0" text="Qyteti:">
          <font>
             <Font size="15.0" />
          </font>
@@ -30,7 +30,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="488.0" layoutY="304.0" text="Hyrja:">
+      <Label fx:id="hyrjaLabel" layoutX="488.0" layoutY="304.0" text="Hyrja:">
          <font>
             <Font size="15.0" />
          </font>
@@ -40,7 +40,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="251.0" layoutY="387.0" text="Numri i Shtëpisë/Banesës:">
+      <Label fx:id="numriLabel" layoutX="251.0" layoutY="387.0" text="Numri i Shtëpisë/Banesës:">
          <font>
             <Font size="15.0" />
          </font>
@@ -57,7 +57,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Label layoutX="484.0" layoutY="387.0" text="Numri Postal:">
+      <Label fx:id="numriPostalLabel" layoutX="484.0" layoutY="387.0" text="Numri Postal:">
          <font>
             <Font size="15.0" />
          </font>
@@ -84,10 +84,10 @@
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="Gjuha">
+            <Menu fx:id="gjuha" mnemonicParsing="false" style="-fx-text-fill: white;" text="Gjuha">
               <items>
-                <MenuItem mnemonicParsing="false" text="Shqip" />
-                  <MenuItem mnemonicParsing="false" text="English" />
+                <MenuItem mnemonicParsing="false" onAction="#translateAl" text="Shqip" />
+                  <MenuItem mnemonicParsing="false" onAction="#translateEn" text="English" />
               </items>
             </Menu>
         </menus>
@@ -99,12 +99,12 @@
             </DropShadow>
          </effect>
       </MenuBar>
-      <Label alignment="CENTER" layoutX="139.0" layoutY="40.0" prefHeight="20.0" prefWidth="161.0" text="Te dhënat personale">
+      <Label fx:id="teDhenatPersonale" alignment="CENTER" layoutX="139.0" layoutY="40.0" prefHeight="20.0" prefWidth="161.0" text="Te dhënat personale">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="37.0" layoutY="39.0" prefHeight="22.0" prefWidth="99.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #195eab;" text="Adresa">
+      <Label fx:id="adresaLabel" alignment="CENTER" layoutX="37.0" layoutY="39.0" prefHeight="22.0" prefWidth="99.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #195eab;" text="Adresa">
          <font>
             <Font size="14.0" />
          </font>
@@ -114,7 +114,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="486.0" layoutY="137.0" text="Komuna:">
+      <Label fx:id="komunaLabel" layoutX="486.0" layoutY="137.0" text="Komuna:">
          <font>
             <Font size="15.0" />
          </font>
@@ -124,7 +124,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="252.0" layoutY="220.0" text="Fshati:">
+      <Label fx:id="fshatiLabel" layoutX="252.0" layoutY="220.0" text="Fshati:">
          <font>
             <Font size="15.0" />
          </font>
@@ -134,7 +134,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="486.0" layoutY="220.0" text="Rruga:">
+      <Label fx:id="rrugaLabel" layoutX="486.0" layoutY="220.0" text="Rruga:">
          <font>
             <Font size="15.0" />
          </font>
@@ -144,11 +144,11 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="252.0" layoutY="304.0" text="Objekti:">
+      <Label fx:id="objektiLabel" layoutX="252.0" layoutY="304.0" text="Objekti:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ComboBox editable="true" layoutX="367.0" layoutY="102.0" prefHeight="26.0" prefWidth="186.0" promptText="Selekto llojin e vendbanimit" />
+      <ComboBox fx:id="llojiVendbanimit" editable="true" layoutX="367.0" layoutY="102.0" prefHeight="26.0" prefWidth="186.0" promptText="Selekto llojin e vendbanimit" />
    </children>
 </AnchorPane>

@@ -20,7 +20,7 @@
                 <Font size="15.0" />
             </font>
         </TextField>
-        <Label layoutX="215.0" layoutY="174.0" prefHeight="22.0" prefWidth="126.0" text="Numri personal:">
+        <Label fx:id="nrPersonalLabel" layoutX="215.0" layoutY="174.0" prefHeight="22.0" prefWidth="126.0" text="Numri personal:">
             <font>
                 <Font size="15.0" />
             </font>
@@ -30,7 +30,7 @@
                 <Font size="15.0" />
             </font>
         </TextField>
-        <Label layoutX="491.0" layoutY="175.0" text="Emri:">
+        <Label fx:id="emriLabel" layoutX="491.0" layoutY="175.0" text="Emri:">
             <font>
                 <Font size="15.0" />
             </font>
@@ -40,7 +40,7 @@
                 <Font size="15.0" />
             </font>
         </TextField>
-        <Label layoutX="217.0" layoutY="249.0" text="Emri i babait:">
+        <Label fx:id="emriBabaitLabel" layoutX="217.0" layoutY="249.0" text="Emri i babait:">
             <font>
                 <Font size="15.0" />
             </font>
@@ -57,7 +57,7 @@
                 </DropShadow>
             </effect>
         </Button>
-        <Label layoutX="491.0" layoutY="249.0" text="Emri i nenes:">
+        <Label fx:id="emriNenesLabel" layoutX="491.0" layoutY="249.0" text="Emri i nenes:">
             <font>
                 <Font size="15.0" />
             </font>
@@ -84,10 +84,10 @@
                         <MenuItem mnemonicParsing="false" styleClass="menu-item" text="Close" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" styleClass="menu" text="Gjuha">
+                <Menu fx:id="menuGjuha" mnemonicParsing="false" styleClass="menu" text="Gjuha">
                     <items>
-                        <MenuItem mnemonicParsing="false" styleClass="menu-item" text="Shqip" />
-                        <MenuItem mnemonicParsing="false" styleClass="menu-item" text="English" />
+                        <MenuItem mnemonicParsing="false" onAction="#translateAl" styleClass="menu-item" text="Shqip" />
+                        <MenuItem mnemonicParsing="false" onAction="#translateEn" styleClass="menu-item" text="English" />
                     </items>
                 </Menu>
             </menus>
@@ -99,12 +99,12 @@
                 </DropShadow>
             </effect>
         </MenuBar>
-        <Label alignment="CENTER" layoutX="139.0" layoutY="40.0" prefHeight="20.0" prefWidth="161.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #195eab;" text="Te dhënat personale">
+        <Label fx:id="personalData" alignment="CENTER" layoutX="139.0" layoutY="40.0" prefHeight="20.0" prefWidth="161.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #195eab;" text="Te dhënat personale">
             <font>
                 <Font size="14.0" />
             </font>
         </Label>
-        <Label alignment="CENTER" layoutX="37.0" layoutY="39.0" prefHeight="22.0" prefWidth="99.0" text="Adresa">
+        <Label fx:id="qytetariAdresa" alignment="CENTER" layoutX="37.0" layoutY="39.0" prefHeight="22.0" prefWidth="99.0" text="Adresa">
             <font>
                 <Font size="14.0" />
             </font>
@@ -114,12 +114,12 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="222.0" layoutY="333.0" prefHeight="22.0" prefWidth="126.0" text="Mbiemri:">
+      <Label fx:id="mbiemriLabel" layoutX="222.0" layoutY="333.0" prefHeight="22.0" prefWidth="126.0" text="Mbiemri:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="492.0" layoutY="333.0" prefHeight="22.0" prefWidth="126.0" text="Ditelindja:">
+      <Label fx:id="ditelindjaLabel" layoutX="492.0" layoutY="333.0" prefHeight="22.0" prefWidth="126.0" text="Ditelindja:">
          <font>
             <Font size="15.0" />
          </font>
@@ -129,7 +129,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="220.0" layoutY="410.0" text="Email:">
+      <Label fx:id="emailLabel" layoutX="220.0" layoutY="410.0" text="Email:">
          <font>
             <Font size="15.0" />
          </font>
@@ -139,12 +139,12 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="491.0" layoutY="410.0" text="Numri i telefonit:">
+      <Label fx:id="nrTelefonitLabel" layoutX="491.0" layoutY="410.0" text="Numri i telefonit:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label layoutX="220.0" layoutY="483.0" text="Gjinia:">
+      <Label fx:id="gjiniaLabel" layoutX="220.0" layoutY="483.0" text="Gjinia:">
          <font>
             <Font size="15.0" />
          </font>
@@ -154,7 +154,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label layoutX="215.0" layoutY="97.0" prefHeight="22.0" prefWidth="126.0" text="Adresa:">
+      <Label fx:id="qytetariAdresaLabel" layoutX="215.0" layoutY="97.0" prefHeight="22.0" prefWidth="126.0" text="Adresa:">
          <font>
             <Font size="15.0" />
          </font>
