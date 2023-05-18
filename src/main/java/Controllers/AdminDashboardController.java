@@ -20,6 +20,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -149,11 +150,13 @@ public class AdminDashboardController implements Initializable {
         adresaQyteti.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Qyteti));
         adresaId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().Id).asObject());
         adresaAksionet.setCellFactory(column -> new TableCell<AdresaModel, Void>() {
-            private final Button button = new Button("Update");
+            private final Button edit = new Button("Update");
+            private final Button delete = new Button("Delete");
+            private final HBox buttonsContainer = new HBox(edit, delete);
 
             {
-                // Define the action to be performed when the button is clicked
-                button.setOnAction(event -> {
+                // Define the action to be performed when the edit button is clicked
+                edit.setOnAction(event -> {
                     AdresaModel model = getTableRow().getItem();
                     if (model != null) {
                         try {
@@ -168,9 +171,24 @@ public class AdminDashboardController implements Initializable {
                         } catch (IOException e) {
                             System.err.println("Error loading FXML file: " + e.getMessage());
                         }
-                        // Perform the desired action using the AdresaModel instance
-                        // For example, you can access its properties like model.getId(), model.getName(), etc.
                         System.out.println("Button clicked for item:");
+                    }
+                });
+
+                // Define the action to be performed when the delete button is clicked
+                delete.setOnAction(event -> {
+                    AdresaModel model = getTableRow().getItem();
+                    if (model != null) {
+                        int adresaId = model.Id;
+                        AdresaRepository adresaRepository = new AdresaRepository();
+                        try {
+                            Connection connection = ConnectionUtil.getConnection(); 
+                            adresaRepository.delete(adresaId, connection);
+                            System.out.println("Address deleted successfully");
+                            adresaTable.getItems().remove(model);
+                        } catch (SQLException e) {
+                            System.err.println("Error deleting address: " + e.getMessage());
+                        }
                     }
                 });
             }
@@ -181,13 +199,14 @@ public class AdminDashboardController implements Initializable {
                 if (empty) {
                     setGraphic(null);
                 } else {
-                    setGraphic(button);
+                    setGraphic(buttonsContainer);
                 }
             }
         });
 
 
-            Connection connection = null;
+
+        Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
         } catch (SQLException e) {
