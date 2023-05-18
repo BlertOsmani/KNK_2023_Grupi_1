@@ -12,19 +12,26 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import EditAdresa.EditAdresa;
 
 public class AdminDashboardController implements Initializable {
 
@@ -121,13 +128,27 @@ public class AdminDashboardController implements Initializable {
         adresaQyteti.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Qyteti));
         adresaId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().Id).asObject());
         adresaAksionet.setCellFactory(column -> new TableCell<AdresaModel, Void>() {
-            private final Button button = new Button("Click Me");
+            private final Button button = new Button("Update");
 
             {
                 // Define the action to be performed when the button is clicked
                 button.setOnAction(event -> {
                     AdresaModel model = getTableRow().getItem();
                     if (model != null) {
+                        try {
+                            int id = model.Id;
+                            System.out.println(id);
+                            FXMLLoader fxmlLoader = new FXMLLoader(EditAdresa.class.getResource("EditAdresa.fxml"));
+                            Pane pane = fxmlLoader.load();
+                            EditAdresaController editAdresaController = fxmlLoader.getController();
+                            editAdresaController.getAdressId(id);
+                            Scene scene = new Scene(pane);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException e) {
+                            System.err.println("Error loading FXML file: " + e.getMessage());
+                        }
                         // Perform the desired action using the AdresaModel instance
                         // For example, you can access its properties like model.getId(), model.getName(), etc.
                         System.out.println("Button clicked for item:");
