@@ -2,10 +2,8 @@ package Controllers;
 
 import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
-import Models.QytetariModel;
 import Models.dto.CreateQytetariDto;
 import Repositories.QytetariRepository;
-import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -14,37 +12,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.skin.TextFieldSkin;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.function.UnaryOperator;
+
 import javafx.scene.control.TextField;
-import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.converter.NumberStringConverter;
-
-import java.text.DecimalFormat;
-import java.text.ParsePosition;
-import java.util.function.UnaryOperator;
-import javafx.scene.control.TextFormatter;
-import java.util.function.UnaryOperator;
-import javafx.scene.control.TextFormatter.Change;
-import javafx.util.converter.NumberStringConverter;
 
 public class QytetariController {
 
@@ -150,6 +130,14 @@ public class QytetariController {
     @FXML
     public Label qytetariAdresaLabel;
 
+    public int AdresaId;
+
+    @FXML
+    public TextField adresaId;
+
+    @FXML
+    public Label errorQytetariEkziston;
+
     public void initialize() {
         currentText = "";
         // Add a listener to the text property to enforce the mask
@@ -194,7 +182,7 @@ public class QytetariController {
 
     }
 
-    public void setAddressInfo(String qytetiValue, String komuna, String fshati ,String rrugaValue,String objekti, String hyrja ,int numriValue,int numriPostalValue){
+    public void setAddressInfo(int id,String qytetiValue, String komuna, String fshati ,String rrugaValue,String objekti, String hyrja ,int numriValue,int numriPostalValue){
         this.qytetiValue = qytetiValue;
         this.komuna = komuna;
         this.fshati = fshati;
@@ -204,6 +192,8 @@ public class QytetariController {
         this.numriValue = numriValue;
         this.numriPostalValue = numriPostalValue;
         String adresaValue = "";
+        this.AdresaId = id;
+
 
         if (qytetiValue != null && !qytetiValue.isEmpty()) {
             adresaValue += qytetiValue;
@@ -259,6 +249,8 @@ public class QytetariController {
         }
 
         Adresa.setText(adresaValue);
+        adresaId.setText(String.valueOf(AdresaId));
+
     }
 
 
@@ -359,11 +351,18 @@ public class QytetariController {
 
             if (connection != null) {
                 // Insert the new address into the database
-                CreateQytetariDto qytetariDto = new CreateQytetariDto(NrPersonal.getText(), Emri.getText(), EmriBabait.getText(), EmriNenes.getText(), Mbiemri.getText(), ditelindjaStr, Email.getText(), NrTel.getText(),gjinia, 1);
+                    CreateQytetariDto qytetariDto = new CreateQytetariDto(NrPersonal.getText(), Emri.getText(), EmriBabait.getText(), EmriNenes.getText(), Mbiemri.getText(), ditelindjaStr, Email.getText(), NrTel.getText(),gjinia, 1);
                 QytetariRepository qytetariRepository = new QytetariRepository();
-                qytetariRepository.insert(qytetariDto, connection);
-                System.out.println("Qytetari u krijua me sukses");
-                clearForm();
+                boolean QytetariExists = QytetariRepository.qytetariExists(NrPersonal.getText(), connection);
+                if(QytetariExists == false) {
+                    qytetariRepository.insert(qytetariDto, connection);
+                    System.out.println("Qytetari u krijua me sukses");
+                    clearForm();
+                }
+                else{
+                    errorQytetariEkziston.setVisible(true);
+                }
+
             } else {
                 System.out.println("Failed to connect to the database.");
             }
