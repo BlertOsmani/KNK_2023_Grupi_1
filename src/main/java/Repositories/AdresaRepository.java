@@ -55,6 +55,22 @@ public class AdresaRepository
             statement.close();
             return adresaList;
     }
+        public void update(AdresaModel editAdresaModel, Connection connection) throws SQLException {
+                // Update the address in the database
+                String sql = "UPDATE adresa SET Qyteti = ?, Komuna = ?, Fshati = ?, Rruga = ?, Objekti = ?, Hyrja = ?, Numri = ?, NumriPostal = ?, LlojiVendbanimit = ? WHERE Id = ?";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setString(1, editAdresaModel.Qyteti);
+                statement.setString(2, editAdresaModel.Komuna);
+                statement.setString(3, editAdresaModel.Fshati);
+                statement.setString(4, editAdresaModel.Rruga);
+                statement.setString(5, editAdresaModel.Objekti);
+                statement.setString(6, editAdresaModel.Hyrja);
+                statement.setInt(7, editAdresaModel.Numri);
+                statement.setInt(8, editAdresaModel.NumriPostal);
+                statement.setString(9, editAdresaModel.LlojiVendbanimit);
+                statement.setInt(10, editAdresaModel.Id);
+                statement.executeUpdate();
+        }
 
         public int getLastId(Connection connection) throws SQLException {
                 String sql = "SELECT LAST_INSERT_ID() AS LastId";
@@ -68,6 +84,5 @@ public class AdresaRepository
                 statement.close();
                 return id;
         }
-
-
+        
 }
