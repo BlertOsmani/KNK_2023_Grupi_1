@@ -84,5 +84,13 @@ public class AdresaRepository
                 statement.close();
                 return id;
         }
-        
+
+        public void delete(int adresaId, Connection connection) throws SQLException {
+                String sql = "DELETE FROM adresa WHERE Id = ?";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                statement.setInt(1, adresaId);
+                statement.executeUpdate();
+                statement.close();
+        }
+
 }
