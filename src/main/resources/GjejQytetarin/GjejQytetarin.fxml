@@ -10,7 +10,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane accessibleRole="TEXT_FIELD" prefHeight="678.0" prefWidth="1399.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GjejQytetarin.GjejQytetarin">
+<?import javafx.geometry.Insets?>
+<AnchorPane accessibleRole="TEXT_FIELD" prefHeight="678.0" prefWidth="1399.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GjejQytetarinController">
     <children>
         <Button fx:id="kerkoVendbanimin" alignment="CENTER" layoutX="24.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: none;" styleClass="vendbanimi" text="Kerko vendbanimin e qytetarit" />
         <Button fx:id="gjejQytetaret" layoutX="215.0" layoutY="49.0" mnemonicParsing="false" styleClass="qytetaret" stylesheets="@GjejQytetarin.css" text="Gjej qytetaret sipas vendbanimit" />
@@ -23,8 +24,8 @@
                 </Menu>
                 <Menu fx:id="gjuhaAdmin" mnemonicParsing="false" styleClass="gjuha" text="Gjuha">
                     <items>
-                        <MenuItem fx:id="shqip" mnemonicParsing="false" onAction="#translateAL" text="Shqip" />
-                        <MenuItem fx:id="english" mnemonicParsing="false" onAction="#translateEN" text="English" />
+                        <MenuItem fx:id="shqip" mnemonicParsing="false" text="Shqip" />
+                        <MenuItem fx:id="english" mnemonicParsing="false" text="English" />
                     </items>
                 </Menu>
             </menus>
@@ -48,7 +49,7 @@
                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
             </opaqueInsets>
         </TableView>
-        <Button fx:id="filterBtn" layoutX="24.0" layoutY="253.0" mnemonicParsing="false" onAction="#filterAdresaTable" prefHeight="31.0" prefWidth="59.0" styleClass="filter" stylesheets="@GjejQytetarin.css" text="Filter" />
+        <Button fx:id="filterBtn" layoutX="24.0" layoutY="253.0" mnemonicParsing="false"  prefHeight="31.0" prefWidth="59.0" styleClass="filter" stylesheets="@GjejQytetarin.css" text="Filter" />
       <Label fx:id="qyteti" layoutX="24.0" layoutY="105.0" prefHeight="17.0" prefWidth="41.0" text="Qyteti:" />
       <TextField layoutX="65.0" layoutY="101.0" />
       <Label fx:id="komuna" layoutX="235.0" layoutY="105.0" text="Komuna:" />

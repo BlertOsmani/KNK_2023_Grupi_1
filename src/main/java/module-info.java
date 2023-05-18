@@ -19,4 +19,7 @@ module com.example.knk_2023_grupi_1 {
     opens AdminDashboard to javafx.fxml;
     opens Controllers to javafx.fxml;
     exports Controllers;
+    exports GjejQytetarin;
+    opens GjejQytetarin to javafx.fxml;
+    exports Models;
 }
