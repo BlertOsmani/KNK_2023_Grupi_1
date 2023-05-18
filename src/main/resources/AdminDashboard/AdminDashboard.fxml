@@ -15,7 +15,7 @@
 <AnchorPane prefHeight="546.0" prefWidth="1400.0" stylesheets="@AdminDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminDashboardController">
    <children>
       <Button alignment="CENTER" layoutX="24.0" layoutY="49.0" mnemonicParsing="false" styleClass="vendbanimi" text="Kerko vendbanimin e qytetarit" />
-      <Button layoutX="215.0" layoutY="49.0" mnemonicParsing="false" styleClass="qytetaret" text="Gjej qytetaret sipas vendbanimit" />
+      <Button layoutX="215.0" layoutY="49.0" mnemonicParsing="false" onAction="#openGjejQytetarin" styleClass="unactive" text="Gjej qytetaret sipas vendbanimit" />
       <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1400.0" style="-fx-background-color: #474749;">
 
         <menus>
@@ -32,13 +32,13 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label fx:id="emriLabel" layoutX="354.0" layoutY="105.0" text="Emri:" />
-      <TextField fx:id="emri" layoutX="401.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
-      <Label fx:id="mbiemriLabel" layoutX="595.0" layoutY="105.0" text="Mbiemri:" />
-      <TextField fx:id="mbiemri" layoutX="652.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
-      <Label fx:id="nrPersonalLabel" layoutX="27.0" layoutY="105.0" text="Numri personal:" />
-      <TextField fx:id="nrPersonal" layoutX="124.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
-      <Label fx:id="dataLindjes" layoutX="848.0" layoutY="103.0" text="Data e lindjes:" />
+      <Label fx:id="emriLabel" layoutX="374.0" layoutY="157.0" text="Emri:" />
+      <TextField fx:id="emri" layoutX="410.0" layoutY="152.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
+      <Label fx:id="mbiemriLabel" layoutX="686.0" layoutY="157.0" text="Mbiemri:" />
+      <TextField fx:id="mbiemri" layoutX="741.0" layoutY="152.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
+      <Label fx:id="nrPersonalLabel" layoutX="27.0" layoutY="157.0" text="Numri personal:" />
+      <TextField fx:id="nrPersonal" layoutX="119.0" layoutY="152.0" prefHeight="27.0" prefWidth="162.0" style="-fx-background-color: #F4F4F4; -fx-background-radius: 5; -fx-border-width: 1px; -fx-border-color: #CCCCCC;" />
+      <Label fx:id="dataLindjes" layoutX="985.0" layoutY="157.0" text="Data e lindjes:" />
       <TableView fx:id="adresaTable" layoutX="25.0" layoutY="204.0" prefHeight="280.0" prefWidth="1349.0" styleClass="Table">
         <columns>
             <TableColumn fx:id="adresaId" prefWidth="62.39999008178711" styleClass="column" text="Id" />
@@ -57,8 +57,9 @@
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </opaqueInsets>
       </TableView>
-      <Button fx:id="filterBtn" layoutX="24.0" layoutY="159.0" mnemonicParsing="false" onAction="#filterAdresaTable" prefHeight="31.0" prefWidth="59.0" styleClass="filter" text="Filter" />
-      <DatePicker fx:id="ditelindja" layoutX="935.0" layoutY="100.0" prefHeight="27.0" prefWidth="162.0" />
+      <Button fx:id="filterBtn" layoutX="1313.0" layoutY="150.0" mnemonicParsing="false" onAction="#filterAdresaTable" prefHeight="31.0" prefWidth="59.0" styleClass="filter" text="Filter" />
+      <DatePicker fx:id="ditelindja" layoutX="1070.0" layoutY="152.0" prefHeight="27.0" prefWidth="162.0" />
+      <Button layoutX="410.0" layoutY="49.0" mnemonicParsing="false" onAction="#openShtoAdresen" prefWidth="87.0" styleClass="unactive" text="Shto Adresen" />
    </children>
    <opaqueInsets>
       <Insets />

@@ -1,18 +1,15 @@
-.vendbanimi{
-    -fx-background-radius: 5px;
-    -fx-background-color: #195eab;
-    -fx-text-fill: white;
-}
 .qytetaret{
     -fx-background-radius: 5px;
     -fx-background-color: #195eab;
      -fx-text-fill: white;
 }
-.vendbanimi:hover{
-    -fx-background-color: #f20129;
+.unactive{
+    -fx-background-radius: 5px;
+    -fx-background-color: none;
 }
-.qytetaret:hover{
-    -fx-background-color: #f20129;
+.unactive:hover{
+    -fx-background-color: #195eab;
+    -fx-text-fill: white;
 }
 .Table .column .label{
     -fx-background-color: #195eab;

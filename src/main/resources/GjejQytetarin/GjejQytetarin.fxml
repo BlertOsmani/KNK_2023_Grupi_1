@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -10,10 +11,9 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<?import javafx.geometry.Insets?>
 <AnchorPane accessibleRole="TEXT_FIELD" prefHeight="678.0" prefWidth="1399.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GjejQytetarinController">
     <children>
-        <Button fx:id="kerkoVendbanimin" alignment="CENTER" layoutX="24.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: none;" styleClass="vendbanimi" text="Kerko vendbanimin e qytetarit" />
+        <Button fx:id="kerkoVendbanimin" alignment="CENTER" layoutX="24.0" layoutY="49.0" mnemonicParsing="false" onAction="#openKerkoVendbanimin" styleClass="unactive" stylesheets="@GjejQytetarin.css" text="Kerko vendbanimin e qytetarit" />
         <Button fx:id="gjejQytetaret" layoutX="215.0" layoutY="49.0" mnemonicParsing="false" styleClass="qytetaret" stylesheets="@GjejQytetarin.css" text="Gjej qytetaret sipas vendbanimit" />
         <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1400.0" style="-fx-background-color: #474749;" stylesheets="@GjejQytetarin.css">
             <menus>
@@ -49,7 +49,7 @@
                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
             </opaqueInsets>
         </TableView>
-        <Button fx:id="filterBtn" layoutX="24.0" layoutY="253.0" mnemonicParsing="false"  prefHeight="31.0" prefWidth="59.0" styleClass="filter" stylesheets="@GjejQytetarin.css" text="Filter" />
+        <Button fx:id="filterBtn" layoutX="24.0" layoutY="253.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="59.0" styleClass="filter" stylesheets="@GjejQytetarin.css" text="Filter" />
       <Label fx:id="qyteti" layoutX="24.0" layoutY="105.0" prefHeight="17.0" prefWidth="41.0" text="Qyteti:" />
       <TextField layoutX="65.0" layoutY="101.0" />
       <Label fx:id="komuna" layoutX="235.0" layoutY="105.0" text="Komuna:" />
@@ -68,6 +68,7 @@
       <TextField layoutX="314.0" layoutY="156.0" />
       <Label fx:id="llojiVendbanimit" layoutX="483.0" layoutY="160.0" text="Lloji i Vendbanimit:" />
       <TextField layoutX="595.0" layoutY="156.0" />
+      <Button fx:id="kerkoVendbanimin1" alignment="CENTER" layoutX="418.0" layoutY="49.0" mnemonicParsing="false" onAction="#openShtoAdresen" styleClass="unactive" stylesheets="@GjejQytetarin.css" text="Shto Adresen" />
     </children>
     <opaqueInsets>
         <Insets />

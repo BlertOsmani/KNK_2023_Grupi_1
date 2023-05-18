@@ -13,7 +13,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="577.0" prefWidth="894.0" style="-fx-background-color: white;" stylesheets="@adresa.css"  xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdresaController">
+<AnchorPane prefHeight="577.0" prefWidth="894.0" style="-fx-background-color: white;" stylesheets="@adresa.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdresaController">
    <children>
       <TextField fx:id="qyteti" layoutX="251.0" layoutY="165.0" style="-fx-background-radius: 5;">
          <font>
@@ -150,5 +150,17 @@
          </font>
       </Label>
       <ComboBox fx:id="llojiVendbanimit" editable="true" layoutX="367.0" layoutY="102.0" prefHeight="26.0" prefWidth="186.0" promptText="Selekto llojin e vendbanimit" />
+      <Button fx:id="backToDashboard" layoutX="27.0" layoutY="523.0" mnemonicParsing="false" onAction="#openDashboard" prefHeight="40.0" prefWidth="186.0" style="-fx-background-color: #474749; -fx-background-radius: 5;" text="&lt;&lt; Back to dashboard" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <DropShadow height="4.92" radius="1.2999999999999998" width="2.28">
+               <color>
+                  <Color opacity="0.5" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
    </children>
 </AnchorPane>

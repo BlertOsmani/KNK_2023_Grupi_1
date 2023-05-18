@@ -1,6 +1,9 @@
 package Controllers;
 
+import AdminDashboard.AdminDashboard;
+import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
+import GjejQytetarin.GjejQytetarin;
 import Models.AdresaModel;
 import Models.QytetariModel;
 import Repositories.AdresaRepository;
@@ -11,9 +14,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -119,6 +128,27 @@ public class GjejQytetarinController implements Initializable {
     void translateEN(ActionEvent event) {
 
     }*/
+
+    @FXML
+    void openKerkoVendbanimin(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("AdminDashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void openShtoAdresen(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Adresa.class.getResource("Adresa.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         qytetariEmri.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Emri));

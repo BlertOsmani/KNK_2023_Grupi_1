@@ -1,6 +1,8 @@
 package Controllers;
 
+import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
+import GjejQytetarin.GjejQytetarin;
 import Models.AdresaModel;
 import Models.UserModel;
 import Repositories.AdresaRepository;
@@ -111,6 +113,25 @@ public class AdminDashboardController implements Initializable {
 
 
     @FXML
+    void openGjejQytetarin(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(GjejQytetarin.class.getResource("GjejQytetarin.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void openShtoAdresen(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Adresa.class.getResource("Adresa.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
     void filterAdresaTable(ActionEvent event) {
 
     }
@@ -136,12 +157,10 @@ public class AdminDashboardController implements Initializable {
                     AdresaModel model = getTableRow().getItem();
                     if (model != null) {
                         try {
-                            int id = model.Id;
-                            System.out.println(id);
                             FXMLLoader fxmlLoader = new FXMLLoader(EditAdresa.class.getResource("EditAdresa.fxml"));
                             Pane pane = fxmlLoader.load();
                             EditAdresaController editAdresaController = fxmlLoader.getController();
-                            editAdresaController.getAdressId(id);
+                            editAdresaController.setAdressFields(model.Id, model.Qyteti, model.Komuna, model.Fshati, model.Rruga, model.Objekti, model.Hyrja, model.Numri, model.NumriPostal, model.LlojiVendbanimit);
                             Scene scene = new Scene(pane);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene);

@@ -158,5 +158,17 @@
             <Font size="15.0" />
          </font>
       </Label>
+      <Button fx:id="backToDashboard" layoutX="27.0" layoutY="515.0" mnemonicParsing="false" onAction="#openAdminDashboard" prefHeight="40.0" prefWidth="172.0" style="-fx-background-color: #474749; -fx-background-radius: 5;" text="&lt;&lt; Back to dashboard" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <DropShadow height="4.92" radius="1.2999999999999998" width="2.28">
+               <color>
+                  <Color opacity="0.5" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
     </children>
 </AnchorPane>

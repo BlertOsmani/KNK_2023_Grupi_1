@@ -93,11 +93,50 @@ public class EditAdresaController {
     @FXML
     private Button updateAdresen;
 
-    public int adressId;
+    @FXML
+    private Button backToDashboard;
 
-    public void getAdressId(int id){
-        this.adressId = id;
-        adresaId.setText(String.valueOf(adressId));
+    public int GetId;
+    public String GetQyteti;
+    public String GetKomuna;
+    public String GetFshati;
+    public String GetRruga;
+    public String GetObjekti;
+    public String GetHyrja;
+    public int GetNumri;
+    public int GetNumriPostal;
+    public String GetLlojiVendbanimit;
+
+    public void setAdressFields(int id, String qyteti, String komuna,String fshati, String rruga, String objekti, String hyrja, int numri, int numriPostal, String llojiVendbanimit){
+        this.GetId = id;
+        this.GetQyteti = qyteti;
+        this.GetKomuna = komuna;
+        this.GetFshati = fshati;
+        this.GetRruga = rruga;
+        this.GetObjekti = objekti;
+        this.GetHyrja = hyrja;
+        this.GetNumri = numri;
+        this.GetNumriPostal = numriPostal;
+        this.GetLlojiVendbanimit = llojiVendbanimit;
+
+        adresaId.setText(String.valueOf(GetId));
+        Qyteti.setText(GetQyteti);
+        Komuna.setText(GetKomuna);
+        Fshati.setText(GetFshati);
+        Rruga.setText(GetRruga);
+        Objekti.setText(GetObjekti);
+        Hyrja.setText(GetHyrja);
+        Numri.setText(String.valueOf(GetNumri));
+        NumriPostal.setText(String.valueOf(GetNumriPostal));
+        if(GetLlojiVendbanimit == "I perhershem"){
+            perhershem.setSelected(true);
+            perkohshem.setSelected(false);
+        }
+        else{
+            perhershem.setSelected(false);
+            perkohshem.setSelected(true);
+        }
+
     }
 
     @FXML
@@ -149,6 +188,16 @@ public class EditAdresaController {
     @FXML
     void translateEn(ActionEvent event) {
 
+    }
+
+    @FXML
+    void openAdminDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("AdminDashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 

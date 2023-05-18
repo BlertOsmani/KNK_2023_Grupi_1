@@ -1,5 +1,6 @@
 package Controllers;
 
+import AdminDashboard.AdminDashboard;
 import DbConnection.ConnectionUtil;
 import Models.dto.CreateAdresaDto;
 import Qytetari.Qytetari;
@@ -86,6 +87,9 @@ public class AdresaController {
     @FXML
     public Menu gjuha;
 
+    @FXML
+    public Button backToDashboard;
+
 
 
     public void initialize(){
@@ -102,6 +106,16 @@ public class AdresaController {
                 shtoAdresen(new ActionEvent());
             }
         });
+    }
+
+    @FXML
+    void openDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("AdminDashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
