@@ -1,6 +1,6 @@
 .vendbanimi{
     -fx-background-radius: 5px;
-    -fx-background-color: #f7022a;
+    -fx-background-color: #195eab;
     -fx-text-fill: white;
 }
 .qytetaret{
@@ -10,12 +10,12 @@
     -fx-background-color: #f20129;
 }
 .Table .column .label{
-    -fx-background-color: #f20129;
+    -fx-background-color: #195eab;
     -fx-text-fill: white;
 
 }
 .filter{
-    -fx-background-color: #f7022a;
+    -fx-background-color: #429750;
     -fx-background-radius: 5px;
     -fx-text-fill: white;
 }
