@@ -128,7 +128,7 @@ public class AdresaController {
                     FXMLLoader fxmlLoader = new FXMLLoader(Qytetari.class.getResource("Qytetari.fxml"));
                     Pane pane = fxmlLoader.load();
                     QytetariController qytetariController = fxmlLoader.getController();
-                    qytetariController.setAddressInfo(adresaDto.Qyteti, adresaDto.Komuna, adresaDto.Fshati, adresaDto.Rruga, adresaDto.Objekti, adresaDto.Hyrja, adresaDto.Numri, adresaDto.NumriPostal);
+                    qytetariController.setAddressInfo(adresaRepository.getLastId(connection),adresaDto.Qyteti, adresaDto.Komuna, adresaDto.Fshati, adresaDto.Rruga, adresaDto.Objekti, adresaDto.Hyrja, adresaDto.Numri, adresaDto.NumriPostal);
                     Scene scene = new Scene(pane);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);

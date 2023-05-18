@@ -35,7 +35,7 @@
                 <Font size="15.0" />
             </font>
         </Label>
-        <TextField fx:id="Adresa" editable="false" layoutX="217.0" layoutY="120.0" prefHeight="31.0" prefWidth="485.0" style="-fx-background-radius: 5;">
+        <TextField fx:id="Adresa" editable="false" layoutX="217.0" layoutY="127.0" prefHeight="31.0" prefWidth="485.0" style="-fx-background-radius: 5;">
             <font>
                 <Font size="15.0" />
             </font>
@@ -154,7 +154,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="qytetariAdresaLabel" layoutX="215.0" layoutY="97.0" prefHeight="22.0" prefWidth="126.0" text="Adresa:">
+      <Label fx:id="qytetariAdresaLabel" layoutX="222.0" layoutY="104.0" prefHeight="22.0" prefWidth="126.0" text="Adresa:">
          <font>
             <Font size="15.0" />
          </font>
@@ -181,5 +181,15 @@
       <Label fx:id="emailError" layoutX="220.0" layoutY="463.0" prefHeight="18.0" prefWidth="143.0" textFill="RED" visible="false" />
       <Label fx:id="nrTelError" layoutX="492.0" layoutY="463.0" prefHeight="18.0" prefWidth="143.0" textFill="RED" visible="false" />
       <Label fx:id="gjiniaError" layoutX="220.0" layoutY="505.0" prefHeight="18.0" prefWidth="143.0" textFill="RED" visible="false" />
+      <TextField fx:id="adresaId" layoutX="649.0" layoutY="45.0" prefHeight="31.0" prefWidth="211.0" style="-fx-background-radius: 5;" visible="false">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label fx:id="errorQytetariEkziston" alignment="CENTER" layoutX="345.0" layoutY="531.0" prefHeight="18.0" prefWidth="244.0" style="-fx-background-color: red; -fx-background-radius: 5;" text="Qytetari Ekziston" textFill="WHITE" visible="false">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

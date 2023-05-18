@@ -5,10 +5,7 @@ import Models.dto.CreateAdresaDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,4 +55,19 @@ public class AdresaRepository
             statement.close();
             return adresaList;
     }
+
+        public int getLastId(Connection connection) throws SQLException {
+                String sql = "SELECT LAST_INSERT_ID() AS LastId";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                ResultSet resultSet = statement.executeQuery();
+                int id = 0;
+                if (resultSet.next()) {
+                        id = resultSet.getInt("LastId");
+                }
+                resultSet.close();
+                statement.close();
+                return id;
+        }
+
+
 }
