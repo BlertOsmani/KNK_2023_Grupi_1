@@ -15,7 +15,7 @@
 <AnchorPane prefHeight="546.0" prefWidth="1400.0" stylesheets="@AdminDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdminDashboardController">
    <children>
       <Button alignment="CENTER" layoutX="24.0" layoutY="49.0" mnemonicParsing="false" styleClass="vendbanimi" text="Kerko vendbanimin e qytetarit" />
-      <Button layoutX="215.0" layoutY="49.0" mnemonicParsing="false" style="-fx-background-color: none;" text="Gjej qytetaret sipas vendbanimit" />
+      <Button layoutX="215.0" layoutY="49.0" mnemonicParsing="false" styleClass="qytetaret" text="Gjej qytetaret sipas vendbanimit" />
       <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1400.0" style="-fx-background-color: #474749;">
 
         <menus>
