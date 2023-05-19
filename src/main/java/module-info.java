@@ -24,4 +24,6 @@ module com.example.knk_2023_grupi_1 {
     exports Models;
     exports EditAdresa;
     opens EditAdresa to javafx.fxml;
+    exports EditQytetari;
+    opens EditQytetari to javafx.fxml;
 }

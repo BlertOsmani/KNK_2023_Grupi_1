@@ -5,10 +5,7 @@ import Models.AdresaModel;
 import Models.QytetariModel;
 import Models.dto.CreateQytetariDto;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,6 +64,31 @@ public class QytetariRepository {
         resultSet.close();
         statement.close();
         return qytetariList;
+    }
+
+    public void update(QytetariModel editQytetariModel, Connection connection) throws SQLException{
+        String sql = "UPDATE qytetari SET NrPersonal = ?, Emri = ?, EmriBabait = ?, EmriNenes = ?, Mbiemri = ?, Ditelindja = ?, Email = ?, NrTelefonit = ?, Gjinia = ?, Adresa = ? WHERE Id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1, editQytetariModel.NrPersonal);
+        statement.setString(2, editQytetariModel.Emri);
+        statement.setString(3, editQytetariModel.EmriBabait);
+        statement.setString(4, editQytetariModel.EmriNenes);
+        statement.setString(5, editQytetariModel.Mbiemri);
+        statement.setString(6, editQytetariModel.Ditelindja);
+        statement.setString(7, editQytetariModel.Email);
+        statement.setString(8, editQytetariModel.NrTel);
+        statement.setString(9, editQytetariModel.Gjinia);
+        statement.setInt(10, editQytetariModel.Adresa);
+        statement.setInt(11, editQytetariModel.Id);
+        statement.executeUpdate();
+    }
+
+    public void delete(int idQytetari, Connection connection) throws SQLException {
+        String sql = "DELETE FROM qytetari WHERE Id = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, idQytetari);
+        statement.executeUpdate();
+        statement.close();
     }
 
 }
