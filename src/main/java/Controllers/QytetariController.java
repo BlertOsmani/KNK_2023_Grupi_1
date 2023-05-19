@@ -1,8 +1,10 @@
 package Controllers;
 
 import Adresa.Adresa;
+import AdresatDashboard.AdresatDashboard;
 import DbConnection.ConnectionUtil;
 import Models.dto.CreateQytetariDto;
+import QytetaretDashboard.QytetaretDashboard;
 import Repositories.QytetariRepository;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -28,73 +30,6 @@ import javafx.stage.Stage;
 
 public class QytetariController {
 
-    @FXML
-    public TextField Adresa;
-
-    @FXML
-    public DatePicker Ditelindja;
-
-    @FXML
-    public TextField Email;
-
-    @FXML
-    public TextField Emri;
-
-    @FXML
-    public TextField EmriBabait;
-
-    @FXML
-    public TextField EmriNenes;
-
-    @FXML
-    public RadioButton Femer;
-
-    @FXML
-    public RadioButton Mashkull;
-
-    @FXML
-    public TextField Mbiemri;
-
-    @FXML
-    public TextField NrPersonal;
-
-    @FXML
-    public TextField NrTel;
-
-    @FXML
-    public Button Ruaj;
-
-    @FXML
-    public Button back;
-    @FXML
-    public Label errorNrPersonal;
-
-    public String currentText;
-
-    @FXML
-    public Label ditelindjaError;
-
-    @FXML
-    public Label emailError;
-
-    @FXML
-    public Label emriBabaitError;
-
-    @FXML
-    public Label emriNenesError;
-
-    @FXML
-    public Label errorEmri;
-
-    @FXML
-    public Label gjiniaError;
-
-    @FXML
-    public Label mbiemriError;
-
-    @FXML
-    public Label nrTelError;
-
     public String qytetiValue;
     public String rrugaValue;
     public int numriValue;
@@ -104,39 +39,124 @@ public class QytetariController {
     public String objekti;
     public String hyrja;
     @FXML
-    public Label emriBabaitLabel;
-    @FXML
-    public Label emriLabel;
-    @FXML
-    public Label emriNenesLabel;
-    @FXML
-    public Label gjiniaLabel;
-    @FXML
-    public Label mbiemriLabel;
-    @FXML
-    public Menu menuGjuha;
-    @FXML
-    public Label nrPersonalLabel;
-    @FXML
-    public Label nrTelefonitLabel;
-    @FXML
-    public Label personalData;
-    @FXML
-    public Label qytetariAdresa;
-    @FXML
-    public Label ditelindjaLabel;
-    @FXML
-    public Label emailLabel;
-    @FXML
-    public Label qytetariAdresaLabel;
+    private TextField Adresa;
 
+    @FXML
+    private DatePicker Ditelindja;
+
+    @FXML
+    private TextField Email;
+
+    @FXML
+    private TextField Emri;
+
+    @FXML
+    private TextField EmriBabait;
+
+    @FXML
+    private TextField EmriNenes;
+
+    @FXML
+    private RadioButton Femer;
+
+    @FXML
+    private RadioButton Mashkull;
+
+    @FXML
+    private TextField Mbiemri;
+
+    @FXML
+    private TextField NrPersonal;
+
+    @FXML
+    private TextField NrTel;
+
+    @FXML
+    private Button Ruaj;
+
+    @FXML
+    private TextField adresaId;
+
+    @FXML
+    private Button adresatBtn;
+
+    @FXML
+    private Button dashboardBtn;
+
+    @FXML
+    private Label ditelindjaError;
+
+    @FXML
+    private Label ditelindjaLabel;
+
+    @FXML
+    private Label emailError;
+
+    @FXML
+    private Label emailLabel;
+
+    @FXML
+    private Label emriBabaitError;
+
+    @FXML
+    private Label emriBabaitLabel;
+
+    @FXML
+    private Label emriLabel;
+
+    @FXML
+    private Label emriNenesError;
+
+    @FXML
+    private Label emriNenesLabel;
+
+    @FXML
+    private Label errorEmri;
+
+    @FXML
+    private Label errorNrPersonal;
+
+    @FXML
+    private Label errorQytetariEkziston;
+
+    @FXML
+    private Label gjiniaError;
+
+    @FXML
+    private Label gjiniaLabel;
+
+    @FXML
+    private Label mbiemriError;
+
+    @FXML
+    private Label mbiemriLabel;
+
+    @FXML
+    private Menu menuGjuha;
+
+    @FXML
+    private Label nrPersonalLabel;
+
+    @FXML
+    private Label nrTelError;
+
+    @FXML
+    private Label nrTelefonitLabel;
+
+    @FXML
+    private Label personalData;
+
+    @FXML
+    private Button qytetaretBtn;
+
+    @FXML
+    private Label qytetariAdresa;
+
+    @FXML
+    private Label qytetariAdresaLabel;
+
+    public String currentText;
     public int AdresaId;
-
-    @FXML
-    public TextField adresaId;
-
-    @FXML
-    public Label errorQytetariEkziston;
 
     public void initialize() {
         currentText = "";
@@ -372,9 +392,9 @@ public class QytetariController {
     }
 
     @FXML
-    void backToAdresa(ActionEvent event) {
+    void openAdresatDashboard(ActionEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(Adresa.class.getResource("Adresa.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
             Pane pane = fxmlLoader.load();
             Scene scene = new Scene(pane);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -383,6 +403,23 @@ public class QytetariController {
         } catch (IOException e) {
             System.err.println("Error loading FXML file: " + e.getMessage());
         }
+    }
+    @FXML
+    void openQytetaretDashboard(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
+        }
+    }
+    @FXML
+    void openDashboard(ActionEvent event) {
+
     }
 
     public void translate() {
@@ -404,7 +441,6 @@ public class QytetariController {
         gjiniaLabel.setText(translate.getString("qytetari.label.gjinia"));
         Femer.setText(translate.getString("qytetari.radiobutton.femer"));
         Mashkull.setText(translate.getString("qytetari.radiobutton.mashkull"));
-        back.setText(translate.getString("qytetari.button.back"));
         Ruaj.setText(translate.getString("qytetari.button.save"));
     }
     public void translateEn(ActionEvent event){

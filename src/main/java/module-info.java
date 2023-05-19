@@ -15,12 +15,12 @@ module com.example.knk_2023_grupi_1 {
     opens Login to javafx.fxml;
     exports Signup;
     opens Signup to javafx.fxml;
-    exports AdminDashboard;
-    opens AdminDashboard to javafx.fxml;
+    exports AdresatDashboard;
+    opens AdresatDashboard to javafx.fxml;
     opens Controllers to javafx.fxml;
     exports Controllers;
-    exports GjejQytetarin;
-    opens GjejQytetarin to javafx.fxml;
+    exports QytetaretDashboard;
+    opens QytetaretDashboard to javafx.fxml;
     exports Models;
     exports EditAdresa;
     opens EditAdresa to javafx.fxml;

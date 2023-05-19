@@ -1,6 +1,6 @@
-package AdminDashboard;
+package QytetaretDashboard;
 
-import Adresa.Adresa;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,13 +12,13 @@ import java.sql.SQLException;
 
 import static javafx.application.Application.launch;
 
-public class AdminDashboard extends Application {
+public class QytetaretDashboard extends Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("AdminDashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane, pane.getWidth()-100, pane.getHeight()-100);
-        stage.setTitle("Aplikacion per regjistrimin e adresave dhe vendbanimeve");
+        stage.setTitle("Aplikacion per kerkimin e qytetarit");
         stage.setScene(scene);
         stage.show();
 

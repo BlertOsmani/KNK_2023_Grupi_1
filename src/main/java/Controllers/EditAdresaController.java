@@ -1,6 +1,6 @@
 package Controllers;
 
-import AdminDashboard.AdminDashboard;
+import AdresatDashboard.AdresatDashboard;
 import DbConnection.ConnectionUtil;
 import Models.AdresaModel;
 import Repositories.AdresaRepository;
@@ -16,7 +16,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import EditAdresa.EditAdresa;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -163,7 +162,7 @@ public class EditAdresaController {
                 System.out.println("Adresa u perditsua me sukses");
 
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("AdminDashboard.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
                     Pane pane = fxmlLoader.load();
                     Scene scene = new Scene(pane);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -192,7 +191,7 @@ public class EditAdresaController {
 
     @FXML
     void openAdminDashboard(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("AdminDashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

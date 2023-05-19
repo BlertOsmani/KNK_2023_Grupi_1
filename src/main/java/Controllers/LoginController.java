@@ -1,10 +1,9 @@
 package Controllers;
 
-import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-import AdminDashboard.AdminDashboard;
+import AdresatDashboard.AdresatDashboard;
 import Models.LoginModel;
 import Repositories.LoginRepository;
 import javafx.event.ActionEvent;
@@ -19,7 +18,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class LoginController {
@@ -43,7 +41,7 @@ public class LoginController {
                 boolean validlogin = loginRepository.login(loginModel, connection);
                 if(validlogin) {
                     try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("AdminDashboard.fxml"));
+                        FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
                         Pane pane = fxmlLoader.load();
                         Scene scene = new Scene(pane);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

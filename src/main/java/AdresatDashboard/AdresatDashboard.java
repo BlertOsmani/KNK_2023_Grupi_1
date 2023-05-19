@@ -1,7 +1,5 @@
-package GjejQytetarin;
+package AdresatDashboard;
 
-
-import Adresa.Adresa;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,13 +11,13 @@ import java.sql.SQLException;
 
 import static javafx.application.Application.launch;
 
-public class GjejQytetarin extends Application {
+public class AdresatDashboard extends Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        FXMLLoader fxmlLoader = new FXMLLoader(GjejQytetarin.class.getResource("GjejQytetarin.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane, pane.getWidth()-100, pane.getHeight()-100);
-        stage.setTitle("Aplikacion per kerkimin e qytetarit");
+        stage.setTitle("Aplikacion per regjistrimin e adresave dhe vendbanimeve");
         stage.setScene(scene);
         stage.show();
 

@@ -1,11 +1,14 @@
-.qytetaret{
-    -fx-background-radius: 5px;
-    -fx-background-color: #195eab;
-     -fx-text-fill: white;
+.active
+{
+        -fx-background-radius: 10px;
+        -fx-background-color: white;
+        -fx-text-fill:#195eab;
 }
 .unactive{
-    -fx-background-radius: 5px;
-    -fx-background-color: none;
+        -fx-background-radius: 10px;
+        -fx-background-color: gray;
+        -fx-text-fill:lightgray;
+
 }
 .unactive:hover{
     -fx-background-color: #195eab;
@@ -31,6 +34,12 @@ textfield{
     -fx-text-fill: #555555;
     -fx-font-size: 14px;
     -fx-font-family: "Arial";
+}
+.menu-bar .menu .menu-item{
+    -fx-background-color: #474749;
+}
+.menu-bar .menu .menu-item:hover{
+    -fx-background-color: #0096c9;
 }
 .menu-bar .menu .label{
     -fx-background-color: none;

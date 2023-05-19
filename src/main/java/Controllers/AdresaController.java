@@ -1,8 +1,9 @@
 package Controllers;
 
-import AdminDashboard.AdminDashboard;
+import AdresatDashboard.AdresatDashboard;
 import DbConnection.ConnectionUtil;
 import Models.dto.CreateAdresaDto;
+import QytetaretDashboard.QytetaretDashboard;
 import Qytetari.Qytetari;
 import Repositories.AdresaRepository;
 import javafx.event.ActionEvent;
@@ -11,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import Models.AdresaModel;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
@@ -26,69 +26,84 @@ import javafx.stage.Stage;
 
 public class AdresaController {
 
+    @FXML
+    private RadioButton Perhershem;
 
     @FXML
-    public RadioButton Perhershem;
+    private RadioButton Perkohshem;
 
     @FXML
-    public RadioButton Perkohshem;
+    private Label adresaLabel;
 
     @FXML
-    public TextField fshati;
+    private Button adresatBtn;
 
     @FXML
-    public Pane googleMapPane;
+    private Button backToDashboard;
 
     @FXML
-    public TextField hyrja;
+    private Button dashboardBtn;
 
     @FXML
-    public TextField komuna;
+    private TextField fshati;
 
     @FXML
-    public TextField numri;
+    private Label fshatiLabel;
 
     @FXML
-    public TextField numriPostal;
+    private Menu gjuha;
 
     @FXML
-    public TextField objekti;
+    private TextField hyrja;
 
     @FXML
-    public TextField qyteti;
+    private Label hyrjaLabel;
 
     @FXML
-    public TextField rruga;
+    private TextField komuna;
 
     @FXML
-    public Button shtoAdresen;
-    @FXML
-    public Label qytetiLabel;
-    @FXML
-    public Label komunaLabel;
-    @FXML
-    public Label fshatiLabel;
-    @FXML
-    public Label rrugaLabel;
-    @FXML
-    public Label objektiLabel;
-    @FXML
-    public Label hyrjaLabel;
-    @FXML
-    public Label numriLabel;
-    @FXML
-    public Label numriPostalLabel;
-    @FXML
-    public Label adresaLabel;
-    @FXML
-    public Label teDhenatPersonale;
-    @FXML
-    public ComboBox<String> llojiVendbanimit;
-    @FXML
-    public Menu gjuha;
+    private Label komunaLabel;
 
     @FXML
-    public Button backToDashboard;
+    private TextField numri;
+
+    @FXML
+    private Label numriLabel;
+
+    @FXML
+    private TextField numriPostal;
+
+    @FXML
+    private Label numriPostalLabel;
+
+    @FXML
+    private TextField objekti;
+
+    @FXML
+    private Label objektiLabel;
+
+    @FXML
+    private Button qytetaretBtn;
+
+    @FXML
+    private TextField qyteti;
+
+    @FXML
+    private Label qytetiLabel;
+
+    @FXML
+    private TextField rruga;
+
+    @FXML
+    private Label rrugaLabel;
+
+    @FXML
+    private Button shtoAdresen;
+
+    @FXML
+    private Label teDhenatPersonale;
+
 
 
 
@@ -109,8 +124,21 @@ public class AdresaController {
     }
 
     @FXML
+    void openAdresatDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
     void openDashboard(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("AdminDashboard.fxml"));
+
+    }
+    @FXML
+    void openQytetaretDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -173,8 +201,6 @@ public class AdresaController {
         gjuha.setText(translate.getString("adresa.menu.gjuha"));
         adresaLabel.setText(translate.getString("adresa.label.adresa"));
         teDhenatPersonale.setText(translate.getString("adresa.label.teDhenatPersonale"));
-        String promptText = translate.getString("adresa.combobox.llojiVendbanimit");
-        llojiVendbanimit.setPromptText(promptText);
         qytetiLabel.setText(translate.getString("adresa.label.qyteti"));
         komunaLabel.setText(translate.getString("adresa.label.komuna"));
         fshatiLabel.setText(translate.getString("adresa.label.fshati"));

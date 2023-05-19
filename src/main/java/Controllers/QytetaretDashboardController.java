@@ -1,12 +1,9 @@
 package Controllers;
 
-import AdminDashboard.AdminDashboard;
+import AdresatDashboard.AdresatDashboard;
 import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
-import GjejQytetarin.GjejQytetarin;
-import Models.AdresaModel;
 import Models.QytetariModel;
-import Repositories.AdresaRepository;
 import Repositories.QytetariRepository;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -29,47 +26,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class GjejQytetarinController implements Initializable {
-
-    @FXML
-    public MenuItem close;
-
-    @FXML
-    public MenuItem english;
-
-    @FXML
-    public Button filterBtn;
-
-    @FXML
-    public Label fshati;
-
-    @FXML
-    public Button gjejQytetaret;
-
-    @FXML
-    public Menu gjuhaAdmin;
-
-    @FXML
-    public Label hyrja;
-
-    @FXML
-    public Button kerkoVendbanimin;
-
-    @FXML
-    public Label komuna;
-
-    @FXML
-    public Label llojiVendbanimit;
-
-    @FXML
-    public Label nrPostal;
-
-    @FXML
-    public Label numri;
-
-    @FXML
-    public Label objekti;
-
+public class QytetaretDashboardController implements Initializable {
     @FXML
     public TableColumn<QytetariModel, Integer> qytetariAdresa;
 
@@ -107,13 +64,57 @@ public class GjejQytetarinController implements Initializable {
     public TableView<QytetariModel> qytetariTable;
 
     @FXML
-    public Label qyteti;
+    public TableColumn<QytetariModel, Void> qytetariAksionet;
+    @FXML
+    private Button adresatBtn;
 
     @FXML
-    public Label rruga;
+    private MenuItem close;
 
     @FXML
-    public MenuItem shqip;
+    private Button dashboardBtn;
+
+    @FXML
+    private DatePicker ditelindja;
+
+    @FXML
+    private Label ditelindjaLabel;
+
+    @FXML
+    private TextField emri;
+
+    @FXML
+    private Label emriLabel;
+
+    @FXML
+    private MenuItem english;
+
+    @FXML
+    private Button filterBtn;
+
+    @FXML
+    private Menu gjuhaAdmin;
+
+    @FXML
+    private TextField mbiemri;
+
+    @FXML
+    private Label mbiemriLabel;
+
+    @FXML
+    private TextField nrPersonal;
+
+    @FXML
+    private Label nrPersonalLabel;
+
+    @FXML
+    private Button qytetaretBtn;
+
+    @FXML
+    private MenuItem shqip;
+
+    @FXML
+    private Button shtoQytetarinBtn;
 
    /* @FXML
     void filterQytetariTable(ActionEvent event) {
@@ -130,8 +131,8 @@ public class GjejQytetarinController implements Initializable {
     }*/
 
     @FXML
-    void openKerkoVendbanimin(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdminDashboard.class.getResource("AdminDashboard.fxml"));
+    void openAdresatDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -140,7 +141,7 @@ public class GjejQytetarinController implements Initializable {
     }
 
     @FXML
-    void openShtoAdresen(ActionEvent event) throws IOException {
+    void openDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Adresa.class.getResource("Adresa.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
@@ -177,5 +178,20 @@ public class GjejQytetarinController implements Initializable {
 
         ObservableList<QytetariModel> qytetariObservableList = FXCollections.observableList(qytetariModelList);
         qytetariTable.setItems(qytetariObservableList);
+    }
+
+    @FXML
+    void translateAL(ActionEvent event) {
+
+    }
+
+    @FXML
+    void translateEN(ActionEvent event) {
+
+    }
+
+    @FXML
+    void filterQytetariTable(ActionEvent event){
+
     }
 }

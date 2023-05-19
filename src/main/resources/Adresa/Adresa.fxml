@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -10,42 +9,43 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="577.0" prefWidth="894.0" style="-fx-background-color: white;" stylesheets="@adresa.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdresaController">
+<AnchorPane prefHeight="588.0" prefWidth="1484.0" style="-fx-background-color: white;" stylesheets="@adresa.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdresaController">
    <children>
-      <TextField fx:id="qyteti" layoutX="251.0" layoutY="165.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="qyteti" layoutX="243.0" layoutY="159.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="qytetiLabel" layoutX="251.0" layoutY="137.0" text="Qyteti:">
+      <Label fx:id="qytetiLabel" layoutX="242.0" layoutY="137.0" text="Qyteti:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="hyrja" layoutX="486.0" layoutY="332.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="hyrja" layoutX="479.0" layoutY="332.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="hyrjaLabel" layoutX="488.0" layoutY="304.0" text="Hyrja:">
+      <Label fx:id="hyrjaLabel" layoutX="481.0" layoutY="304.0" text="Hyrja:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="numriPostal" layoutX="486.0" layoutY="416.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="numriPostal" layoutX="479.0" layoutY="416.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="numriLabel" layoutX="251.0" layoutY="387.0" text="Numri i Shtëpisë/Banesës:">
+      <Label fx:id="numriLabel" layoutX="250.0" layoutY="387.0" text="Numri i Shtëpisë/Banesës:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Button fx:id="shtoAdresen" layoutX="770.0" layoutY="523.0" mnemonicParsing="false" onAction="#shtoAdresen" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #429750; -fx-background-radius: 5;" text="Next &gt;&gt;" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="shtoAdresen" layoutX="245.0" layoutY="524.0" mnemonicParsing="false" onAction="#shtoAdresen" prefHeight="40.0" prefWidth="419.0" style="-fx-background-color: #429750; -fx-background-radius: 5;" text="Next &gt;&gt;" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -57,27 +57,27 @@
             </DropShadow>
          </effect>
       </Button>
-      <Label fx:id="numriPostalLabel" layoutX="484.0" layoutY="387.0" text="Numri Postal:">
+      <Label fx:id="numriPostalLabel" layoutX="479.0" layoutY="387.0" text="Numri Postal:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="numri" layoutX="251.0" layoutY="416.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="numri" layoutX="249.0" layoutY="416.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <RadioButton fx:id="Perhershem" layoutX="252.0" layoutY="479.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="186.0" text="Vendbanim i përhershëm">
+      <RadioButton fx:id="Perhershem" layoutX="249.0" layoutY="479.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="186.0" text="Vendbanim i përhershëm">
          <font>
             <Font size="13.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="Perkohshem" layoutX="489.0" layoutY="479.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="180.0" text="Vendbanim i përkohshëm">
+      <RadioButton fx:id="Perkohshem" layoutX="482.0" layoutY="479.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="180.0" text="Vendbanim i përkohshëm">
          <font>
             <Font size="13.0" />
          </font>
       </RadioButton>
-      <MenuBar layoutY="-1.0" prefHeight="26.0" prefWidth="920.0" style="-fx-background-color: #474749;">
+      <MenuBar layoutY="-1.0" prefHeight="26.0" prefWidth="1484.0" style="-fx-background-color: #474749;">
         <menus>
           <Menu mnemonicParsing="false" style="-fx-text-fill: white;" text="File">
             <items>
@@ -99,58 +99,57 @@
             </DropShadow>
          </effect>
       </MenuBar>
-      <Label fx:id="teDhenatPersonale" alignment="CENTER" layoutX="139.0" layoutY="40.0" prefHeight="20.0" prefWidth="161.0" text="Te dhënat personale">
+      <Label fx:id="teDhenatPersonale" alignment="CENTER" layoutX="348.0" layoutY="51.0" prefHeight="20.0" prefWidth="161.0" text="Te dhënat personale">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="adresaLabel" alignment="CENTER" layoutX="37.0" layoutY="39.0" prefHeight="22.0" prefWidth="99.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #195eab;" text="Adresa">
+      <Label fx:id="adresaLabel" alignment="CENTER" layoutX="243.0" layoutY="50.0" prefHeight="22.0" prefWidth="99.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #195eab;" text="Adresa">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="komuna" layoutX="486.0" layoutY="165.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="komuna" layoutX="479.0" layoutY="159.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="komunaLabel" layoutX="486.0" layoutY="137.0" text="Komuna:">
+      <Label fx:id="komunaLabel" layoutX="481.0" layoutY="137.0" text="Komuna:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="fshati" layoutX="251.0" layoutY="248.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="fshati" layoutX="243.0" layoutY="248.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="fshatiLabel" layoutX="252.0" layoutY="220.0" text="Fshati:">
+      <Label fx:id="fshatiLabel" layoutX="243.0" layoutY="220.0" text="Fshati:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="rruga" layoutX="486.0" layoutY="248.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="rruga" layoutX="479.0" layoutY="248.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="rrugaLabel" layoutX="486.0" layoutY="220.0" text="Rruga:">
+      <Label fx:id="rrugaLabel" layoutX="479.0" layoutY="220.0" text="Rruga:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="objekti" layoutX="251.0" layoutY="332.0" style="-fx-background-radius: 5;">
+      <TextField fx:id="objekti" layoutX="249.0" layoutY="332.0" style="-fx-background-radius: 5;">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="objektiLabel" layoutX="252.0" layoutY="304.0" text="Objekti:">
+      <Label fx:id="objektiLabel" layoutX="250.0" layoutY="304.0" text="Objekti:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <ComboBox fx:id="llojiVendbanimit" editable="true" layoutX="367.0" layoutY="102.0" prefHeight="26.0" prefWidth="186.0" promptText="Selekto llojin e vendbanimit" />
-      <Button fx:id="backToDashboard" layoutX="27.0" layoutY="523.0" mnemonicParsing="false" onAction="#openDashboard" prefHeight="40.0" prefWidth="186.0" style="-fx-background-color: #474749; -fx-background-radius: 5;" text="&lt;&lt; Back to dashboard" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="backToDashboard" layoutX="1338.0" layoutY="41.0" mnemonicParsing="false" onAction="#openAdresatDashboard" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #474749; -fx-background-radius: 5;" text="&lt;&lt; Go back" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>
@@ -162,5 +161,24 @@
             </DropShadow>
          </effect>
       </Button>
+      <Pane layoutY="24.0" prefHeight="564.0" prefWidth="200.0" style="-fx-background-color: #474749;">
+         <children>
+            <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" mnemonicParsing="false" onAction="#openAdresatDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="active" stylesheets="@../AdresatDashboard/AdresatDashboard.css" text="Adresat" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" mnemonicParsing="false" onAction="#openQytetaretDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" stylesheets="@../AdresatDashboard/AdresatDashboard.css" text="Qytetaret" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="dashboardBtn" alignment="CENTER" layoutX="18.0" layoutY="44.0" mnemonicParsing="false" onAction="#openDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" stylesheets="@../AdresatDashboard/AdresatDashboard.css" text="Dashboard" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

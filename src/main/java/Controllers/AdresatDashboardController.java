@@ -2,13 +2,10 @@ package Controllers;
 
 import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
-import GjejQytetarin.GjejQytetarin;
+import QytetaretDashboard.QytetaretDashboard;
 import Models.AdresaModel;
-import Models.UserModel;
 import Repositories.AdresaRepository;
-import Repositories.UserRepository;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,13 +16,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -36,7 +29,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import EditAdresa.EditAdresa;
 
-public class AdminDashboardController implements Initializable {
+public class AdresatDashboardController implements Initializable {
 
     @FXML
     public TableView<AdresaModel> adresaTable;
@@ -76,46 +69,87 @@ public class AdminDashboardController implements Initializable {
     public MenuItem close;
 
     @FXML
-    public DatePicker ditelindja;
-
-    @FXML
-    public TextField emri;
-
-    @FXML
     public MenuItem english;
 
     @FXML
     public Button filterBtn;
 
     @FXML
-    public TextField mbiemri;
-
-    @FXML
-    public TextField nrPersonal;
-
-    @FXML
     public MenuItem shqip;
 
     @FXML
-    public Label emriLabel;
-    @FXML
-    public Button gjejQytetaret;
-    @FXML
     public Menu gjuhaAdmin;
     @FXML
-    public Button kerkoVendbanimin;
+    public Button qytetaretBtn;
+
     @FXML
-    public Label mbiemriLabel;
+    public Button dashboardBtn;
+
     @FXML
-    public Label nrPersonalLabel;
+    public Button adresatBtn;
+
     @FXML
-    public Label dataLindjes;
+    public Button shtoAdresenBtn;
+
+    @FXML
+    public TextField fshati;
+
+    @FXML
+    public Label fshatiLabel;
+
+    @FXML
+    public TextField hyrja;
+
+    @FXML
+    public Label hyrjaLabel;
+
+    @FXML
+    public TextField komuna;
+
+    @FXML
+    public Label komunaLabel;
+
+    @FXML
+    public ChoiceBox<?> llojiVendbanimit;
+
+    @FXML
+    public Label llojiVendbanimitLabel;
+
+    @FXML
+    public Label nrPostalLabel;
+
+    @FXML
+    public TextField numri;
+
+    @FXML
+    public Label numriLabel;
+
+    @FXML
+    public TextField numriPostal;
+
+    @FXML
+    public TextField objekti;
+
+    @FXML
+    public Label objektiLabel;
+
+    @FXML
+    public TextField qyteti;
+
+    @FXML
+    public Label qytetiLabel;
+
+    @FXML
+    public TextField rruga;
+
+    @FXML
+    public Label rrugaLabel;
 
 
 
     @FXML
     void openGjejQytetarin(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(GjejQytetarin.class.getResource("GjejQytetarin.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -226,13 +260,22 @@ public class AdminDashboardController implements Initializable {
         Locale locale = Locale.getDefault();
         ResourceBundle translate = ResourceBundle.getBundle("Translations.content", locale);
 
-        gjuhaAdmin.setText(translate.getString("admin.menu.gjuha"));
-        kerkoVendbanimin.setText(translate.getString("admin.button.kerkoVendbanimin"));
-        gjejQytetaret.setText(translate.getString("admin.button.gjejQytetaret"));
-        nrPersonalLabel.setText(translate.getString("admin.label.nrPersonal"));
-        emriLabel.setText(translate.getString("admin.label.emri"));
-        mbiemriLabel.setText(translate.getString("admin.label.mbiemri"));
-        dataLindjes.setText(translate.getString("admin.label.ditelindja"));
+        gjuhaAdmin.setText(translate.getString("adresat.menu.gjuha"));
+        adresatBtn.setText(translate.getString("adresat.button.Adresat"));
+        qytetaretBtn.setText(translate.getString("adresat.button.Qytetaret"));
+        shtoAdresenBtn.setText(translate.getString("adresat.button.shtoAdresen"));
+        dashboardBtn.setText(translate.getString("adresat.button.dashboard"));
+        qytetiLabel.setText(translate.getString("adresat.label.qyteti"));
+        komunaLabel.setText(translate.getString("adresat.label.komuna"));
+        fshatiLabel.setText(translate.getString("adresat.label.fshati"));
+        objektiLabel.setText(translate.getString("adresat.label.objekti"));
+        rrugaLabel.setText(translate.getString("adresat.label.rruga"));
+        hyrjaLabel.setText(translate.getString("adresat.label.hyrja"));
+        numriLabel.setText(translate.getString("adresat.label.numri"));
+        nrPostalLabel.setText(translate.getString("adresat.label.numriPostal"));
+        llojiVendbanimitLabel.setText(translate.getString("adresat.label.llojiVendbanimit"));
+        filterBtn.setText(translate.getString("adresat.button.filter"));
+
     }
 
     public void translateEN(ActionEvent event){
