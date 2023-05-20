@@ -177,36 +177,6 @@ public class AdresatDashboardController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void filterAdresaTable(ActionEvent event) throws SQLException {
-        // Get the filter values from the text fields
-        String qytetiFilter = qyteti.getText();
-        String komunaFilter = komuna.getText();
-        String fshatiFilter = fshati.getText();
-        String rrugaFilter = rruga.getText();
-        String objektiFilter = objekti.getText();
-        String hyrjaFilter = hyrja.getText();
-        int numriFilter = Integer.parseInt(numri.getText());
-        int numriPostalFilter = Integer.parseInt(numriPostal.getText());
-        String llojiVendbanimitFilter = "" ;
-        if(llojiVendbanimit.getValue() == "I perhershem"){
-            llojiVendbanimitFilter = "1";
-        }
-        else{
-            llojiVendbanimitFilter = "0";
-        }
-        Connection connection = ConnectionUtil.getConnection();
-        CreateAdresaDto adresaDto = new CreateAdresaDto(qytetiFilter,komunaFilter,fshatiFilter,rrugaFilter,objektiFilter,hyrjaFilter,numriFilter,numriPostalFilter,llojiVendbanimitFilter);
-        List<AdresaModel> AdresaModelList = AdresaRepository.filterTable(connection,adresaDto);
-
-
-        // Update the table with the filtered data
-        ObservableList<AdresaModel> filteredList = FXCollections.observableArrayList(AdresaModelList);
-        adresaTable.setItems(filteredList);
-    }
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> Items = FXCollections.observableArrayList("I perhershem","I perkohshem");
@@ -308,6 +278,32 @@ public class AdresatDashboardController implements Initializable {
         });
 
 
+    }
+    @FXML
+    private void filterAdresaTable(ActionEvent event) throws SQLException {
+        // Get the filter values from the text fields
+        String qytetiFilter = qyteti.getText();
+        String komunaFilter = komuna.getText();
+        String fshatiFilter = fshati.getText();
+        String rrugaFilter = rruga.getText();
+        String objektiFilter = objekti.getText();
+        String hyrjaFilter = hyrja.getText();
+        Connection connection = null;
+        try {
+            connection = ConnectionUtil.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        CreateAdresaDto adresaDto = new CreateAdresaDto(qytetiFilter, komunaFilter, fshatiFilter, rrugaFilter, objektiFilter, hyrjaFilter, 0, 0, "");
+        List<AdresaModel> adresaModelList = null;
+        try {
+            adresaModelList = AdresaRepository.filterTable(connection, adresaDto);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        // Update the table with the filtered data
+        ObservableList<AdresaModel> filteredList = FXCollections.observableList(adresaModelList);
+        adresaTable.setItems(filteredList);
     }
 
     public void translate() {

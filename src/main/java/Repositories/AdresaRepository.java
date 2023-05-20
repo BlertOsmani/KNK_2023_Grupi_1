@@ -94,27 +94,49 @@ public class AdresaRepository
                 statement.executeUpdate();
                 statement.close();
         }
-        public static List<AdresaModel> filterTable(Connection connection,CreateAdresaDto model) throws SQLException {
+        public static List<AdresaModel> filterTable(Connection connection, CreateAdresaDto model) throws SQLException {
                 List<AdresaModel> adresaList = new ArrayList<>();
-                String sql = "SELECT * FROM adresa WHERE Qyteti like ? OR Komuna like ? OR Fshati like ? Or Rruga like ? " +
-                        "OR Objekti like ? OR Hyrja like ? OR Numri like ? OR NumriPostal like ? OR LlojiVendbanimit like ?";
-                PreparedStatement statement = connection.prepareStatement(sql);
-                statement.setString(1,"%" + model.Qyteti + "%");
-                statement.setString(2,"%" + model.Komuna + "%");
-                statement.setString(3,"%" + model.Fshati + "%");
-                statement.setString(4,"%" + model.Rruga + "%");
-                statement.setString(5,"%" + model.Objekti + "%");
-                statement.setString(6,"%" + model.Hyrja + "%");
-                statement.setString(7,"%" + model.Numri + "%");
-                statement.setString(8,"%" + model.NumriPostal + "%");
-                statement.setString(9,"%" + model.LlojiVendbanimit + "%");
-
-                // Set the SQL parameters for pagination
-
-
+                StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM adresa WHERE 1=1");
+                if (model.Qyteti != null && !model.Qyteti.isEmpty()) {
+                        sqlBuilder.append(" AND Qyteti LIKE ?");
+                }
+                if (model.Komuna != null && !model.Komuna.isEmpty()) {
+                        sqlBuilder.append(" AND Komuna LIKE ?");
+                }
+                if (model.Fshati != null && !model.Fshati.isEmpty()) {
+                        sqlBuilder.append(" AND Fshati LIKE ?");
+                }
+                if (model.Rruga != null && !model.Rruga.isEmpty()) {
+                        sqlBuilder.append(" AND Rruga LIKE ?");
+                }
+                if (model.Objekti != null && !model.Objekti.isEmpty()) {
+                        sqlBuilder.append(" AND Objekti LIKE ?");
+                }
+                if (model.Hyrja != null && !model.Hyrja.isEmpty()) {
+                        sqlBuilder.append(" AND Hyrja LIKE ?");
+                }
+                PreparedStatement statement = connection.prepareStatement(sqlBuilder.toString());
+                int parameterIndex = 1;
+                if (model.Qyteti != null && !model.Qyteti.isEmpty()) {
+                        statement.setString(parameterIndex++, "%" + model.Qyteti + "%");
+                }
+                if (model.Komuna != null && !model.Komuna.isEmpty()) {
+                        statement.setString(parameterIndex++, "%" + model.Komuna + "%");
+                }
+                if (model.Fshati != null && !model.Fshati.isEmpty()) {
+                        statement.setString(parameterIndex++, "%" + model.Fshati + "%");
+                }
+                if (model.Rruga != null && !model.Rruga.isEmpty()) {
+                        statement.setString(parameterIndex++, "%" + model.Rruga + "%");
+                }
+                if (model.Objekti != null && !model.Objekti.isEmpty()) {
+                        statement.setString(parameterIndex++, "%" + model.Objekti + "%");
+                }
+                if (model.Hyrja != null && !model.Hyrja.isEmpty()) {
+                        statement.setString(parameterIndex, "%" + model.Hyrja + "%");
+                }
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
-                        // Retrieve the address data from the result set
                         int id = resultSet.getInt("Id");
                         String qyteti = resultSet.getString("Qyteti");
                         String komuna = resultSet.getString("Komuna");
@@ -126,7 +148,6 @@ public class AdresaRepository
                         int numriPostal = resultSet.getInt("NumriPostal");
                         String llojiVendbanimit = resultSet.getString("LlojiVendbanimit").equals("1") ? "I perhershem" : "I perkohshem";
 
-                        // Create an instance of AdresaModel and add it to the list
                         AdresaModel adresa = new AdresaModel(id, qyteti, komuna, fshati, rruga, objekti, hyrja, numri, numriPostal, llojiVendbanimit);
                         adresaList.add(adresa);
                 }
