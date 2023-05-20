@@ -9,6 +9,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -64,6 +66,9 @@ public class AdresatDashboardController implements Initializable {
     public TableColumn<AdresaModel, Integer> adresaId;
     @FXML
     public TableColumn<AdresaModel, Void> adresaAksionet;
+
+    private ObservableList<AdresaModel> masterData = FXCollections.observableArrayList();
+
 
     @FXML
     public MenuItem close;
@@ -166,10 +171,47 @@ public class AdresatDashboardController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-    @FXML
-    void filterAdresaTable(ActionEvent event) {
 
+    @FXML
+    private void filterAdresaTable(ActionEvent event) {
+        // Get the filter values from the text fields
+        String qytetiFilter = qyteti.getText().toLowerCase();
+        String komunaFilter = komuna.getText().toLowerCase();
+        String fshatiFilter = fshati.getText().toLowerCase();
+        String rrugaFilter = rruga.getText().toLowerCase();
+        String objektiFilter = objekti.getText().toLowerCase();
+        String hyrjaFilter = hyrja.getText().toLowerCase();
+        String numriFilter = numri.getText().toLowerCase();
+        String numriPostalFilter = numriPostal.getText().toLowerCase();
+        String llojiVendbanimitFilter = (String) llojiVendbanimit.getValue();
+
+        // Create a new filtered list based on the master data
+        FilteredList<AdresaModel> filteredData = new FilteredList<>(masterData, adresa -> {
+            // Apply your filter conditions
+            boolean qytetiMatch = qytetiFilter.isEmpty() || adresa.getAdresaQyteti().toLowerCase().contains(qytetiFilter);
+            boolean komunaMatch = komunaFilter.isEmpty() || adresa.getAdresaKomuna().toLowerCase().contains(komunaFilter);
+            boolean fshatiMatch = fshatiFilter.isEmpty() || adresa.getAdresaFshati().toLowerCase().contains(fshatiFilter);
+            boolean rrugaMatch = rrugaFilter.isEmpty() || adresa.getAdresaRruga().toLowerCase().contains(rrugaFilter);
+            boolean objektiMatch = objektiFilter.isEmpty() || adresa.getAdresaObjekti().toLowerCase().contains(objektiFilter);
+            boolean hyrjaMatch = hyrjaFilter.isEmpty() || adresa.getAdresaHyrja().toLowerCase().contains(hyrjaFilter);
+            boolean numriMatch = numriFilter.isEmpty() || String.valueOf(adresa.getAdresaNumri()).contains(numriFilter);
+            boolean numriPostalMatch = numriPostalFilter.isEmpty() || String.valueOf(adresa.getAdresaNumriPostal()).contains(numriPostalFilter);
+            boolean llojiVendbanimitMatch = llojiVendbanimitFilter == null || adresa.getAdresaVendbanimi().equals(llojiVendbanimitFilter);
+
+            // Return true only if all conditions are met
+            return qytetiMatch && komunaMatch && fshatiMatch && rrugaMatch && objektiMatch &&
+                    hyrjaMatch && numriMatch && numriPostalMatch && llojiVendbanimitMatch;
+        });
+
+        // Sort the filtered data
+        SortedList<AdresaModel> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(adresaTable.comparatorProperty());
+
+        // Set the sorted and filtered data to the table
+        adresaTable.setItems(sortedData);
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

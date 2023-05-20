@@ -1,6 +1,8 @@
 package Models;
 
 
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 
 public class AdresaModel{
     public int Id;
@@ -29,5 +31,48 @@ public class AdresaModel{
     }
 
 
+    public String getadresaFshati() {
+        return Fshati;
+    }
 
+    public String getadresaHyrja() {
+        return Hyrja;
+    }
+
+
+    public String getAdresaQyteti() {
+        return Qyteti;
+    }
+
+    public String getAdresaKomuna() {
+        return Komuna;
+    }
+
+    public String getAdresaFshati() {
+        return Fshati;
+    }
+
+    public String getAdresaRruga() {
+        return Rruga;
+    }
+
+    public String getAdresaObjekti() {
+        return Objekti;
+    }
+
+    public String getAdresaHyrja() {
+        return Hyrja;
+    }
+
+    public int getAdresaNumri() {
+        return Numri;
+    }
+
+    public int getAdresaNumriPostal() {
+        return NumriPostal;
+    }
+
+    public Object getAdresaVendbanimi() {
+        return LlojiVendbanimit;
+    }
 }
