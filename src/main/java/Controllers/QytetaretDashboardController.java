@@ -3,7 +3,9 @@ package Controllers;
 import AdresatDashboard.AdresatDashboard;
 import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
+import Models.AdresaModel;
 import Models.QytetariModel;
+import Repositories.AdresaRepository;
 import Repositories.QytetariRepository;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -16,8 +18,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import EditQytetari.EditQytetari;
 
 import java.io.IOException;
 import java.net.URL;
@@ -116,6 +120,9 @@ public class QytetaretDashboardController implements Initializable {
     @FXML
     private Button shtoQytetarinBtn;
 
+    @FXML
+    public Pagination pagination;
+
    /* @FXML
     void filterQytetariTable(ActionEvent event) {
 
@@ -163,12 +170,72 @@ public class QytetaretDashboardController implements Initializable {
         qytetariDitelindja.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Ditelindja));
         qytetariId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().Id).asObject());
         qytetariAdresa.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().Adresa).asObject());
+
+        qytetariAksionet.setCellFactory(column -> new TableCell<QytetariModel, Void>() {
+            private final Button edit = new Button("Update");
+            private final Button delete = new Button("Delete");
+            private final HBox buttonsContainer = new HBox(edit, delete);
+
+            {
+                // Define the action to be performed when the edit button is clicked
+                edit.setOnAction(event -> {
+                    QytetariModel model = getTableRow().getItem();
+                    if (model != null) {
+                        try {
+                            FXMLLoader fxmlLoader = new FXMLLoader(EditQytetari.class.getResource("EditQytetari.fxml"));
+                            Pane pane = fxmlLoader.load();
+                            EditQytetariController editQytetariController = fxmlLoader.getController();
+                            editQytetariController.setQytetariFields(model.Id,model.NrPersonal, model.Emri, model.EmriBabait, model.EmriNenes, model.Mbiemri, model.Ditelindja, model.Email, model.NrTel, model.Gjinia, model.Adresa);
+                            Scene scene = new Scene(pane);
+                            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException e) {
+                            System.err.println("Error loading FXML file: " + e.getMessage());
+                        }
+                        System.out.println("Button clicked for item:");
+                    }
+                });
+
+                // Define the action to be performed when the delete button is clicked
+                delete.setOnAction(event -> {
+                    QytetariModel model = getTableRow().getItem();
+                    if (model != null) {
+                        int qytetariId = model.Id;
+                        QytetariRepository qytetariRepository = new QytetariRepository();
+                        try {
+                            Connection connection = ConnectionUtil.getConnection();
+                            qytetariRepository.delete(qytetariId, connection);
+                            System.out.println("Qytetari deleted successfully");
+                            qytetariTable.getItems().remove(model);
+                        } catch (SQLException e) {
+                            System.err.println("Error deleting qytetari: " + e.getMessage());
+                        }
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(buttonsContainer);
+                }
+            }
+        });
+
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+
+
+
         List<QytetariModel> qytetariModelList = null;
         try {
             qytetariModelList = QytetariRepository.getQytetari(connection);
@@ -177,7 +244,15 @@ public class QytetaretDashboardController implements Initializable {
         }
 
         ObservableList<QytetariModel> qytetariObservableList = FXCollections.observableList(qytetariModelList);
-        qytetariTable.setItems(qytetariObservableList);
+        int itemsPerPage = 10;
+        int pageCount = (qytetariObservableList.size() + itemsPerPage - 1) / itemsPerPage;
+        pagination.setPageCount(pageCount);
+        pagination.setPageFactory(pageIndex->{
+            int fromIndex = pageIndex * itemsPerPage;
+            int toIndex = Math.min(fromIndex + itemsPerPage,qytetariObservableList.size());
+            qytetariTable.setItems(FXCollections.observableArrayList(qytetariObservableList.subList(fromIndex,toIndex)));
+            return new Pane();
+        });
     }
 
     @FXML

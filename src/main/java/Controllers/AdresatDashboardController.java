@@ -150,6 +150,9 @@ public class AdresatDashboardController implements Initializable {
     @FXML
     public Label rrugaLabel;
 
+    @FXML
+    public Pagination pagination;
+
 
 
     @FXML
@@ -288,14 +291,29 @@ public class AdresatDashboardController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+
+
+
         List<AdresaModel> adresaModelList = null;
         try {
             adresaModelList = AdresaRepository.getAdresses(connection);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         ObservableList<AdresaModel> adresaObservableList = FXCollections.observableList(adresaModelList);
-        adresaTable.setItems(adresaObservableList);
+        int itemsPerPage = 10;
+        int pageCount = (adresaObservableList.size() + itemsPerPage - 1) / itemsPerPage;
+        pagination.setPageCount(pageCount);
+        pagination.setPageFactory(pageIndex->{
+            int fromIndex = pageIndex * itemsPerPage;
+            int toIndex = Math.min(fromIndex + itemsPerPage,adresaObservableList.size());
+            adresaTable.setItems(FXCollections.observableArrayList(adresaObservableList.subList(fromIndex,toIndex)));
+            return new Pane();
+        });
+
+
     }
 
     public void translate() {

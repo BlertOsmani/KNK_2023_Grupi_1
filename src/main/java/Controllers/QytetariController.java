@@ -371,7 +371,7 @@ public class QytetariController {
 
             if (connection != null) {
                 // Insert the new address into the database
-                    CreateQytetariDto qytetariDto = new CreateQytetariDto(NrPersonal.getText(), Emri.getText(), EmriBabait.getText(), EmriNenes.getText(), Mbiemri.getText(), ditelindjaStr, Email.getText(), NrTel.getText(),gjinia, 1);
+                    CreateQytetariDto qytetariDto = new CreateQytetariDto(NrPersonal.getText(), Emri.getText(), EmriBabait.getText(), EmriNenes.getText(), Mbiemri.getText(), ditelindjaStr, Email.getText(), NrTel.getText(),gjinia, Integer.parseInt(adresaId.getText()));
                 QytetariRepository qytetariRepository = new QytetariRepository();
                 boolean QytetariExists = QytetariRepository.qytetariExists(NrPersonal.getText(), connection);
                 if(QytetariExists == false) {
