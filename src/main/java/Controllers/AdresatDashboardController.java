@@ -2,6 +2,7 @@ package Controllers;
 
 import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
+import Models.dto.CreateAdresaDto;
 import QytetaretDashboard.QytetaretDashboard;
 import Models.AdresaModel;
 import Repositories.AdresaRepository;
@@ -9,8 +10,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,12 +20,15 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import EditAdresa.EditAdresa;
@@ -115,7 +117,7 @@ public class AdresatDashboardController implements Initializable {
     public Label komunaLabel;
 
     @FXML
-    public ChoiceBox<?> llojiVendbanimit;
+    public ChoiceBox<String> llojiVendbanimit;
 
     @FXML
     public Label llojiVendbanimitLabel;
@@ -176,48 +178,39 @@ public class AdresatDashboardController implements Initializable {
     }
 
     @FXML
-    private void filterAdresaTable(ActionEvent event) {
+    private void filterAdresaTable(ActionEvent event) throws SQLException {
         // Get the filter values from the text fields
-        String qytetiFilter = qyteti.getText().toLowerCase();
-        String komunaFilter = komuna.getText().toLowerCase();
-        String fshatiFilter = fshati.getText().toLowerCase();
-        String rrugaFilter = rruga.getText().toLowerCase();
-        String objektiFilter = objekti.getText().toLowerCase();
-        String hyrjaFilter = hyrja.getText().toLowerCase();
-        String numriFilter = numri.getText().toLowerCase();
-        String numriPostalFilter = numriPostal.getText().toLowerCase();
-        String llojiVendbanimitFilter = (String) llojiVendbanimit.getValue();
+        String qytetiFilter = qyteti.getText();
+        String komunaFilter = komuna.getText();
+        String fshatiFilter = fshati.getText();
+        String rrugaFilter = rruga.getText();
+        String objektiFilter = objekti.getText();
+        String hyrjaFilter = hyrja.getText();
+        int numriFilter = Integer.parseInt(numri.getText());
+        int numriPostalFilter = Integer.parseInt(numriPostal.getText());
+        String llojiVendbanimitFilter = "" ;
+        if(llojiVendbanimit.getValue() == "I perhershem"){
+            llojiVendbanimitFilter = "1";
+        }
+        else{
+            llojiVendbanimitFilter = "0";
+        }
+        Connection connection = ConnectionUtil.getConnection();
+        CreateAdresaDto adresaDto = new CreateAdresaDto(qytetiFilter,komunaFilter,fshatiFilter,rrugaFilter,objektiFilter,hyrjaFilter,numriFilter,numriPostalFilter,llojiVendbanimitFilter);
+        List<AdresaModel> AdresaModelList = AdresaRepository.filterTable(connection,adresaDto);
 
-        // Create a new filtered list based on the master data
-        FilteredList<AdresaModel> filteredData = new FilteredList<>(masterData, adresa -> {
-            // Apply your filter conditions
-            boolean qytetiMatch = qytetiFilter.isEmpty() || adresa.getAdresaQyteti().toLowerCase().contains(qytetiFilter);
-            boolean komunaMatch = komunaFilter.isEmpty() || adresa.getAdresaKomuna().toLowerCase().contains(komunaFilter);
-            boolean fshatiMatch = fshatiFilter.isEmpty() || adresa.getAdresaFshati().toLowerCase().contains(fshatiFilter);
-            boolean rrugaMatch = rrugaFilter.isEmpty() || adresa.getAdresaRruga().toLowerCase().contains(rrugaFilter);
-            boolean objektiMatch = objektiFilter.isEmpty() || adresa.getAdresaObjekti().toLowerCase().contains(objektiFilter);
-            boolean hyrjaMatch = hyrjaFilter.isEmpty() || adresa.getAdresaHyrja().toLowerCase().contains(hyrjaFilter);
-            boolean numriMatch = numriFilter.isEmpty() || String.valueOf(adresa.getAdresaNumri()).contains(numriFilter);
-            boolean numriPostalMatch = numriPostalFilter.isEmpty() || String.valueOf(adresa.getAdresaNumriPostal()).contains(numriPostalFilter);
-            boolean llojiVendbanimitMatch = llojiVendbanimitFilter == null || adresa.getAdresaVendbanimi().equals(llojiVendbanimitFilter);
 
-            // Return true only if all conditions are met
-            return qytetiMatch && komunaMatch && fshatiMatch && rrugaMatch && objektiMatch &&
-                    hyrjaMatch && numriMatch && numriPostalMatch && llojiVendbanimitMatch;
-        });
-
-        // Sort the filtered data
-        SortedList<AdresaModel> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(adresaTable.comparatorProperty());
-
-        // Set the sorted and filtered data to the table
-        adresaTable.setItems(sortedData);
+        // Update the table with the filtered data
+        ObservableList<AdresaModel> filteredList = FXCollections.observableArrayList(AdresaModelList);
+        adresaTable.setItems(filteredList);
     }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        ObservableList<String> Items = FXCollections.observableArrayList("I perhershem","I perkohshem");
+        llojiVendbanimit.setItems(Items);
         adresaRruga.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Rruga));
         adresaVendbanimi.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().LlojiVendbanimit));
         adresaFshati.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Fshati));
@@ -228,6 +221,7 @@ public class AdresatDashboardController implements Initializable {
         adresaObjekti.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Objekti));
         adresaQyteti.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Qyteti));
         adresaId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().Id).asObject());
+
         adresaAksionet.setCellFactory(column -> new TableCell<AdresaModel, Void>() {
             private final Button edit = new Button("Update");
             private final Button delete = new Button("Delete");
@@ -261,7 +255,7 @@ public class AdresatDashboardController implements Initializable {
                         int adresaId = model.Id;
                         AdresaRepository adresaRepository = new AdresaRepository();
                         try {
-                            Connection connection = ConnectionUtil.getConnection(); 
+                            Connection connection = ConnectionUtil.getConnection();
                             adresaRepository.delete(adresaId, connection);
                             System.out.println("Address deleted successfully");
                             adresaTable.getItems().remove(model);
