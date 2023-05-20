@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -79,6 +80,7 @@
             </children>
         </Pane>
       <DatePicker fx:id="ditelindja" layoutX="753.0" layoutY="177.0" />
+      <Pagination fx:id="pagination" layoutX="741.0" layoutY="535.0" prefHeight="38.0" prefWidth="165.0" />
     </children>
     <opaqueInsets>
         <Insets />

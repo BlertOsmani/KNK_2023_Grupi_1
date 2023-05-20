@@ -3,7 +3,9 @@ package Controllers;
 import AdresatDashboard.AdresatDashboard;
 import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
+import Models.AdresaModel;
 import Models.QytetariModel;
+import Repositories.AdresaRepository;
 import Repositories.QytetariRepository;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -118,6 +120,9 @@ public class QytetaretDashboardController implements Initializable {
     @FXML
     private Button shtoQytetarinBtn;
 
+    @FXML
+    public Pagination pagination;
+
    /* @FXML
     void filterQytetariTable(ActionEvent event) {
 
@@ -227,6 +232,10 @@ public class QytetaretDashboardController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+
+
+
         List<QytetariModel> qytetariModelList = null;
         try {
             qytetariModelList = QytetariRepository.getQytetari(connection);
@@ -235,7 +244,15 @@ public class QytetaretDashboardController implements Initializable {
         }
 
         ObservableList<QytetariModel> qytetariObservableList = FXCollections.observableList(qytetariModelList);
-        qytetariTable.setItems(qytetariObservableList);
+        int itemsPerPage = 10;
+        int pageCount = (qytetariObservableList.size() + itemsPerPage - 1) / itemsPerPage;
+        pagination.setPageCount(pageCount);
+        pagination.setPageFactory(pageIndex->{
+            int fromIndex = pageIndex * itemsPerPage;
+            int toIndex = Math.min(fromIndex + itemsPerPage,qytetariObservableList.size());
+            qytetariTable.setItems(FXCollections.observableArrayList(qytetariObservableList.subList(fromIndex,toIndex)));
+            return new Pane();
+        });
     }
 
     @FXML
