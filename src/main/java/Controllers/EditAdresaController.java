@@ -1,8 +1,10 @@
 package Controllers;
 
+import Adresa.Adresa;
 import AdresatDashboard.AdresatDashboard;
 import DbConnection.ConnectionUtil;
 import Models.AdresaModel;
+import QytetaretDashboard.QytetaretDashboard;
 import Repositories.AdresaRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,6 +56,15 @@ public class EditAdresaController {
     private Label adresaLabel;
 
     @FXML
+    private Button adresatBtn;
+
+    @FXML
+    private Button backToDashboard;
+
+    @FXML
+    private Button dashboardBtn;
+
+    @FXML
     private Label fshatiLabel;
 
     @FXML
@@ -81,19 +92,16 @@ public class EditAdresaController {
     private RadioButton perkohshem;
 
     @FXML
+    private Button qytetaretBtn;
+
+    @FXML
     private Label qytetiLabel;
 
     @FXML
     private Label rrugaLabel;
 
     @FXML
-    private Label teDhenatPersonale;
-
-    @FXML
     private Button updateAdresen;
-
-    @FXML
-    private Button backToDashboard;
 
     public int GetId;
     public String GetQyteti;
@@ -137,6 +145,32 @@ public class EditAdresaController {
         }
 
     }
+
+    @FXML
+    void openAdresatDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void openQytetaretDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void openDashboard(ActionEvent event){
+
+    }
+
 
     @FXML
     void updateAdresen(ActionEvent event) {

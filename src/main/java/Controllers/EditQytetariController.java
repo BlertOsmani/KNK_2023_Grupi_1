@@ -28,7 +28,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 
 public class EditQytetariController {
-
     @FXML
     private TextField AdresaEdit;
 
@@ -37,6 +36,12 @@ public class EditQytetariController {
 
     @FXML
     private TextField adresaId;
+
+    @FXML
+    private Button adresatBtn;
+
+    @FXML
+    private Button dashboardBtn;
 
     @FXML
     private DatePicker ditelindja;
@@ -78,6 +83,9 @@ public class EditQytetariController {
     private Label gjiniaLabel;
 
     @FXML
+    private TextField idQytetari;
+
+    @FXML
     private RadioButton mashkull;
 
     @FXML
@@ -105,16 +113,10 @@ public class EditQytetariController {
     private Label personalData;
 
     @FXML
-    private Label qytetariAdresa;
-
-    @FXML
-    private Label qytetariAdresaLabel;
+    private Button qytetaretBtn;
 
     @FXML
     private Button updateQytetarin;
-
-    @FXML
-    private TextField idQytetari;
 
     public int GetId;
     public String GetNrPersonal;
@@ -214,6 +216,22 @@ public class EditQytetariController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    void openAdresatDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
+
+    @FXML
+    void openDashboard(ActionEvent event){
+        
     }
 
     @FXML

@@ -10,10 +10,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="608.0" prefWidth="920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditQytetariController">
+<AnchorPane prefHeight="588.0" prefWidth="1484.0" stylesheets="@../AdresatDashboard/AdresatDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.EditQytetariController">
     <children>
         <TextField fx:id="nrPersonal" layoutX="217.0" layoutY="153.0" prefHeight="31.0" prefWidth="211.0" style="-fx-background-radius: 5;">
             <font>
@@ -45,7 +46,7 @@
                 <Font size="15.0" />
             </font>
         </Label>
-        <Button fx:id="updateQytetarin" layoutX="773.0" layoutY="531.0" mnemonicParsing="false" onAction="#updateQytetarin" prefHeight="40.0" prefWidth="119.0" style="-fx-background-color: #429750; -fx-background-radius: 5;" text="Update" textAlignment="CENTER" textFill="WHITE">
+        <Button fx:id="updateQytetarin" layoutX="223.0" layoutY="531.0" mnemonicParsing="false" onAction="#updateQytetarin" prefHeight="40.0" prefWidth="478.0" style="-fx-background-color: #429750; -fx-background-radius: 5;" text="Update" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font size="15.0" />
             </font>
@@ -77,7 +78,7 @@
                 <Font size="13.0" />
             </font>
         </RadioButton>
-        <MenuBar layoutY="-1.0" prefHeight="26.0" prefWidth="920.0" style="-fx-background-color: #474749;" styleClass="menu-bar">
+        <MenuBar layoutY="-1.0" prefHeight="26.0" prefWidth="1484.0" style="-fx-background-color: #474749;" styleClass="menu-bar">
             <menus>
                 <Menu mnemonicParsing="false" styleClass="menu" text="File">
                     <items>
@@ -99,12 +100,7 @@
                 </DropShadow>
             </effect>
         </MenuBar>
-        <Label fx:id="personalData" alignment="CENTER" layoutX="139.0" layoutY="40.0" prefHeight="20.0" prefWidth="161.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #195eab;" text="Te dhënat personale">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Label>
-        <Label fx:id="qytetariAdresa" alignment="CENTER" layoutX="37.0" layoutY="39.0" prefHeight="22.0" prefWidth="99.0" text="Adresa">
+        <Label fx:id="personalData" alignment="CENTER" layoutX="221.0" layoutY="39.0" prefHeight="20.0" prefWidth="161.0" style="-fx-border-width: 0 0 2 0; -fx-border-style: solid; -fx-border-color: #195eab;" text="Te dhënat personale">
             <font>
                 <Font size="14.0" />
             </font>
@@ -154,7 +150,7 @@
                 <Font size="15.0" />
             </font>
         </TextField>
-        <Button fx:id="Back" layoutX="37.0" layoutY="531.0" mnemonicParsing="false" onAction="#openQytetaretDashboard" prefHeight="40.0" prefWidth="172.0" style="-fx-background-color: #474749; -fx-background-radius: 5;" text="&lt;&lt; Back to dashboard" textAlignment="CENTER" textFill="WHITE">
+        <Button fx:id="Back" layoutX="1339.0" layoutY="41.0" mnemonicParsing="false" onAction="#openQytetaretDashboard" prefHeight="40.0" prefWidth="112.0" style="-fx-background-color: #474749; -fx-background-radius: 5;" text="&lt;&lt; Go back" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font size="15.0" />
             </font>
@@ -178,5 +174,24 @@
             </font>
         </Label>
       <TextField fx:id="idQytetari" layoutX="374.0" layoutY="76.0" visible="false" />
+        <Pane layoutY="23.0" prefHeight="566.0" prefWidth="200.0" style="-fx-background-color: #474749;">
+            <children>
+                <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" mnemonicParsing="false" onAction="#openAdresatDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="active" text="Adresat" textFill="WHITE">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Button>
+                <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" mnemonicParsing="false" onAction="#openQytetaretDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" stylesheets="@AdresatDashboard.css" text="Qytetaret" textFill="WHITE" wrapText="true">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Button>
+                <Button fx:id="dashboardBtn" alignment="CENTER" layoutX="18.0" layoutY="44.0" mnemonicParsing="false" onAction="#openDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" stylesheets="@AdresatDashboard.css" text="Dashboard" textFill="WHITE">
+                    <font>
+                        <Font size="15.0" />
+                    </font>
+                </Button>
+            </children>
+        </Pane>
     </children>
 </AnchorPane>
