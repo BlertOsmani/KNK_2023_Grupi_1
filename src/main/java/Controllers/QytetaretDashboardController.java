@@ -5,6 +5,8 @@ import Adresa.Adresa;
 import DbConnection.ConnectionUtil;
 import Models.AdresaModel;
 import Models.QytetariModel;
+import Models.dto.CreateAdresaDto;
+import Models.dto.CreateQytetariDto;
 import Repositories.AdresaRepository;
 import Repositories.QytetariRepository;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -27,6 +29,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -169,7 +172,7 @@ public class QytetaretDashboardController implements Initializable {
         qytetariNrTelefonit.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().NrTel));
         qytetariDitelindja.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Ditelindja));
         qytetariId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().Id).asObject());
-        qytetariAdresa.setCellValueFactory(cellData-> new SimpleIntegerProperty(cellData.getValue().Adresa).asObject());
+        qytetariAdresa.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().Adresa).asObject());
 
         qytetariAksionet.setCellFactory(column -> new TableCell<QytetariModel, Void>() {
             private final Button edit = new Button("Update");
@@ -185,7 +188,7 @@ public class QytetaretDashboardController implements Initializable {
                             FXMLLoader fxmlLoader = new FXMLLoader(EditQytetari.class.getResource("EditQytetari.fxml"));
                             Pane pane = fxmlLoader.load();
                             EditQytetariController editQytetariController = fxmlLoader.getController();
-                            editQytetariController.setQytetariFields(model.Id,model.NrPersonal, model.Emri, model.EmriBabait, model.EmriNenes, model.Mbiemri, model.Ditelindja, model.Email, model.NrTel, model.Gjinia, model.Adresa);
+                            editQytetariController.setQytetariFields(model.Id, model.NrPersonal, model.Emri, model.EmriBabait, model.EmriNenes, model.Mbiemri, model.Ditelindja, model.Email, model.NrTel, model.Gjinia, model.Adresa);
                             Scene scene = new Scene(pane);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene);
@@ -234,8 +237,6 @@ public class QytetaretDashboardController implements Initializable {
         }
 
 
-
-
         List<QytetariModel> qytetariModelList = null;
         try {
             qytetariModelList = QytetariRepository.getQytetari(connection);
@@ -247,10 +248,10 @@ public class QytetaretDashboardController implements Initializable {
         int itemsPerPage = 10;
         int pageCount = (qytetariObservableList.size() + itemsPerPage - 1) / itemsPerPage;
         pagination.setPageCount(pageCount);
-        pagination.setPageFactory(pageIndex->{
+        pagination.setPageFactory(pageIndex -> {
             int fromIndex = pageIndex * itemsPerPage;
-            int toIndex = Math.min(fromIndex + itemsPerPage,qytetariObservableList.size());
-            qytetariTable.setItems(FXCollections.observableArrayList(qytetariObservableList.subList(fromIndex,toIndex)));
+            int toIndex = Math.min(fromIndex + itemsPerPage, qytetariObservableList.size());
+            qytetariTable.setItems(FXCollections.observableArrayList(qytetariObservableList.subList(fromIndex, toIndex)));
             return new Pane();
         });
     }
@@ -266,7 +267,27 @@ public class QytetaretDashboardController implements Initializable {
     }
 
     @FXML
-    void filterQytetariTable(ActionEvent event){
+    private void filterQytetariTable(ActionEvent event) throws SQLException {
+        String NrPersonalFilter = nrPersonal.getText();
+        String EmriFilter = emri.getText();
+        String MbiemriFilter = mbiemri.getText();
+        String DitelindjaFilter = String.valueOf(ditelindja.getValue());
+        Connection connection = null;
+        try {
+            connection = ConnectionUtil.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        CreateQytetariDto QytetariDto = new CreateQytetariDto(NrPersonalFilter, EmriFilter, "", "", MbiemriFilter, DitelindjaFilter, "", "", "", 0);
+        List<QytetariModel> QytetariModelList = null;
 
+        try {
+            QytetariModelList = QytetariRepository.filterTable(connection, QytetariDto);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        // Update the table with the filtered data
+        ObservableList<QytetariModel> filteredList = FXCollections.observableList(QytetariModelList);
+        qytetariTable.setItems(filteredList);
     }
 }

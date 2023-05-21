@@ -3,6 +3,7 @@ package Repositories;
 import DbConnection.ConnectionUtil;
 import Models.AdresaModel;
 import Models.QytetariModel;
+import Models.dto.CreateAdresaDto;
 import Models.dto.CreateQytetariDto;
 
 import java.sql.*;
@@ -64,6 +65,94 @@ public class QytetariRepository {
         resultSet.close();
         statement.close();
         return qytetariList;
+    }
+    public static List<QytetariModel> filterTable(Connection connection, CreateQytetariDto model) throws SQLException {
+        List<QytetariModel> QytetariList = new ArrayList<>();
+        StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM qytetari WHERE 1=1");
+        if (model.NrPersonal != null && !model.NrPersonal.isEmpty()) {
+            sqlBuilder.append(" AND Qyteti LIKE ?");
+        }
+        if (model.Emri != null && !model.Emri.isEmpty()) {
+            sqlBuilder.append(" AND Komuna LIKE ?");
+        }
+        if (model.EmriBabait != null && !model.EmriBabait.isEmpty()) {
+            sqlBuilder.append(" AND Fshati LIKE ?");
+        }
+        if (model.EmriNenes != null && !model.EmriNenes.isEmpty()) {
+            sqlBuilder.append(" AND Rruga LIKE ?");
+        }
+        if (model.Mbiemri != null && !model.Mbiemri.isEmpty()) {
+            sqlBuilder.append(" AND Objekti LIKE ?");
+        }
+        if (model.Ditelindja != null && !model.Ditelindja.isEmpty()) {
+            sqlBuilder.append(" AND Hyrja LIKE ?");
+        }
+        if (model.Ditelindja != null && !model.Ditelindja.isEmpty()) {
+            sqlBuilder.append(" AND Hyrja LIKE ?");
+        }
+        if (model.Email != null && !model.Email.isEmpty()) {
+            sqlBuilder.append(" AND Hyrja LIKE ?");
+        }
+        if (model.NrTel != null && !model.NrTel.isEmpty()) {
+            sqlBuilder.append(" AND Hyrja LIKE ?");
+        }
+        if (model.Gjinia != null && !model.Gjinia.isEmpty()) {
+            sqlBuilder.append(" AND Hyrja LIKE ?");
+        }
+
+        PreparedStatement statement = connection.prepareStatement(sqlBuilder.toString());
+        int parameterIndex = 1;
+        if (model.NrPersonal != null && !model.NrPersonal.isEmpty()) {
+            statement.setString(parameterIndex++, "%" + model.NrPersonal + "%");
+        }
+        if (model.Emri != null && !model.Emri.isEmpty()) {
+            statement.setString(parameterIndex++, "%" + model.Emri + "%");
+        }
+        if (model.EmriBabait != null && !model.EmriBabait.isEmpty()) {
+            statement.setString(parameterIndex++, "%" + model.EmriBabait + "%");
+        }
+        if (model.EmriNenes != null && !model.EmriNenes.isEmpty()) {
+            statement.setString(parameterIndex++, "%" + model.EmriNenes + "%");
+        }
+        if (model.Mbiemri != null && !model.Mbiemri.isEmpty()) {
+            statement.setString(parameterIndex++, "%" + model.Mbiemri + "%");
+        }
+        if (model.Ditelindja != null && !model.Ditelindja.isEmpty()) {
+            statement.setString(parameterIndex, "%" + model.Ditelindja + "%");
+        }
+        if (model.Email != null && !model.Email.isEmpty()) {
+            statement.setString(parameterIndex, "%" + model.Email + "%");
+        }
+        if (model.NrTel != null && !model.NrTel.isEmpty()) {
+            statement.setString(parameterIndex, "%" + model.NrTel + "%");
+        }
+        if (model.Gjinia != null && !model.Gjinia.isEmpty()) {
+            statement.setString(parameterIndex, "%" + model.Gjinia + "%");
+        }
+
+
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            int id = resultSet.getInt("Id");
+            String NrPersonal = resultSet.getString("NrPersonal");
+            String Emri = resultSet.getString("Emri");
+            String EmriBabait = resultSet.getString("EmriBabait");
+            String EmriNenes = resultSet.getString("EmriNenes");
+            String Mbiemri = resultSet.getString("Mbiemri");
+            String Ditelindja = resultSet.getString("Ditelindja");
+            String Email = resultSet.getString("Email");
+            String NrTel = resultSet.getString("NrTel");
+            String Gjinia = resultSet.getString("Gjinia").equals("1") ? "Femer" : "Mashkull";
+            int Adresa = resultSet.getInt("Adresa");
+
+            QytetariModel qytetari = new QytetariModel(id, NrPersonal, Emri, EmriBabait, EmriNenes, Mbiemri, Ditelindja, Email, NrTel, Gjinia, Adresa);
+            QytetariList.add(qytetari);
+        }
+
+        resultSet.close();
+        statement.close();
+
+        return QytetariList;
     }
 
     public void update(QytetariModel editQytetariModel, Connection connection) throws SQLException{
