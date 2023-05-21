@@ -160,6 +160,31 @@ public class QytetaretDashboardController implements Initializable {
         stage.show();
     }
 
+    @FXML
+    void filterQytetariTable(ActionEvent event) throws SQLException {
+        String NrPersonalFilter = nrPersonal.getText();
+        String EmriFilter = emri.getText();
+        String MbiemriFilter = mbiemri.getText();
+        String DitelindjaFilter = ditelindja.getValue() != null ? String.valueOf(ditelindja.getValue()) : "";
+        Connection connection = null;
+        try {
+            connection = ConnectionUtil.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        CreateQytetariDto QytetariDto = new CreateQytetariDto(NrPersonalFilter, EmriFilter, "", "", MbiemriFilter, DitelindjaFilter, "", "", "", 0);
+        List<QytetariModel> QytetariModelList = null;
+
+        try {
+            QytetariModelList = QytetariRepository.filterTable(connection, QytetariDto);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        // Update the table with the filtered data
+        ObservableList<QytetariModel> filteredList = FXCollections.observableList(QytetariModelList);
+        qytetariTable.setItems(filteredList);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         qytetariEmri.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Emri));
@@ -266,28 +291,5 @@ public class QytetaretDashboardController implements Initializable {
 
     }
 
-    @FXML
-    private void filterQytetariTable(ActionEvent event) throws SQLException {
-        String NrPersonalFilter = nrPersonal.getText();
-        String EmriFilter = emri.getText();
-        String MbiemriFilter = mbiemri.getText();
-        String DitelindjaFilter = String.valueOf(ditelindja.getValue());
-        Connection connection = null;
-        try {
-            connection = ConnectionUtil.getConnection();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        CreateQytetariDto QytetariDto = new CreateQytetariDto(NrPersonalFilter, EmriFilter, "", "", MbiemriFilter, DitelindjaFilter, "", "", "", 0);
-        List<QytetariModel> QytetariModelList = null;
 
-        try {
-            QytetariModelList = QytetariRepository.filterTable(connection, QytetariDto);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        // Update the table with the filtered data
-        ObservableList<QytetariModel> filteredList = FXCollections.observableList(QytetariModelList);
-        qytetariTable.setItems(filteredList);
-    }
 }

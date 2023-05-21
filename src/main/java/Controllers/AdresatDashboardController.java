@@ -246,19 +246,12 @@ public class AdresatDashboardController implements Initializable {
                 }
             }
         });
-
-
-
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
-
-
         List<AdresaModel> adresaModelList = null;
         try {
             adresaModelList = AdresaRepository.getAdresses(connection);

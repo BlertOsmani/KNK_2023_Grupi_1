@@ -3,6 +3,7 @@ package Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
@@ -22,6 +23,21 @@ public class DashboardController {
 
         // Set the data to the Bar Chart
         barChart.setData(barChartData);
+    }
+
+    @FXML
+    void openGjejQytetarin(ActionEvent event) {
+
+    }
+
+    @FXML
+    void translateAL(ActionEvent event) {
+
+    }
+
+    @FXML
+    void translateEN(ActionEvent event) {
+
     }
 
 }
