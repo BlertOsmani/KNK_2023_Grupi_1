@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class EditAdresaController {
 
@@ -231,14 +233,38 @@ public class EditAdresaController {
         }
     }
 
+    public void translate() {
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("Translations.content", locale);
+
+        gjuha.setText(translate.getString("adresa.menu.gjuha"));
+        adresatBtn.setText(translate.getString("adresat.button.Adresat"));
+        qytetaretBtn.setText(translate.getString("adresat.button.Qytetaret"));
+        dashboardBtn.setText(translate.getString("adresat.button.dashboard"));
+        adresaLabel.setText(translate.getString("adresa.label.adresa"));
+        qytetiLabel.setText(translate.getString("adresa.label.qyteti"));
+        komunaLabel.setText(translate.getString("adresa.label.komuna"));
+        fshatiLabel.setText(translate.getString("adresa.label.fshati"));
+        rrugaLabel.setText(translate.getString("adresa.label.rruga"));
+        objektiLabel.setText(translate.getString("adresa.label.objekti"));
+        hyrjaLabel.setText(translate.getString("adresa.label.hyrja"));
+        numriLabel.setText(translate.getString("adresa.label.numri"));
+        numriPostalLabel.setText(translate.getString("adresa.label.numriPostal"));
+        perhershem.setText(translate.getString("adresa.radiobutton.perhershem"));
+        perkohshem.setText(translate.getString("adresa.radiobutton.perkohshem"));
+        updateAdresen.setText(translate.getString("addresa.button.update"));
+    }
+
     @FXML
     void translateAl(ActionEvent event) {
-
+        Locale.setDefault(new Locale("al"));
+        this.translate();
     }
 
     @FXML
     void translateEn(ActionEvent event) {
-
+        Locale.setDefault(new Locale("en"));
+        this.translate();
     }
 
     @FXML

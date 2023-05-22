@@ -448,7 +448,7 @@ public class QytetariController {
         menuGjuha.setText(translate.getString("qytetari.menu.gjuha"));
         qytetariAdresa.setText(translate.getString("qytetari.label.adresa"));
         personalData.setText(translate.getString("qytetari.label.teDhenatPersonale"));
-        qytetariAdresaLabel.setText(translate.getString("qytetari.label.adresa1"));
+        qytetariAdresaLabel.setText(translate.getString("qytetari.label.adresa"));
         nrPersonalLabel.setText(translate.getString("qytetari.label.nrPersonal"));
         emriLabel.setText(translate.getString("qytetari.label.emri"));
         emriBabaitLabel.setText(translate.getString("qytetari.label.emriBabait"));
@@ -461,6 +461,9 @@ public class QytetariController {
         Femer.setText(translate.getString("qytetari.radiobutton.femer"));
         Mashkull.setText(translate.getString("qytetari.radiobutton.mashkull"));
         Ruaj.setText(translate.getString("qytetari.button.save"));
+        qytetaretBtn.setText(translate.getString("adresat.button.Qytetaret"));
+        dashboardBtn.setText(translate.getString("adresat.button.dashboard"));
+        adresatBtn.setText(translate.getString("adresat.button.Adresat"));
     }
     public void translateEn(ActionEvent event){
         Locale.setDefault(new Locale("en"));

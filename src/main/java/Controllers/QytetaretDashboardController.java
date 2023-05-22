@@ -33,6 +33,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class QytetaretDashboardController implements Initializable {
@@ -306,14 +307,43 @@ public class QytetaretDashboardController implements Initializable {
         });
     }
 
-    @FXML
-    void translateAL(ActionEvent event) {
+    public void translate() {
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("Translations.content", locale);
+
+        gjuhaAdmin.setText(translate.getString("adresat.menu.gjuha"));
+        adresatBtn.setText(translate.getString("adresat.button.Adresat"));
+        qytetaretBtn.setText(translate.getString("adresat.button.Qytetaret"));
+        nrPersonalLabel.setText(translate.getString("qytetari.label.nrPersonal"));
+        dashboardBtn.setText(translate.getString("adresat.button.dashboard"));
+        emriLabel.setText(translate.getString("qytetari.label.emri"));
+        mbiemriLabel.setText(translate.getString("qytetari.label.mbiemri"));
+        ditelindjaLabel.setText(translate.getString("qytetari.label.ditelindja"));
+        filterBtn.setText(translate.getString("adresat.button.filter"));
+        qytetariNrPersonal.setText(translate.getString("qytetari.label.nrPersonal"));
+        qytetariEmri.setText(translate.getString("qytetari.label.emri"));
+        qytetariEmriBabait.setText(translate.getString("qytetari.label.emriBabait"));
+        qytetariEmriNenes.setText(translate.getString("qytetari.label.emriNenes"));
+        qytetariMbiemri.setText(translate.getString("qytetari.label.mbiemri"));
+        qytetariDitelindja.setText(translate.getString("qytetari.label.ditelindja"));
+        qytetariEmail.setText(translate.getString("qytetari.label.email"));
+        qytetariNrTelefonit.setText(translate.getString("qytetari.label.nrTelefonit"));
+        qytetariGjinia.setText(translate.getString("qytetari.label.gjinia"));
+        qytetariAdresa.setText(translate.getString("qytetari.label.adresa"));
+        qytetariAksionet.setText(translate.getString("adresat.aksionet"));
 
     }
 
     @FXML
-    void translateEN(ActionEvent event) {
+    void translateAL(ActionEvent event) {
+        Locale.setDefault(new Locale("al"));
+        this.translate();
+    }
 
+    @FXML
+    void translateEN(ActionEvent event) {
+        Locale.setDefault(new Locale("en"));
+        this.translate();
     }
 
 
