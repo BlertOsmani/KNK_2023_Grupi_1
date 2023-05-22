@@ -33,7 +33,7 @@
         </MenuBar>
         <Pane layoutX="-1.0" layoutY="27.0" prefHeight="561.0" prefWidth="200.0" style="-fx-background-color: #474749;">
             <children>
-                <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="active" text="Adresat" textFill="WHITE">
+                <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" onAction="#openAdresatDashboard" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" text="Adresat" textFill="WHITE">
                     <font>
                         <Font size="15.0" />
                     </font>
@@ -43,7 +43,7 @@
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="dashboardBtn" alignment="CENTER" layoutX="18.0" layoutY="44.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" text="Dashboard" textFill="WHITE">
+                <Button fx:id="dashboardBtn" alignment="CENTER" layoutX="18.0" layoutY="44.0" onAction="#openDashboard" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="active" text="Dashboard" textFill="WHITE">
                     <font>
                         <Font size="15.0" />
                     </font>

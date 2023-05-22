@@ -1,6 +1,8 @@
 package Controllers;
 
 import Adresa.Adresa;
+import AdresatDashboard.AdresatDashboard;
+import Dashboard.Dashboard;
 import DbConnection.ConnectionUtil;
 import Models.dto.CreateAdresaDto;
 import QytetaretDashboard.QytetaretDashboard;
@@ -206,6 +208,15 @@ public class AdresatDashboardController implements Initializable {
         scrollPane.setFitToHeight(true);
 
         Scene scene = new Scene(scrollPane, 1400, 600);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void openDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Dashboard.class.getResource("Dashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
