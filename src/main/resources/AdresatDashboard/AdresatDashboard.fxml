@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="588.0" prefWidth="1484.0" stylesheets="@AdresatDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdresatDashboardController">
+<AnchorPane prefHeight="926.0" prefWidth="1484.0" stylesheets="@AdresatDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdresatDashboardController">
    <children>
       <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1484.0" style="-fx-background-color: #474749;">
 
@@ -70,7 +70,7 @@
          </opaqueInsets>
       </TableView>
       <Button fx:id="filterBtn" layoutX="1409.0" layoutY="213.0" mnemonicParsing="false" onAction="#filterAdresaTable" prefHeight="31.0" prefWidth="59.0" styleClass="filter" text="Filter" />
-      <Pane layoutX="-1.0" layoutY="27.0" prefHeight="561.0" prefWidth="200.0" style="-fx-background-color: #474749;">
+      <Pane layoutX="-1.0" layoutY="27.0" prefHeight="901.0" prefWidth="200.0" style="-fx-background-color: #474749;">
          <children>
             <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="active" text="Adresat" textFill="WHITE">
                <font>
@@ -91,6 +91,26 @@
       </Pane>
       <ChoiceBox fx:id="llojiVendbanimit" layoutX="579.0" layoutY="201.0" prefWidth="150.0" />
       <Pagination fx:id="pagination" layoutX="740.0" layoutY="535.0" prefHeight="44.0" prefWidth="207.0" />
+      <Button fx:id="shfaqQytetaretBtn" alignment="CENTER" layoutX="489.0" layoutY="46.0" mnemonicParsing="false" onAction="#openShfaqQytetaret" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #ab19a7; -fx-background-radius: 10;" stylesheets="@AdresatDashboard.css" text="Shfaq Qytetaret" textFill="WHITE" />
+      <TableView fx:id="qytetariTable" layoutX="218.0" layoutY="591.0" prefHeight="280.0" prefWidth="1251.0" styleClass="Table">
+         <columns>
+            <TableColumn fx:id="qytetariId" prefWidth="62.39999008178711" styleClass="column" text="Id" />
+            <TableColumn fx:id="qytetariNrPersonal" prefWidth="127.19998168945312" styleClass="column" text="NrPersonal" />
+            <TableColumn fx:id="qytetariEmri" prefWidth="102.4000244140625" styleClass="column" text="Emri" />
+            <TableColumn fx:id="qytetariEmriBabait" prefWidth="112.80001831054688" styleClass="column" text="Emri i babait" />
+            <TableColumn fx:id="qytetariEmriNenes" prefWidth="124.00006103515625" styleClass="column" text="Emri i nenes" />
+            <TableColumn fx:id="qytetariMbiemri" minWidth="0.0" prefWidth="131.99993896484375" styleClass="column" text="Mbiemri" />
+            <TableColumn fx:id="qytetariDitelindja" minWidth="0.0" prefWidth="140.79998779296875" styleClass="column" text="Ditelindja" />
+            <TableColumn fx:id="qytetariEmail" minWidth="0.0" prefWidth="124.79998779296875" styleClass="column" text="Email" />
+            <TableColumn fx:id="qytetariNrTelefonit" minWidth="0.0" prefWidth="137.5999755859375" styleClass="column" text="NrTelefonit" />
+            <TableColumn fx:id="qytetariGjinia" minWidth="0.0" prefWidth="110.4000244140625" styleClass="column" text="Gjinia" />
+            <TableColumn fx:id="qytetariAdresa" prefWidth="74.4000244140625" styleClass="column" text="Adresa" />
+         </columns>
+         <opaqueInsets>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </opaqueInsets>
+      </TableView>
+      <Pagination fx:id="pagination1" layoutX="754.0" layoutY="871.0" prefHeight="44.0" prefWidth="207.0" />
    </children>
    <opaqueInsets>
       <Insets />
