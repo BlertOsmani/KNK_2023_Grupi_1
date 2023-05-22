@@ -192,7 +192,7 @@
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="dashboardBtn" alignment="CENTER" layoutX="18.0" layoutY="44.0" mnemonicParsing="false" onAction="#openDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" stylesheets="@../AdresatDashboard/AdresatDashboard.css" text="Dashboard" textFill="WHITE">
+                <Button fx:id="dashboardBtn" alignment="CENTER" layoutX="18.0" layoutY="44.0"  mnemonicParsing="false" onAction="#openDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" stylesheets="@../AdresatDashboard/AdresatDashboard.css" text="Dashboard" textFill="WHITE">
                     <font>
                         <Font size="15.0" />
                     </font>

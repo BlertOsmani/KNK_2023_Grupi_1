@@ -67,7 +67,7 @@
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="active" stylesheets="@QytetaretDashboard.css" text="Qytetaret" textFill="WHITE" wrapText="true">
+                <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" onAction="#openGjejQytetarin" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="active" stylesheets="@QytetaretDashboard.css" text="Qytetaret" textFill="WHITE" wrapText="true">
                     <font>
                         <Font size="15.0" />
                     </font>
