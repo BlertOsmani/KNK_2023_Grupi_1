@@ -146,4 +146,16 @@ public class QytetariRepository {
         statement.close();
     }
 
+    public int countQytetaret() throws SQLException {
+        Connection connection = ConnectionUtil.getConnection();
+        String sql = "Select count(*) as qytetariCount from qytetari";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()) {
+            int count = rs.getInt("qytetariCount");
+            return count;
+        }
+        return 0;
+    }
+
 }

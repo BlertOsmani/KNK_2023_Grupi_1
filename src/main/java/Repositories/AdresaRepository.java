@@ -1,5 +1,6 @@
 package Repositories;
 
+import DbConnection.ConnectionUtil;
 import Models.AdresaModel;
 import Models.dto.CreateAdresaDto;
 
@@ -157,5 +158,18 @@ public class AdresaRepository
 
                 return adresaList;
         }
+        public int countAdresa () throws SQLException {
+                Connection connection = ConnectionUtil.getConnection();
+                String sql = "Select count(*) as adresaCount from adresa";
+                PreparedStatement statement = connection.prepareStatement(sql);
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                        int count = rs.getInt("adresaCount");
+                        return count;
+                }
+                return 0;
+        }
+
+
 
 }

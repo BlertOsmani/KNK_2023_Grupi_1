@@ -53,7 +53,7 @@
       <Pane layoutX="245.0" layoutY="50.0" prefHeight="83.0" prefWidth="254.0" style="-fx-background-color: #474749; -fx-background-radius: 10px;">
          <children>
             <Label layoutX="46.0" layoutY="14.0" style="-fx-text-fill: white;" text="Numri total i qytetareve" />
-            <Label layoutX="46.0" layoutY="42.0" style="-fx-text-fill: white;" text="30,000">
+            <Label fx:id="qytetariCount" layoutX="46.0" layoutY="42.0" style="-fx-text-fill: white;">
                <font>
                   <Font size="20.0" />
                </font>
@@ -63,7 +63,7 @@
       <Pane layoutX="524.0" layoutY="50.0" prefHeight="83.0" prefWidth="254.0" style="-fx-background-color: #474749; -fx-background-radius: 10px;">
          <children>
             <Label layoutX="48.0" layoutY="14.0" style="-fx-text-fill: white;" text="Numri total i adresave" />
-            <Label layoutX="48.0" layoutY="42.0" style="-fx-text-fill: white;" text="15,000">
+            <Label fx:id="adresaCount" layoutX="48.0" layoutY="42.0" style="-fx-text-fill: white;">
                <font>
                   <Font size="20.0" />
                </font>
