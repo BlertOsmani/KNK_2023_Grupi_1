@@ -6,6 +6,8 @@ import QytetaretDashboard.QytetaretDashboard;
 import Models.QytetariModel;
 import Models.dto.CreateQytetariDto;
 import Repositories.QytetariRepository;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -129,6 +131,50 @@ public class EditQytetariController {
     public String GetNrTel;
     public String GetGjinia;
     public int GetAdresa;
+    public String currentText;
+
+    public void initialize() {
+        currentText = "";
+        // Add a listener to the text property to enforce the mask
+        nrTel.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                // Strip all non-digit characters from the input
+                String strippedText = newValue.replaceAll("[^\\d]", "");
+
+                // Insert the spaces between the segments of the mask
+                StringBuilder formattedText = new StringBuilder();
+                for (int i = 0; i < strippedText.length(); i++) {
+                    if (i == 0) {
+                        formattedText.append("+").append(strippedText.charAt(i));
+                    } else if (i == 3 || i == 5 || i == 8) {
+                        formattedText.append(" ").append(strippedText.charAt(i));
+                    } else {
+                        formattedText.append(strippedText.charAt(i));
+                    }
+                }
+
+                // Set the new text on the TextField
+                if (!formattedText.toString().equals(currentText)) {
+                    currentText = formattedText.toString();
+                    nrTel.setText(currentText);
+                    nrTel.positionCaret(currentText.length());
+                }
+            }
+        });
+
+        femer.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                mashkull.setSelected(false);
+            }
+        });
+        mashkull.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                femer.setSelected(false);
+            }
+        });
+    }
+
 
     public void setQytetariFields(int id,String NrPersonal, String Emri, String EmriBabait ,String EmriNenes,String Mbiemri, String Ditelindja ,String Email,String NrTel, String Gjinia, int adresa){
         this.GetId = id;

@@ -5,6 +5,7 @@ import DbConnection.ConnectionUtil;
 import Models.dto.CreateAdresaDto;
 import QytetaretDashboard.QytetaretDashboard;
 import Models.AdresaModel;
+import Qytetari.Qytetari;
 import Repositories.AdresaRepository;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -155,7 +156,28 @@ public class AdresatDashboardController implements Initializable {
     @FXML
     public Pagination pagination;
 
+    @FXML
+    public Button shtoQytetarin;
 
+    @FXML
+    private TextField Adresa;
+
+    @FXML
+    void openShtoQytetarin(ActionEvent event) throws IOException{
+        AdresaModel model = adresaTable.getSelectionModel().getSelectedItem();
+        try {
+            QytetariController qytetariController = new QytetariController();
+            qytetariController.setAddressInfo(model.Id,model.Qyteti,model.Komuna,model.Fshati,model.Rruga,model.Objekti,model.Hyrja,model.Numri,model.NumriPostal);
+            FXMLLoader fxmlLoader = new FXMLLoader(Qytetari.class.getResource("Qytetari.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
+        }
+    }
 
     @FXML
     void openGjejQytetarin(ActionEvent event) throws IOException {
@@ -195,6 +217,8 @@ public class AdresatDashboardController implements Initializable {
         adresaAksionet.setCellFactory(column -> new TableCell<AdresaModel, Void>() {
             private final Button edit = new Button("Update");
             private final Button delete = new Button("Delete");
+            private final Button shtoQytetarin = new Button("Shto Qytetarin");
+            private final Button shfaqQytetaret = new Button("Shfaq Qytetaret");
             private final HBox buttonsContainer = new HBox(edit, delete);
 
             {
