@@ -2,6 +2,7 @@ package Controllers;
 
 import Adresa.Adresa;
 import AdresatDashboard.AdresatDashboard;
+import Dashboard.Dashboard;
 import DbConnection.ConnectionUtil;
 import Models.AdresaModel;
 import QytetaretDashboard.QytetaretDashboard;
@@ -171,8 +172,17 @@ public class EditAdresaController {
     }
 
     @FXML
-    void openDashboard(ActionEvent event){
+    void openDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Dashboard.class.getResource("Dashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
 
+        Scene scene = new Scene(scrollPane, 1400, 600);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 

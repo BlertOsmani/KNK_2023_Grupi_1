@@ -1,6 +1,7 @@
 package Controllers;
 
 import AdresatDashboard.AdresatDashboard;
+import Dashboard.Dashboard;
 import DbConnection.ConnectionUtil;
 import QytetaretDashboard.QytetaretDashboard;
 import Models.QytetariModel;
@@ -283,8 +284,17 @@ public class EditQytetariController {
 
 
     @FXML
-    void openDashboard(ActionEvent event){
-        
+    void openDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Dashboard.class.getResource("Dashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
