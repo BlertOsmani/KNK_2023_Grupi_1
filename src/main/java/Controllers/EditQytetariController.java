@@ -6,17 +6,14 @@ import QytetaretDashboard.QytetaretDashboard;
 import Models.QytetariModel;
 import Models.dto.CreateQytetariDto;
 import Repositories.QytetariRepository;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -129,6 +126,50 @@ public class EditQytetariController {
     public String GetNrTel;
     public String GetGjinia;
     public int GetAdresa;
+    public String currentText;
+
+    public void initialize() {
+        currentText = "";
+        // Add a listener to the text property to enforce the mask
+        nrTel.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                // Strip all non-digit characters from the input
+                String strippedText = newValue.replaceAll("[^\\d]", "");
+
+                // Insert the spaces between the segments of the mask
+                StringBuilder formattedText = new StringBuilder();
+                for (int i = 0; i < strippedText.length(); i++) {
+                    if (i == 0) {
+                        formattedText.append("+").append(strippedText.charAt(i));
+                    } else if (i == 3 || i == 5 || i == 8) {
+                        formattedText.append(" ").append(strippedText.charAt(i));
+                    } else {
+                        formattedText.append(strippedText.charAt(i));
+                    }
+                }
+
+                // Set the new text on the TextField
+                if (!formattedText.toString().equals(currentText)) {
+                    currentText = formattedText.toString();
+                    nrTel.setText(currentText);
+                    nrTel.positionCaret(currentText.length());
+                }
+            }
+        });
+
+        femer.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                mashkull.setSelected(false);
+            }
+        });
+        mashkull.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                femer.setSelected(false);
+            }
+        });
+    }
+
 
     public void setQytetariFields(int id,String NrPersonal, String Emri, String EmriBabait ,String EmriNenes,String Mbiemri, String Ditelindja ,String Email,String NrTel, String Gjinia, int adresa){
         this.GetId = id;
@@ -192,7 +233,11 @@ public class EditQytetariController {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
                     Pane pane = fxmlLoader.load();
-                    Scene scene = new Scene(pane);
+                    ScrollPane scrollPane = new ScrollPane(pane);
+                    scrollPane.setFitToWidth(true);
+                    scrollPane.setFitToHeight(true);
+
+                    Scene scene = new Scene(scrollPane, 1400, 600);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);
                     stage.show();
@@ -212,7 +257,11 @@ public class EditQytetariController {
     void openQytetaretDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -222,7 +271,11 @@ public class EditQytetariController {
     void openAdresatDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

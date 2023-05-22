@@ -13,7 +13,7 @@ public class ConnectionUtil {
             String user = "root";
             String password = "Astrit123,.1";
             connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Connection successfull");
+            System.out.println("Connection successful");
         }
         return connection;
     }

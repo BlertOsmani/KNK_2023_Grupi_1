@@ -2,11 +2,13 @@ package Controllers;
 
 import AdresatDashboard.AdresatDashboard;
 import Adresa.Adresa;
+import Dashboard.Dashboard;
 import DbConnection.ConnectionUtil;
 import Models.AdresaModel;
 import Models.QytetariModel;
 import Models.dto.CreateAdresaDto;
 import Models.dto.CreateQytetariDto;
+import QytetaretDashboard.QytetaretDashboard;
 import Repositories.AdresaRepository;
 import Repositories.QytetariRepository;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -139,12 +141,24 @@ public class QytetaretDashboardController implements Initializable {
     void translateEN(ActionEvent event) {
 
     }*/
-
+   @FXML
+   void openGjejQytetarin(ActionEvent event) throws IOException {
+       FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
+       Pane pane = fxmlLoader.load();
+       Scene scene = new Scene(pane);
+       Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+       stage.setScene(scene);
+       stage.show();
+   }
     @FXML
     void openAdresatDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -152,14 +166,17 @@ public class QytetaretDashboardController implements Initializable {
 
     @FXML
     void openDashboard(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Adresa.class.getResource("Adresa.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Dashboard.class.getResource("Dashboard.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
     }
-
     @FXML
     void filterQytetariTable(ActionEvent event) throws SQLException {
         String NrPersonalFilter = nrPersonal.getText();
@@ -214,7 +231,11 @@ public class QytetaretDashboardController implements Initializable {
                             Pane pane = fxmlLoader.load();
                             EditQytetariController editQytetariController = fxmlLoader.getController();
                             editQytetariController.setQytetariFields(model.Id, model.NrPersonal, model.Emri, model.EmriBabait, model.EmriNenes, model.Mbiemri, model.Ditelindja, model.Email, model.NrTel, model.Gjinia, model.Adresa);
-                            Scene scene = new Scene(pane);
+                            ScrollPane scrollPane = new ScrollPane(pane);
+                            scrollPane.setFitToWidth(true);
+                            scrollPane.setFitToHeight(true);
+
+                            Scene scene = new Scene(scrollPane, 1400, 600);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene);
                             stage.show();

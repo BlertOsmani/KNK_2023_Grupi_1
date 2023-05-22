@@ -1,12 +1,18 @@
 package Controllers;
 
-
 import Repositories.AdresaRepository;
 import Repositories.QytetariRepository;
+import Adresa.Adresa;
+import AdresatDashboard.AdresatDashboard;
+import Dashboard.Dashboard;
+import QytetaretDashboard.QytetaretDashboard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
@@ -15,6 +21,10 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 
 import java.sql.SQLException;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class DashboardController {
         @FXML
@@ -65,10 +75,34 @@ public class DashboardController {
         // Set the data to the Bar Chart
         barChart.setData(barChartData);
     }
+    @FXML
+    void openAdresatDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void openGjejQytetarin(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+
 
     @FXML
-    void openGjejQytetarin(ActionEvent event) {
-
+    void openDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Dashboard.class.getResource("Dashboard.fxml"));
+        Pane pane = fxmlLoader.load();
+        Scene scene = new Scene(pane);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML

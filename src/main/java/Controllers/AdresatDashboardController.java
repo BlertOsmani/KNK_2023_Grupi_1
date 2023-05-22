@@ -1,10 +1,13 @@
 package Controllers;
 
 import Adresa.Adresa;
+import AdresatDashboard.AdresatDashboard;
+import Dashboard.Dashboard;
 import DbConnection.ConnectionUtil;
 import Models.dto.CreateAdresaDto;
 import QytetaretDashboard.QytetaretDashboard;
 import Models.AdresaModel;
+import Qytetari.Qytetari;
 import Repositories.AdresaRepository;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -155,13 +158,42 @@ public class AdresatDashboardController implements Initializable {
     @FXML
     public Pagination pagination;
 
-
+    @FXML
+    public Button shtoQytetarin;
 
     @FXML
-    void openGjejQytetarin(ActionEvent event) throws IOException {
+    private TextField Adresa;
+
+    @FXML
+    void openShtoQytetarin(ActionEvent event) throws IOException{
+        AdresaModel model = adresaTable.getSelectionModel().getSelectedItem();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Qytetari.class.getResource("Qytetari.fxml"));
+            Pane pane = fxmlLoader.load();
+            QytetariController qytetariController = fxmlLoader.getController();
+            qytetariController.setAddressInfo(model.Id,model.Qyteti,model.Komuna,model.Fshati,model.Rruga,model.Objekti,model.Hyrja,model.Numri,model.NumriPostal);
+            ScrollPane scrollPane = new ScrollPane(pane);
+            scrollPane.setFitToWidth(true);
+            scrollPane.setFitToHeight(true);
+
+            Scene scene = new Scene(scrollPane, 1400, 600);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.err.println("Error loading FXML file: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    void openQytetaretDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -170,6 +202,19 @@ public class AdresatDashboardController implements Initializable {
     @FXML
     void openShtoAdresen(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Adresa.class.getResource("Adresa.fxml"));
+        Pane pane = fxmlLoader.load();
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
+    @FXML
+    void openDashboard(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(Dashboard.class.getResource("Dashboard.fxml"));
         Pane pane = fxmlLoader.load();
         Scene scene = new Scene(pane);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -195,6 +240,8 @@ public class AdresatDashboardController implements Initializable {
         adresaAksionet.setCellFactory(column -> new TableCell<AdresaModel, Void>() {
             private final Button edit = new Button("Update");
             private final Button delete = new Button("Delete");
+            private final Button shtoQytetarin = new Button("Shto Qytetarin");
+            private final Button shfaqQytetaret = new Button("Shfaq Qytetaret");
             private final HBox buttonsContainer = new HBox(edit, delete);
 
             {
@@ -270,6 +317,11 @@ public class AdresatDashboardController implements Initializable {
             return new Pane();
         });
 
+
+    }
+
+    @FXML
+    void openShfaqQytetaret(ActionEvent event){
 
     }
     @FXML
