@@ -4,6 +4,7 @@ import Adresa.Adresa;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -15,7 +16,11 @@ public class Qytetari extends Application {
     public void start(Stage stage) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(Qytetari.class.getResource("Qytetari.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane, pane.getWidth()-100, pane.getHeight()-100);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         stage.setTitle("Aplikacion per regjistrimin e adresave dhe vendbanimeve");
         stage.setScene(scene);
         stage.show();

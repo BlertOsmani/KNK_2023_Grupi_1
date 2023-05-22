@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="926.0" prefWidth="1484.0" stylesheets="@AdresatDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdresatDashboardController">
+<AnchorPane prefHeight="926.0" prefWidth="1484.0" stylesheets="@AdresatDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdresatDashboardController">
    <children>
       <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1484.0" style="-fx-background-color: #474749;">
 
@@ -77,7 +77,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" mnemonicParsing="false" onAction="#openGjejQytetarin" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" stylesheets="@AdresatDashboard.css" text="Qytetaret" textFill="WHITE" wrapText="true">
+            <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" mnemonicParsing="false" onAction="#openQytetaretDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" stylesheets="@AdresatDashboard.css" text="Qytetaret" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="15.0" />
                </font>
@@ -91,7 +91,7 @@
       </Pane>
       <ChoiceBox fx:id="llojiVendbanimit" layoutX="579.0" layoutY="201.0" prefWidth="150.0" />
       <Pagination fx:id="pagination" layoutX="740.0" layoutY="535.0" prefHeight="44.0" prefWidth="207.0" />
-      <Button fx:id="shfaqQytetaretBtn" alignment="CENTER" layoutX="489.0" layoutY="46.0" mnemonicParsing="false" onAction="#openShfaqQytetaret" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #ab19a7; -fx-background-radius: 10;" stylesheets="@AdresatDashboard.css" text="Shfaq Qytetaret" textFill="WHITE" />
+      <Button fx:id="shfaqQytetaretBtn" alignment="CENTER" layoutX="499.0" layoutY="46.0" mnemonicParsing="false" onAction="#openShfaqQytetaret" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #ab19a7; -fx-background-radius: 10;" stylesheets="@AdresatDashboard.css" text="Shfaq Qytetaret" textFill="WHITE" />
       <TableView fx:id="qytetariTable" layoutX="218.0" layoutY="591.0" prefHeight="280.0" prefWidth="1251.0" styleClass="Table">
          <columns>
             <TableColumn fx:id="qytetariId" prefWidth="62.39999008178711" styleClass="column" text="Id" />
@@ -111,6 +111,8 @@
          </opaqueInsets>
       </TableView>
       <Pagination fx:id="pagination1" layoutX="754.0" layoutY="871.0" prefHeight="44.0" prefWidth="207.0" />
+      <Button fx:id="shtoQytetarin" alignment="CENTER" layoutX="363.0" layoutY="46.0" mnemonicParsing="false" onAction="#openShtoQytetarin" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #ab19a7; -fx-background-radius: 10;" stylesheets="@AdresatDashboard.css" text="Shto Qytetarin" textFill="WHITE" />
+      <TextField fx:id="Adresa" layoutX="646.0" layoutY="49.0" visible="false" />
    </children>
    <opaqueInsets>
       <Insets />

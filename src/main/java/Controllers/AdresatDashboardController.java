@@ -170,7 +170,11 @@ public class AdresatDashboardController implements Initializable {
             Pane pane = fxmlLoader.load();
             QytetariController qytetariController = fxmlLoader.getController();
             qytetariController.setAddressInfo(model.Id,model.Qyteti,model.Komuna,model.Fshati,model.Rruga,model.Objekti,model.Hyrja,model.Numri,model.NumriPostal);
-            Scene scene = new Scene(pane);
+            ScrollPane scrollPane = new ScrollPane(pane);
+            scrollPane.setFitToWidth(true);
+            scrollPane.setFitToHeight(true);
+
+            Scene scene = new Scene(scrollPane, 1400, 600);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.show();
@@ -180,10 +184,14 @@ public class AdresatDashboardController implements Initializable {
     }
 
     @FXML
-    void openGjejQytetarin(ActionEvent event) throws IOException {
+    void openQytetaretDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -193,7 +201,11 @@ public class AdresatDashboardController implements Initializable {
     void openShtoAdresen(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Adresa.class.getResource("Adresa.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();

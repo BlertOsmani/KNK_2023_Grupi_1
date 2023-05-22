@@ -144,7 +144,11 @@ public class QytetaretDashboardController implements Initializable {
     void openAdresatDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -154,7 +158,11 @@ public class QytetaretDashboardController implements Initializable {
     void openDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Adresa.class.getResource("Adresa.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -214,7 +222,11 @@ public class QytetaretDashboardController implements Initializable {
                             Pane pane = fxmlLoader.load();
                             EditQytetariController editQytetariController = fxmlLoader.getController();
                             editQytetariController.setQytetariFields(model.Id, model.NrPersonal, model.Emri, model.EmriBabait, model.EmriNenes, model.Mbiemri, model.Ditelindja, model.Email, model.NrTel, model.Gjinia, model.Adresa);
-                            Scene scene = new Scene(pane);
+                            ScrollPane scrollPane = new ScrollPane(pane);
+                            scrollPane.setFitToWidth(true);
+                            scrollPane.setFitToHeight(true);
+
+                            Scene scene = new Scene(scrollPane, 1400, 600);
                             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setScene(scene);
                             stage.show();

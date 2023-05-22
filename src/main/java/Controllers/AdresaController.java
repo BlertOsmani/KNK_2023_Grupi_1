@@ -127,7 +127,11 @@ public class AdresaController {
     void openAdresatDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -140,7 +144,11 @@ public class AdresaController {
     void openQytetaretDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
         Pane pane = fxmlLoader.load();
-        Scene scene = new Scene(pane);
+        ScrollPane scrollPane = new ScrollPane(pane);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setFitToHeight(true);
+
+        Scene scene = new Scene(scrollPane, 1400, 600);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
@@ -171,7 +179,11 @@ public class AdresaController {
                     Pane pane = fxmlLoader.load();
                     QytetariController qytetariController = fxmlLoader.getController();
                     qytetariController.setAddressInfo(adresaRepository.getLastId(connection),adresaDto.Qyteti, adresaDto.Komuna, adresaDto.Fshati, adresaDto.Rruga, adresaDto.Objekti, adresaDto.Hyrja, adresaDto.Numri, adresaDto.NumriPostal);
-                    Scene scene = new Scene(pane);
+                    ScrollPane scrollPane = new ScrollPane(pane);
+                    scrollPane.setFitToWidth(true);
+                    scrollPane.setFitToHeight(true);
+
+                    Scene scene = new Scene(scrollPane, 1400, 600);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);
                     stage.show();
