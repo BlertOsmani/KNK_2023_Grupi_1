@@ -39,7 +39,7 @@ public class QytetariController {
     public String objekti;
     public String hyrja;
     @FXML
-    private TextField Adresa;
+    public TextField Adresa;
 
     @FXML
     private DatePicker Ditelindja;
@@ -157,6 +157,7 @@ public class QytetariController {
 
     public String currentText;
     public int AdresaId;
+
 
     public void initialize() {
         currentText = "";
