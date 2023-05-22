@@ -268,7 +268,6 @@ public class QytetariController {
             }
             adresaValue += String.valueOf(numriPostalValue);
         }
-
         Adresa.setText(adresaValue);
         adresaId.setText(String.valueOf(AdresaId));
 

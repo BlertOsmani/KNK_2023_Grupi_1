@@ -166,10 +166,10 @@ public class AdresatDashboardController implements Initializable {
     void openShtoQytetarin(ActionEvent event) throws IOException{
         AdresaModel model = adresaTable.getSelectionModel().getSelectedItem();
         try {
-            QytetariController qytetariController = new QytetariController();
-            qytetariController.setAddressInfo(model.Id,model.Qyteti,model.Komuna,model.Fshati,model.Rruga,model.Objekti,model.Hyrja,model.Numri,model.NumriPostal);
             FXMLLoader fxmlLoader = new FXMLLoader(Qytetari.class.getResource("Qytetari.fxml"));
             Pane pane = fxmlLoader.load();
+            QytetariController qytetariController = fxmlLoader.getController();
+            qytetariController.setAddressInfo(model.Id,model.Qyteti,model.Komuna,model.Fshati,model.Rruga,model.Objekti,model.Hyrja,model.Numri,model.NumriPostal);
             Scene scene = new Scene(pane);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
@@ -294,6 +294,11 @@ public class AdresatDashboardController implements Initializable {
             return new Pane();
         });
 
+
+    }
+
+    @FXML
+    void openShfaqQytetaret(ActionEvent event){
 
     }
     @FXML
