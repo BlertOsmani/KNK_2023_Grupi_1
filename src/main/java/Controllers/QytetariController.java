@@ -27,6 +27,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -159,6 +162,8 @@ public class QytetariController {
 
     public String currentText;
     public int AdresaId;
+    @FXML
+    private AnchorPane anchorPane;
 
 
     public void initialize() {
@@ -201,7 +206,18 @@ public class QytetariController {
                 Femer.setSelected(false);
             }
         });
-
+            anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    Ruaj.fire();
+                    event.consume();
+                }
+                else if(event.getCode() == KeyCode.F12){
+                    translateEn(new ActionEvent());
+                }
+                else if(event.getCode() == KeyCode.F11){
+                    translateAl(new ActionEvent());
+                }
+            });
 
     }
 
@@ -465,11 +481,12 @@ public class QytetariController {
         dashboardBtn.setText(translate.getString("adresat.button.dashboard"));
         adresatBtn.setText(translate.getString("adresat.button.Adresat"));
     }
+    @FXML
     public void translateEn(ActionEvent event){
         Locale.setDefault(new Locale("en"));
         this.translate();
     }
-
+    @FXML
     public void translateAl(ActionEvent event){
         Locale.setDefault(new Locale("al"));
         this.translate();
