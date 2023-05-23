@@ -13,8 +13,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <AnchorPane prefHeight="588.0" prefWidth="1484.0" stylesheets="@../AdresatDashboard/AdresatDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardController">
+    <Pane>
+=======
+<AnchorPane fx:id="anchorPane" prefHeight="588.0" prefWidth="1484.0" stylesheets="@../AdresatDashboard/AdresatDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardController">
     <children>
+>>>>>>> fd955dde20439ce4933c04821859eea9c7cd24be
         <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1484.0" style="-fx-background-color: #474749;">
 
             <menus>
@@ -62,14 +67,15 @@
       </Pane>
       <Pane layoutX="524.0" layoutY="50.0" prefHeight="83.0" prefWidth="254.0" style="-fx-background-color: #474749; -fx-background-radius: 10px;">
          <children>
-            <Label fx:id="numriAdresave" layoutX="48.0" layoutY="14.0" style="-fx-text-fill: white;" text="Numri total i adresave" />
-            <Label fx:id="adresaCount" layoutX="48.0" layoutY="42.0" style="-fx-text-fill: white;">
+            <Label fx:id="numriAdresave" layoutX="46.0" layoutY="14.0" style="-fx-text-fill: white;" text="Numri total i adresave" />
+            <Label fx:id="adresaCount" layoutX="46.0" layoutY="42.0" style="-fx-text-fill: white;">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
          </children>
       </Pane>
+        
       <BarChart fx:id="barChart" layoutX="227.0" layoutY="157.0" prefHeight="400.0" prefWidth="661.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
@@ -78,7 +84,30 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-    </children>
+      <Pane layoutX="802.0" layoutY="50.0" prefHeight="83.0" prefWidth="254.0" style="-fx-background-color: #474749; -fx-background-radius: 10px;">
+          <children>
+            <Label fx:id="numriBanoreveNgaFshati" layoutX="26.0" layoutY="14.0" text="Numri i banoreve nga fshati" textFill="WHITE" />
+            <Label fx:id="BanoretFshatiCount" layoutX="26.0" layoutY="41.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+
+         </children>
+    </Pane>
+      <Pane layoutX="1080.0" layoutY="50.0" prefHeight="83.0" prefWidth="254.0" style="-fx-background-color: #474749; -fx-background-radius: 10;">
+         <children>
+            <Label fx:id="numriBanoreveNgaQyteti" layoutX="26.0" layoutY="14.0" text="Numri i banoreve nga qyteti" textFill="WHITE" />
+            <Label fx:id="BanoriNgaQytetiCount" layoutX="26.0" layoutY="41.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+
+
+
+    </Pane>
     <opaqueInsets>
         <Insets />
     </opaqueInsets>

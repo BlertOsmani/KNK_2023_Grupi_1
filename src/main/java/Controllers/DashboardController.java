@@ -18,6 +18,10 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 
 import java.sql.SQLException;
+
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -26,7 +30,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class DashboardController {
-        @FXML
+    @FXML
+    public Label numriBanoreveNgaFshati;
+       @FXML
         private Label adresaCount;
 
         @FXML
@@ -56,23 +62,44 @@ public class DashboardController {
         private Label numriAdresave;
         @FXML
         private Label numriQytetareve;
+        @FXML
+        private Label BanoretFshatiCount;
+        @FXML
+        private Label BanoriNgaQytetiCount;
+        @FXML
+        private Label numriBanoreveNgaQyteti;
+
+        @FXML
+        public AnchorPane anchorPane;
 
     @FXML
     private BarChart<String, Number> barChart;
 
     public void initialize() throws SQLException {
+        anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode() == KeyCode.F12){
+                translateEN(new ActionEvent());
+            }
+            else if(event.getCode() == KeyCode.F11){
+                translateAL(new ActionEvent());
+            }
+        });
         AdresaRepository adresaRepository = new AdresaRepository();
         adresaCount.setText(String.valueOf(adresaRepository.countAdresa()));
 
+
         QytetariRepository qytetariRepository = new QytetariRepository();
         qytetariCount.setText(String.valueOf(qytetariRepository.countQytetaret()));
+        BanoretFshatiCount.setText(String.valueOf(qytetariRepository.countBanoretNgaFshati()));
+        BanoriNgaQytetiCount.setText(String.valueOf(qytetariRepository.countBanoretNgaQyteti()));
 
         // Create data for the chart
         ObservableList<XYChart.Series<String, Number>> barChartData = FXCollections.observableArrayList();
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.getData().add(new XYChart.Data<>("Nr.Total i Qytetareve", qytetariRepository.countQytetaret()));
         series.getData().add(new XYChart.Data<>("Nr.Total i Adresave", adresaRepository.countAdresa()));
-
+        series.getData().add(new XYChart.Data<>("Nr.Total i Banoreve nga Fshati", qytetariRepository.countBanoretNgaFshati()));
+        series.getData().add(new XYChart.Data<>("Nr.Total i Banoreve nga Qyteti", qytetariRepository.countBanoretNgaQyteti()));
         barChartData.add(series);
 
         // Set the data to the Bar Chart
@@ -130,6 +157,9 @@ public class DashboardController {
         dashboardBtn.setText(translate.getString("adresat.button.dashboard"));
         numriAdresave.setText(translate.getString("dashboard.nrAdresave"));
         numriQytetareve.setText(translate.getString("dashboard.nrQytetareve"));
+        numriBanoreveNgaFshati.setText(translate.getString("dashboard.nrBanoreveNgaFshati"));
+        numriBanoreveNgaQyteti.setText(translate.getString("dashboard.nrBanoreveNgaQyteti"));
+
     }
     @FXML
     void translateAL(ActionEvent event) {

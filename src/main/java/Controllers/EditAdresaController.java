@@ -13,6 +13,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -101,6 +104,9 @@ public class EditAdresaController {
 
     @FXML
     private Button updateAdresen;
+
+    @FXML
+    public AnchorPane anchorPane;
 
     public int GetId;
     public String GetQyteti;
@@ -279,6 +285,17 @@ public class EditAdresaController {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void initialize(){
+        anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode() == KeyCode.F12){
+                translateEn(new ActionEvent());
+            }
+            else if(event.getCode() == KeyCode.F11){
+                translateAl(new ActionEvent());
+            }
+        });
     }
 
 

@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="588.0" prefWidth="1484.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.QytetariController">
+<AnchorPane fx:id="anchorPane" prefHeight="588.0" prefWidth="1484.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.QytetariController">
     <children>
         <TextField fx:id="NrPersonal" layoutX="269.0" layoutY="198.0" prefHeight="31.0" prefWidth="211.0" style="-fx-background-radius: 5;">
             <font>
@@ -192,7 +192,7 @@
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="dashboardBtn" alignment="CENTER" layoutX="18.0" layoutY="44.0"  mnemonicParsing="false" onAction="#openDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" stylesheets="@../AdresatDashboard/AdresatDashboard.css" text="Dashboard" textFill="WHITE">
+                <Button fx:id="dashboardBtn" alignment="CENTER" layoutX="18.0" layoutY="44.0" mnemonicParsing="false" onAction="#openDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" stylesheets="@../AdresatDashboard/AdresatDashboard.css" text="Dashboard" textFill="WHITE">
                     <font>
                         <Font size="15.0" />
                     </font>

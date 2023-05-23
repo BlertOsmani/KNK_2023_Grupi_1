@@ -157,5 +157,31 @@ public class QytetariRepository {
         }
         return 0;
     }
+    public int countBanoretNgaFshati() throws SQLException{
+        Connection connection = ConnectionUtil.getConnection();
+        String sql = "Select count(*) as BanoretFshatiCount from  qytetari q join adresa a on a.Id = q.Adresa where a.Fshati <> ''";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()){
+            int count = rs.getInt("BanoretFshatiCount");
+            return count;
+        }
+        return 0;
+
+    }
+    public int countBanoretNgaQyteti() throws SQLException{
+        Connection connection = ConnectionUtil.getConnection();
+        String sql = "Select count(*) as BanoriNgaQytetiCount from  qytetari q join adresa a on a.Id = q.Adresa where a.Fshati is NULL or a.Fshati = '' ";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        ResultSet rs = statement.executeQuery();
+        while (rs.next()){
+            int count = rs.getInt("BanoriNgaQytetiCount");
+            return count;
+        }
+        return 0;
+
+    }
+
+
 
 }
