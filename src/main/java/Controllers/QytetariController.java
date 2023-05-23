@@ -364,10 +364,12 @@ public class QytetariController {
             else if(mbiemri == null || mbiemri.equals("")){
                 mbiemriError.setVisible(true);
                 mbiemriError.setText("Kerkohet mbiemri!");
+                return;
             }
             else if(ditelindjaStr == null || ditelindjaStr.equals("")){
                 ditelindjaError.setVisible(true);
                 ditelindjaError.setText("Kerkohet ditelindja!");
+                return;
             }
             else if(email == null || email.equals("")){
                 emailError.setVisible(true);

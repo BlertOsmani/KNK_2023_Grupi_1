@@ -206,6 +206,18 @@ public class QytetariRepository {
             return count;
         }
         return 0;
+    }
 
+    public int countGjinia(String gjinia) throws SQLException {
+        Connection connection = ConnectionUtil.getConnection();
+        String sql = "Select count(*) as GjiniaCount from qytetari where Gjinia = ?";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1,gjinia);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()){
+            int count = resultSet.getInt("GjiniaCount");
+            return count;
+        }
+        return 0;
     }
 }

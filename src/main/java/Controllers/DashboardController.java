@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 
@@ -64,6 +65,9 @@ public class DashboardController {
         @FXML
         public AnchorPane anchorPane;
 
+        @FXML
+        private PieChart gjiniaChart;
+
     @FXML
     private BarChart<String, Number> barChart;
 
@@ -91,9 +95,18 @@ public class DashboardController {
         series.getData().add(new XYChart.Data<>("Nr.Total i Banoreve nga Fshati", qytetariRepository.countBanoretNgaFshati()));
         series.getData().add(new XYChart.Data<>("Nr.Total i Banoreve nga Qyteti", qytetariRepository.countBanoretNgaQyteti()));
         barChartData.add(series);
-
         // Set the data to the Bar Chart
         barChart.setData(barChartData);
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Nr nga gjinia mashkullore (" + qytetariRepository.countGjinia("Mashkull") + ")", qytetariRepository.countGjinia("Mashkull")),
+                new PieChart.Data("Nr nga gjinia femerore (" + qytetariRepository.countGjinia("Femer") + ")", qytetariRepository.countGjinia("Femer"))
+        );
+
+// Set the data to the PieChart
+        gjiniaChart.setData(pieChartData);
+
+
     }
     @FXML
     void openAdresatDashboard(ActionEvent event) throws IOException {

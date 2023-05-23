@@ -4,6 +4,7 @@
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -32,7 +33,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Pane layoutX="-1.0" layoutY="27.0" prefHeight="561.0" prefWidth="200.0" style="-fx-background-color: #474749;">
+        <Pane layoutX="-1.0" layoutY="27.0" prefHeight="624.0" prefWidth="200.0" style="-fx-background-color: #474749;">
             <children>
                 <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" mnemonicParsing="false" onAction="#openAdresatDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" text="Adresat" textFill="WHITE">
                     <font>
@@ -72,7 +73,7 @@
          </children>
       </Pane>
         
-      <BarChart fx:id="barChart" layoutX="227.0" layoutY="157.0" prefHeight="400.0" prefWidth="661.0">
+      <BarChart fx:id="barChart" layoutX="233.0" layoutY="216.0" prefHeight="400.0" prefWidth="583.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -80,6 +81,17 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
+      <Label layoutX="245.0" layoutY="173.0" prefHeight="30.0" prefWidth="216.0" text="Pasqyre e pergjithshme">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="872.0" layoutY="173.0" prefHeight="30.0" prefWidth="216.0" text="Numri sipas gjinive">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <PieChart fx:id="gjiniaChart" layoutX="872.0" layoutY="216.0" />
 
 
 
