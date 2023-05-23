@@ -24,6 +24,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class EditQytetariController {
     @FXML
@@ -297,14 +299,39 @@ public class EditQytetariController {
         stage.show();
     }
 
+    public void translate() {
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("Translations.content", locale);
+
+        menuGjuha.setText(translate.getString("qytetari.menu.gjuha"));
+        adresatBtn.setText(translate.getString("adresat.button.Adresat"));
+        qytetaretBtn.setText(translate.getString("adresat.button.Qytetaret"));
+        dashboardBtn.setText(translate.getString("adresat.button.dashboard"));
+        personalData.setText(translate.getString("qytetari.label.teDhenatPersonale"));
+        nrPersonalLabel.setText(translate.getString("qytetari.label.nrPersonal"));
+        emriLabel.setText(translate.getString("qytetari.label.emri"));
+        emriBabaitLabel.setText(translate.getString("qytetari.label.emriBabait"));
+        emriNenesLabel.setText(translate.getString("qytetari.label.emriNenes"));
+        mbiemriLabel.setText(translate.getString("qytetari.label.mbiemri"));
+        ditelindjaLabel.setText(translate.getString("qytetari.label.ditelindja"));
+        emailLabel.setText(translate.getString("qytetari.label.email"));
+        nrTelefonitLabel.setText(translate.getString("qytetari.label.nrTelefonit"));
+        gjiniaLabel.setText(translate.getString("qytetari.label.gjinia"));
+        femer.setText(translate.getString("qytetari.radiobutton.femer"));
+        mashkull.setText(translate.getString("qytetari.radiobutton.mashkull"));
+        updateQytetarin.setText(translate.getString("qytetari.button.update"));
+    }
+
     @FXML
     void translateAl(ActionEvent event) {
-
+        Locale.setDefault(new Locale("al"));
+        this.translate();
     }
 
     @FXML
     void translateEn(ActionEvent event) {
-
+        Locale.setDefault(new Locale("en"));
+        this.translate();
     }
 
 }

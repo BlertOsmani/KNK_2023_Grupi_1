@@ -33,7 +33,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Label fx:id="nrPersonalLabel" layoutX="227.0" layoutY="153.0" prefHeight="18.0" prefWidth="92.0" text="Nr Personal:" />
+        <Label fx:id="nrPersonalLabel" layoutX="227.0" layoutY="153.0" prefHeight="18.0" prefWidth="150.0" text="Nr Personal:" />
         <TextField fx:id="nrPersonal" layoutX="227.0" layoutY="177.0" />
         <Label fx:id="emriLabel" layoutX="397.0" layoutY="153.0" prefHeight="18.0" prefWidth="71.0" text="Emri:" />
         <TextField fx:id="emri" layoutX="397.0" layoutY="177.0" />
@@ -67,7 +67,7 @@
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" onAction="#openGjejQytetarin" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="active" stylesheets="@QytetaretDashboard.css" text="Qytetaret" textFill="WHITE" wrapText="true">
+                <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" mnemonicParsing="false" onAction="#openGjejQytetarin" prefHeight="38.0" prefWidth="165.0" styleClass="active" stylesheets="@QytetaretDashboard.css" text="Qytetaret" textFill="WHITE" wrapText="true">
                     <font>
                         <Font size="15.0" />
                     </font>

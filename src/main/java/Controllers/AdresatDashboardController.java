@@ -162,9 +162,6 @@ public class AdresatDashboardController implements Initializable {
     public Button shtoQytetarin;
 
     @FXML
-    private TextField Adresa;
-
-    @FXML
     void openShtoQytetarin(ActionEvent event) throws IOException{
         AdresaModel model = adresaTable.getSelectionModel().getSelectedItem();
         try {
@@ -244,8 +241,6 @@ public class AdresatDashboardController implements Initializable {
         adresaAksionet.setCellFactory(column -> new TableCell<AdresaModel, Void>() {
             private final Button edit = new Button("Update");
             private final Button delete = new Button("Delete");
-            private final Button shtoQytetarin = new Button("Shto Qytetarin");
-            private final Button shfaqQytetaret = new Button("Shfaq Qytetaret");
             private final HBox buttonsContainer = new HBox(edit, delete);
 
             {
@@ -374,7 +369,16 @@ public class AdresatDashboardController implements Initializable {
         nrPostalLabel.setText(translate.getString("adresat.label.numriPostal"));
         llojiVendbanimitLabel.setText(translate.getString("adresat.label.llojiVendbanimit"));
         filterBtn.setText(translate.getString("adresat.button.filter"));
-
+        adresaQyteti.setText(translate.getString("adresa.label.qyteti"));
+        adresaKomuna.setText(translate.getString("adresa.label.komuna"));
+        adresaFshati.setText(translate.getString("adresa.label.fshati"));
+        adresaRruga.setText(translate.getString("adresa.label.rruga"));
+        adresaObjekti.setText(translate.getString("adresa.label.objekti"));
+        adresaHyrja.setText(translate.getString("adresa.label.hyrja"));
+        adresaNumri.setText(translate.getString("adresa.numri"));
+        adresaNumriPostal.setText(translate.getString("adresa.label.numriPostal"));
+        adresaVendbanimi.setText(translate.getString("adresat.label.llojiVendbanimit"));
+        adresaAksionet.setText(translate.getString("adresat.aksionet"));
     }
 
     public void translateEN(ActionEvent event){

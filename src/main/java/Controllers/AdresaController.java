@@ -222,6 +222,9 @@ public class AdresaController {
         ResourceBundle translate = ResourceBundle.getBundle("Translations.content", locale);
 
         gjuha.setText(translate.getString("adresa.menu.gjuha"));
+        adresatBtn.setText(translate.getString("adresat.button.Adresat"));
+        qytetaretBtn.setText(translate.getString("adresat.button.Qytetaret"));
+        dashboardBtn.setText(translate.getString("adresat.button.dashboard"));
         adresaLabel.setText(translate.getString("adresa.label.adresa"));
         teDhenatPersonale.setText(translate.getString("adresa.label.teDhenatPersonale"));
         qytetiLabel.setText(translate.getString("adresa.label.qyteti"));

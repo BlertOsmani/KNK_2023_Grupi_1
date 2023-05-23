@@ -22,6 +22,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class DashboardController {
         @FXML
@@ -50,6 +52,10 @@ public class DashboardController {
 
         @FXML
         private MenuItem shqip;
+        @FXML
+        private Label numriAdresave;
+        @FXML
+        private Label numriQytetareve;
 
     @FXML
     private BarChart<String, Number> barChart;
@@ -114,14 +120,27 @@ public class DashboardController {
         stage.show();
     }
 
+    public void translate(){
+        Locale locale = Locale.getDefault();
+        ResourceBundle translate = ResourceBundle.getBundle("Translations.content", locale);
+
+        gjuhaAdmin.setText(translate.getString("adresat.menu.gjuha"));
+        adresatBtn.setText(translate.getString("adresat.button.Adresat"));
+        qytetaretBtn.setText(translate.getString("adresat.button.Qytetaret"));
+        dashboardBtn.setText(translate.getString("adresat.button.dashboard"));
+        numriAdresave.setText(translate.getString("dashboard.nrAdresave"));
+        numriQytetareve.setText(translate.getString("dashboard.nrQytetareve"));
+    }
     @FXML
     void translateAL(ActionEvent event) {
-
+        Locale.setDefault(new Locale("al"));
+        this.translate();
     }
 
     @FXML
     void translateEN(ActionEvent event) {
-
+        Locale.setDefault(new Locale("en"));
+        this.translate();
     }
 
 }
