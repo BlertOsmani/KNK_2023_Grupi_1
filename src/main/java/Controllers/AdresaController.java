@@ -116,11 +116,11 @@ public class AdresaController {
                 shtoAdresen.fire();
                 event.consume();
             }
-        });
-
-        shtoAdresen.setOnKeyPressed(event -> {
-            if(event.getCode() == KeyCode.ENTER){
-                shtoAdresen(new ActionEvent());
+            else if(event.getCode() == KeyCode.F12){
+                    translateEn(new ActionEvent());
+            }
+            else if(event.getCode() == KeyCode.F11){
+                translateAl(new ActionEvent());
             }
         });
     }
@@ -237,11 +237,13 @@ public class AdresaController {
         shtoAdresen.setText(translate.getString("adresa.button.next"));
     }
 
+    @FXML
     public void translateEn(ActionEvent event){
         Locale.setDefault(new Locale("en"));
         this.translate();
     }
 
+    @FXML
     public void translateAl(ActionEvent event){
         Locale.setDefault(new Locale("al"));
         this.translate();
