@@ -22,6 +22,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -128,6 +131,8 @@ public class QytetaretDashboardController implements Initializable {
 
     @FXML
     public Pagination pagination;
+    @FXML
+    private AnchorPane anchorPane;
 
    /* @FXML
     void filterQytetariTable(ActionEvent event) {
@@ -277,6 +282,15 @@ public class QytetaretDashboardController implements Initializable {
                 } else {
                     setGraphic(buttonsContainer);
                 }
+            }
+
+        });
+        anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode() == KeyCode.F12){
+                translateEN(new ActionEvent());
+            }
+            else if(event.getCode() == KeyCode.F11){
+                translateAL(new ActionEvent());
             }
         });
 
