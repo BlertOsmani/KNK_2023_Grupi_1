@@ -20,6 +20,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -162,6 +165,9 @@ public class AdresatDashboardController implements Initializable {
     public Button shtoQytetarin;
 
     @FXML
+    public AnchorPane anchorPane;
+
+    @FXML
     void openShtoQytetarin(ActionEvent event) throws IOException{
         AdresaModel model = adresaTable.getSelectionModel().getSelectedItem();
         try {
@@ -225,6 +231,16 @@ public class AdresatDashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode() == KeyCode.F12){
+                translateEN(new ActionEvent());
+            }
+            else if(event.getCode() == KeyCode.F11){
+                translateAL(new ActionEvent());
+            }
+        });
+
+
         ObservableList<String> Items = FXCollections.observableArrayList("I perhershem","I perkohshem");
         llojiVendbanimit.setItems(Items);
         adresaRruga.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Rruga));
@@ -381,11 +397,13 @@ public class AdresatDashboardController implements Initializable {
         adresaAksionet.setText(translate.getString("adresat.aksionet"));
     }
 
+    @FXML
     public void translateEN(ActionEvent event){
         Locale.setDefault(new Locale("en"));
         this.translate();
     }
 
+    @FXML
     public void translateAL(ActionEvent event){
         Locale.setDefault(new Locale("al"));
         this.translate();
