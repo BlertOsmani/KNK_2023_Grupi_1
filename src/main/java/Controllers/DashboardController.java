@@ -18,6 +18,10 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 
 import java.sql.SQLException;
+
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -57,10 +61,21 @@ public class DashboardController {
         @FXML
         private Label numriQytetareve;
 
+        @FXML
+        public AnchorPane anchorPane;
+
     @FXML
     private BarChart<String, Number> barChart;
 
     public void initialize() throws SQLException {
+        anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode() == KeyCode.F12){
+                translateEN(new ActionEvent());
+            }
+            else if(event.getCode() == KeyCode.F11){
+                translateAL(new ActionEvent());
+            }
+        });
         AdresaRepository adresaRepository = new AdresaRepository();
         adresaCount.setText(String.valueOf(adresaRepository.countAdresa()));
 
