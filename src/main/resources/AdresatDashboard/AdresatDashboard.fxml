@@ -72,11 +72,11 @@
       <Button fx:id="filterBtn" layoutX="1409.0" layoutY="213.0" mnemonicParsing="false" onAction="#filterAdresaTable" prefHeight="31.0" prefWidth="59.0" styleClass="filter" text="Filter" />
       <Pane layoutX="-1.0" layoutY="27.0" prefHeight="901.0" prefWidth="200.0" style="-fx-background-color: #474749;">
          <children>
-<<<<<<< HEAD
-            <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0"  mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="active" text="Adresat" textFill="WHITE">
-=======
+
+
+
             <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" mnemonicParsing="false" onAction="#openShtoAdresen" prefHeight="38.0" prefWidth="165.0" styleClass="active" text="Adresat" textFill="WHITE">
->>>>>>> fd955dde20439ce4933c04821859eea9c7cd24be
+
                <font>
                   <Font size="15.0" />
                </font>

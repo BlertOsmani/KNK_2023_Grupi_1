@@ -72,6 +72,9 @@ public class DashboardController {
         @FXML
         public AnchorPane anchorPane;
 
+        @FXML
+        public AnchorPane anchorPane;
+
     @FXML
     private BarChart<String, Number> barChart;
 
