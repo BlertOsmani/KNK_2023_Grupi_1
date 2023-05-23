@@ -95,8 +95,8 @@
       </Pane>
       <ChoiceBox fx:id="llojiVendbanimit" layoutX="579.0" layoutY="201.0" prefWidth="150.0" />
       <Pagination fx:id="pagination" layoutX="740.0" layoutY="535.0" prefHeight="44.0" prefWidth="207.0" />
-      <Button fx:id="shfaqQytetaretBtn" alignment="CENTER" layoutX="499.0" layoutY="46.0" mnemonicParsing="false" onAction="#openShfaqQytetaret" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #ab19a7; -fx-background-radius: 10;" stylesheets="@AdresatDashboard.css" text="Shfaq Qytetaret" textFill="WHITE" />
-      <TableView fx:id="qytetariTable" layoutX="218.0" layoutY="591.0" prefHeight="280.0" prefWidth="1251.0" styleClass="Table">
+      <Button fx:id="shfaqQytetaretBtn" alignment="CENTER" layoutX="499.0" layoutY="46.0" mnemonicParsing="false" onAction="#shfaqQytetaret" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #ab19a7; -fx-background-radius: 10;" stylesheets="@AdresatDashboard.css" text="Shfaq Qytetaret" textFill="WHITE" />
+      <TableView fx:id="qytetariTable" layoutX="218.0" layoutY="591.0" prefHeight="280.0" prefWidth="1251.0" styleClass="Table" visible="false">
          <columns>
             <TableColumn fx:id="qytetariId" prefWidth="62.39999008178711" styleClass="column" text="Id" />
             <TableColumn fx:id="qytetariNrPersonal" prefWidth="127.19998168945312" styleClass="column" text="NrPersonal" />
@@ -114,7 +114,7 @@
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </opaqueInsets>
       </TableView>
-      <Pagination fx:id="pagination1" layoutX="754.0" layoutY="871.0" prefHeight="44.0" prefWidth="207.0" />
+      <Pagination fx:id="pagination1" layoutX="754.0" layoutY="871.0" prefHeight="44.0" prefWidth="207.0" visible="false" />
       <Button fx:id="shtoQytetarin" alignment="CENTER" layoutX="363.0" layoutY="46.0" mnemonicParsing="false" onAction="#openShtoQytetarin" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #ab19a7; -fx-background-radius: 10;" stylesheets="@AdresatDashboard.css" text="Shto Qytetarin" textFill="WHITE" />
       <TextField fx:id="Adresa" layoutX="646.0" layoutY="49.0" visible="false" />
    </children>

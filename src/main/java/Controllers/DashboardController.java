@@ -30,8 +30,6 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class DashboardController {
-    @FXML
-    public Label numriBanoreveNgaFshati;
        @FXML
         private Label adresaCount;
 
@@ -62,15 +60,6 @@ public class DashboardController {
         private Label numriAdresave;
         @FXML
         private Label numriQytetareve;
-        @FXML
-        private Label BanoretFshatiCount;
-        @FXML
-        private Label BanoriNgaQytetiCount;
-        @FXML
-        private Label numriBanoreveNgaQyteti;
-
-        @FXML
-        public AnchorPane anchorPane;
 
         @FXML
         public AnchorPane anchorPane;
@@ -93,8 +82,6 @@ public class DashboardController {
 
         QytetariRepository qytetariRepository = new QytetariRepository();
         qytetariCount.setText(String.valueOf(qytetariRepository.countQytetaret()));
-        BanoretFshatiCount.setText(String.valueOf(qytetariRepository.countBanoretNgaFshati()));
-        BanoriNgaQytetiCount.setText(String.valueOf(qytetariRepository.countBanoretNgaQyteti()));
 
         // Create data for the chart
         ObservableList<XYChart.Series<String, Number>> barChartData = FXCollections.observableArrayList();
@@ -122,7 +109,7 @@ public class DashboardController {
         stage.show();
     }
     @FXML
-    void openGjejQytetarin(ActionEvent event) throws IOException {
+    void openQytetaretDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(QytetaretDashboard.class.getResource("QytetaretDashboard.fxml"));
         Pane pane = fxmlLoader.load();
         ScrollPane scrollPane = new ScrollPane(pane);
@@ -160,8 +147,6 @@ public class DashboardController {
         dashboardBtn.setText(translate.getString("adresat.button.dashboard"));
         numriAdresave.setText(translate.getString("dashboard.nrAdresave"));
         numriQytetareve.setText(translate.getString("dashboard.nrQytetareve"));
-        numriBanoreveNgaFshati.setText(translate.getString("dashboard.nrBanoreveNgaFshati"));
-        numriBanoreveNgaQyteti.setText(translate.getString("dashboard.nrBanoreveNgaQyteti"));
 
     }
     @FXML

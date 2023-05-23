@@ -4,11 +4,13 @@ import Adresa.Adresa;
 import AdresatDashboard.AdresatDashboard;
 import Dashboard.Dashboard;
 import DbConnection.ConnectionUtil;
+import Models.QytetariModel;
 import Models.dto.CreateAdresaDto;
 import QytetaretDashboard.QytetaretDashboard;
 import Models.AdresaModel;
 import Qytetari.Qytetari;
 import Repositories.AdresaRepository;
+import Repositories.QytetariRepository;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -166,6 +168,45 @@ public class AdresatDashboardController implements Initializable {
 
     @FXML
     public AnchorPane anchorPane;
+
+    @FXML
+    private TableColumn<QytetariModel, Integer> qytetariAdresa;
+
+    @FXML
+    private TableColumn<QytetariModel, String> qytetariDitelindja;
+
+    @FXML
+    private TableColumn<QytetariModel, String> qytetariEmail;
+
+    @FXML
+    private TableColumn<QytetariModel, String> qytetariEmri;
+
+    @FXML
+    private TableColumn<QytetariModel, String> qytetariEmriBabait;
+
+    @FXML
+    private TableColumn<QytetariModel, String> qytetariEmriNenes;
+
+    @FXML
+    private TableColumn<QytetariModel, String> qytetariGjinia;
+
+    @FXML
+    private TableColumn<QytetariModel, Integer> qytetariId;
+
+    @FXML
+    private TableColumn<QytetariModel, String> qytetariMbiemri;
+
+    @FXML
+    private TableColumn<QytetariModel, String> qytetariNrPersonal;
+
+    @FXML
+    private TableColumn<QytetariModel, String> qytetariNrTelefonit;
+
+    @FXML
+    private TableView<QytetariModel> qytetariTable;
+
+    @FXML
+    private Pagination pagination1;
 
     @FXML
     void openShtoQytetarin(ActionEvent event) throws IOException{
@@ -336,8 +377,44 @@ public class AdresatDashboardController implements Initializable {
     }
 
     @FXML
-    void openShfaqQytetaret(ActionEvent event){
+    void shfaqQytetaret(ActionEvent event){
+        AdresaModel adresaModel = adresaTable.getSelectionModel().getSelectedItem();
+        qytetariEmri.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Emri));
+        qytetariMbiemri.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Mbiemri));
+        qytetariEmriBabait.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().EmriBabait));
+        qytetariEmriNenes.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().EmriNenes));
+        qytetariNrPersonal.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().NrPersonal));
+        qytetariDitelindja.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Ditelindja));
+        qytetariNrTelefonit.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().NrTel));
+        qytetariAdresa.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().Adresa).asObject());
+        qytetariGjinia.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Gjinia));
+        qytetariId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().Id).asObject());
+        qytetariEmail.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Email));
+        Connection connection = null;
+        try {
+            connection = ConnectionUtil.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        List<QytetariModel> qytetariModelList = null;
+        try {
+            qytetariModelList = QytetariRepository.getQytetari(connection, adresaModel.Id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
+        ObservableList<QytetariModel> qytetariObservableList = FXCollections.observableList(qytetariModelList);
+        int itemsPerPage = 10;
+        int pageCount = (qytetariObservableList.size() + itemsPerPage - 1) / itemsPerPage;
+        pagination1.setPageCount(pageCount);
+        pagination1.setPageFactory(pageIndex->{
+            int fromIndex = pageIndex * itemsPerPage;
+            int toIndex = Math.min(fromIndex + itemsPerPage,qytetariObservableList.size());
+            qytetariTable.setItems(FXCollections.observableArrayList(qytetariObservableList.subList(fromIndex,toIndex)));
+            qytetariTable.setVisible(true);
+            pagination1.setVisible(true);
+            return new Pane();
+        });
     }
     @FXML
     private void filterAdresaTable(ActionEvent event) throws SQLException {

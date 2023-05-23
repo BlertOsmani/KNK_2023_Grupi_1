@@ -42,29 +42,56 @@ public class QytetariRepository {
             }
     }
 
-    public static List<QytetariModel> getQytetari(Connection connection) throws SQLException {
-        List<QytetariModel> qytetariList = new ArrayList<>();
-        String sql = "Select * from qytetari";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        ResultSet resultSet = statement.executeQuery();
-        while(resultSet.next()){
-            int id = resultSet.getInt("Id");
-            String nrPersonal = resultSet.getString("NrPersonal");
-            String emri = resultSet.getString("Emri");
-            String emriBabait = resultSet.getString("EmriBabait");
-            String emriNenes = resultSet.getString("EmriNenes");
-            String mbiemri = resultSet.getString("Mbiemri");
-            String ditelindja = resultSet.getString("Ditelindja");
-            String email = resultSet.getString("Email");
-            String nrTelefonit = resultSet.getString("NrTelefonit");
-            String gjinia = resultSet.getString("Gjinia");
-            int adresa = resultSet.getInt("Adresa");
-            QytetariModel qytetariModel = new QytetariModel(id, nrPersonal, emri, emriBabait, emriNenes, mbiemri, ditelindja, email, nrTelefonit, gjinia, adresa);
-            qytetariList.add(qytetariModel);
+    public static List<QytetariModel> getQytetari(Connection connection, int Adresa) throws SQLException {
+        if(Adresa == 0) {
+            List<QytetariModel> qytetariList = new ArrayList<>();
+            String sql = "Select * from qytetari";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("Id");
+                String nrPersonal = resultSet.getString("NrPersonal");
+                String emri = resultSet.getString("Emri");
+                String emriBabait = resultSet.getString("EmriBabait");
+                String emriNenes = resultSet.getString("EmriNenes");
+                String mbiemri = resultSet.getString("Mbiemri");
+                String ditelindja = resultSet.getString("Ditelindja");
+                String email = resultSet.getString("Email");
+                String nrTelefonit = resultSet.getString("NrTelefonit");
+                String gjinia = resultSet.getString("Gjinia");
+                int adresa = resultSet.getInt("Adresa");
+                QytetariModel qytetariModel = new QytetariModel(id, nrPersonal, emri, emriBabait, emriNenes, mbiemri, ditelindja, email, nrTelefonit, gjinia, adresa);
+                qytetariList.add(qytetariModel);
+            }
+            resultSet.close();
+            statement.close();
+            return qytetariList;
         }
-        resultSet.close();
-        statement.close();
-        return qytetariList;
+        else{
+            List<QytetariModel> qytetariList = new ArrayList<>();
+            String sql = "Select * from qytetari where Adresa = ?";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, Adresa);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("Id");
+                String nrPersonal = resultSet.getString("NrPersonal");
+                String emri = resultSet.getString("Emri");
+                String emriBabait = resultSet.getString("EmriBabait");
+                String emriNenes = resultSet.getString("EmriNenes");
+                String mbiemri = resultSet.getString("Mbiemri");
+                String ditelindja = resultSet.getString("Ditelindja");
+                String email = resultSet.getString("Email");
+                String nrTelefonit = resultSet.getString("NrTelefonit");
+                String gjinia = resultSet.getString("Gjinia");
+                int adresa = resultSet.getInt("Adresa");
+                QytetariModel qytetariModel = new QytetariModel(id, nrPersonal, emri, emriBabait, emriNenes, mbiemri, ditelindja, email, nrTelefonit, gjinia, adresa);
+                qytetariList.add(qytetariModel);
+            }
+            resultSet.close();
+            statement.close();
+            return qytetariList;
+        }
     }
     public static List<QytetariModel> filterTable(Connection connection, CreateQytetariDto model) throws SQLException {
         List<QytetariModel> QytetariList = new ArrayList<>();
@@ -181,7 +208,4 @@ public class QytetariRepository {
         return 0;
 
     }
-
-
-
 }

@@ -304,7 +304,7 @@ public class QytetaretDashboardController implements Initializable {
 
         List<QytetariModel> qytetariModelList = null;
         try {
-            qytetariModelList = QytetariRepository.getQytetari(connection);
+            qytetariModelList = QytetariRepository.getQytetari(connection,0);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
