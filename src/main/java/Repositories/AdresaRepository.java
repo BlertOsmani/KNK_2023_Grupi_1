@@ -116,6 +116,16 @@ public class AdresaRepository
                 if (model.Hyrja != null && !model.Hyrja.isEmpty()) {
                         sqlBuilder.append(" AND Hyrja LIKE ?");
                 }
+                if(model.Numri != 0){
+                        sqlBuilder.append(" AND Numri Like ?");
+                }
+                if(model.NumriPostal != 0){
+                        sqlBuilder.append(" AND NumriPostal Like ?");
+                }
+                if (model.LlojiVendbanimit != null && !model.LlojiVendbanimit.isEmpty()) {
+                        sqlBuilder.append(" AND LlojiVendbanimit LIKE ?");
+                }
+
                 PreparedStatement statement = connection.prepareStatement(sqlBuilder.toString());
                 int parameterIndex = 1;
                 if (model.Qyteti != null && !model.Qyteti.isEmpty()) {
@@ -134,8 +144,18 @@ public class AdresaRepository
                         statement.setString(parameterIndex++, "%" + model.Objekti + "%");
                 }
                 if (model.Hyrja != null && !model.Hyrja.isEmpty()) {
-                        statement.setString(parameterIndex, "%" + model.Hyrja + "%");
+                        statement.setString(parameterIndex++, "%" + model.Hyrja + "%");
                 }
+                if (model.Numri != 0) {
+                        statement.setInt(parameterIndex++, model.Numri );
+                }
+                if (model.NumriPostal != 0) {
+                        statement.setInt(parameterIndex++, model.NumriPostal );
+                }
+                if (model.LlojiVendbanimit != null && !model.LlojiVendbanimit.isEmpty()) {
+                        statement.setString(parameterIndex, "%" + model.LlojiVendbanimit + "%");
+                }
+
                 ResultSet resultSet = statement.executeQuery();
                 while (resultSet.next()) {
                         int id = resultSet.getInt("Id");
