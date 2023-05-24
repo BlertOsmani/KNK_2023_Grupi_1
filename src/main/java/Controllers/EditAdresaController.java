@@ -7,6 +7,9 @@ import DbConnection.ConnectionUtil;
 import Models.AdresaModel;
 import QytetaretDashboard.QytetaretDashboard;
 import Repositories.AdresaRepository;
+import Repositories.QytetetRepository;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -45,8 +48,6 @@ public class EditAdresaController {
     @FXML
     private TextField Objekti;
 
-    @FXML
-    private TextField Qyteti;
 
     @FXML
     private TextField Rruga;
@@ -107,6 +108,8 @@ public class EditAdresaController {
 
     @FXML
     public AnchorPane anchorPane;
+    @FXML
+    private ChoiceBox<String> qytetiChoiceBox;
 
     public int GetId;
     public String GetQyteti;
@@ -132,7 +135,7 @@ public class EditAdresaController {
         this.GetLlojiVendbanimit = llojiVendbanimit;
 
         adresaId.setText(String.valueOf(GetId));
-        Qyteti.setText(GetQyteti);
+        qytetiChoiceBox.setValue(GetQyteti);
         Komuna.setText(GetKomuna);
         Fshati.setText(GetFshati);
         Rruga.setText(GetRruga);
@@ -209,7 +212,7 @@ public class EditAdresaController {
 
             Connection connection = ConnectionUtil.getConnection();
             if (connection != null) {
-                AdresaModel editAdresaModel = new AdresaModel(Integer.parseInt(adresaId.getText()), Qyteti.getText(), Komuna.getText(), Fshati.getText(), Rruga.getText(), Objekti.getText(), Hyrja.getText(), numriValue, Integer.parseInt(NumriPostal.getText()), llojiVendbanimit);
+                AdresaModel editAdresaModel = new AdresaModel(Integer.parseInt(adresaId.getText()), qytetiChoiceBox.getValue(), Komuna.getText(), Fshati.getText(), Rruga.getText(), Objekti.getText(), Hyrja.getText(), numriValue, Integer.parseInt(NumriPostal.getText()), llojiVendbanimit);
 
                 // Update the address in the database
                 AdresaRepository editAdresaRepository = new AdresaRepository();
@@ -287,7 +290,7 @@ public class EditAdresaController {
         stage.show();
     }
 
-    public void initialize(){
+    public void initialize() throws SQLException{
         anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if(event.getCode() == KeyCode.F12){
                 translateEn(new ActionEvent());
@@ -296,6 +299,10 @@ public class EditAdresaController {
                 translateAl(new ActionEvent());
             }
         });
+
+        ObservableList<String> qytetetList = FXCollections.observableList(QytetetRepository.getQytetet());
+
+        qytetiChoiceBox.setItems(qytetetList);
     }
 
 
