@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -15,11 +16,6 @@
 
 <AnchorPane prefHeight="588.0" prefWidth="1484.0" style="-fx-background-color: white;" stylesheets="@adresa.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.AdresaController">
    <children>
-      <TextField fx:id="qyteti" layoutX="243.0" layoutY="159.0" style="-fx-background-radius: 5;">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </TextField>
       <Label fx:id="qytetiLabel" layoutX="242.0" layoutY="137.0" text="Qyteti:">
          <font>
             <Font size="15.0" />
@@ -180,5 +176,6 @@
             </Button>
          </children>
       </Pane>
+      <ChoiceBox fx:id="qytetiChoiceBox" layoutX="243.0" layoutY="159.0" prefHeight="31.0" prefWidth="186.0" />
    </children>
 </AnchorPane>

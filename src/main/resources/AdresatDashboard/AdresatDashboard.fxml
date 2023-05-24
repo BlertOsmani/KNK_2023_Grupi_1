@@ -75,7 +75,7 @@
 
 
 
-            <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" mnemonicParsing="false" onAction="#openShtoAdresen" prefHeight="38.0" prefWidth="165.0" styleClass="active" text="Adresat" textFill="WHITE">
+            <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="active" text="Adresat" textFill="WHITE">
 
                <font>
                   <Font size="15.0" />

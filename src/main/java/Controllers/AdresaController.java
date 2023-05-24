@@ -4,10 +4,15 @@ import Adresa.Adresa;
 import AdresatDashboard.AdresatDashboard;
 import Dashboard.Dashboard;
 import DbConnection.ConnectionUtil;
+import Models.QytetetModel;
 import Models.dto.CreateAdresaDto;
 import QytetaretDashboard.QytetaretDashboard;
 import Qytetari.Qytetari;
 import Repositories.AdresaRepository;
+import Repositories.QytetetRepository;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -89,7 +94,7 @@ public class AdresaController {
     private Button qytetaretBtn;
 
     @FXML
-    private TextField qyteti;
+    private ChoiceBox<String> qytetiChoiceBox;
 
     @FXML
     private Label qytetiLabel;
@@ -109,7 +114,7 @@ public class AdresaController {
 
 
 
-    public void initialize(){
+    public void initialize() throws SQLException {
         Pane parent = (Pane) shtoAdresen.getParent();
         parent.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -123,6 +128,10 @@ public class AdresaController {
                 translateAl(new ActionEvent());
             }
         });
+
+        ObservableList<String> qytetetList = FXCollections.observableList(QytetetRepository.getQytetet());
+
+        qytetiChoiceBox.setItems(qytetetList);
     }
 
     @FXML
@@ -180,7 +189,7 @@ public class AdresaController {
             Connection connection = ConnectionUtil.getConnection();
             if(connection !=null) {
 
-                CreateAdresaDto adresaDto = new CreateAdresaDto(qyteti.getText(), komuna.getText(), fshati.getText(), rruga.getText(), objekti.getText(), hyrja.getText(), numriValue, Integer.parseInt(numriPostal.getText()), llojiVendbanimit);
+                CreateAdresaDto adresaDto = new CreateAdresaDto(qytetiChoiceBox.getValue(), komuna.getText(), fshati.getText(), rruga.getText(), objekti.getText(), hyrja.getText(), numriValue, Integer.parseInt(numriPostal.getText()), llojiVendbanimit);
                 // Insert the new address into the database
                 AdresaRepository adresaRepository = new AdresaRepository();
                 adresaRepository.insert(adresaDto, connection);
