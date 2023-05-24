@@ -34,7 +34,6 @@
         </menus>
       </MenuBar>
        <Label fx:id="qytetiLabel" layoutX="227.0" layoutY="118.0" prefHeight="17.0" prefWidth="41.0" text="Qyteti:" />
-       <TextField fx:id="qyteti" layoutX="227.0" layoutY="137.0" />
        <Label fx:id="komunaLabel" layoutX="401.0" layoutY="118.0" text="Komuna:" />
        <TextField fx:id="komuna" layoutX="401.0" layoutY="137.0" />
        <Label fx:id="fshatiLabel" layoutX="583.0" layoutY="118.0" text="Fshati:" />
@@ -69,7 +68,7 @@
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
          </opaqueInsets>
       </TableView>
-      <Button fx:id="filterBtn" layoutX="1409.0" layoutY="213.0" mnemonicParsing="false" onAction="#filterAdresaTable" prefHeight="31.0" prefWidth="59.0" styleClass="filter" text="Filter" />
+      <Button fx:id="filterBtn" layoutX="814.0" layoutY="198.0" mnemonicParsing="false" onAction="#filterAdresaTable" prefHeight="31.0" prefWidth="59.0" styleClass="filter" text="Filter" />
       <Pane layoutX="-1.0" layoutY="27.0" prefHeight="901.0" prefWidth="200.0" style="-fx-background-color: #474749;">
          <children>
 
@@ -117,6 +116,7 @@
       <Pagination fx:id="pagination1" layoutX="754.0" layoutY="871.0" prefHeight="44.0" prefWidth="207.0" visible="false" />
       <Button fx:id="shtoQytetarin" alignment="CENTER" layoutX="363.0" layoutY="46.0" mnemonicParsing="false" onAction="#openShtoQytetarin" prefHeight="31.0" prefWidth="123.0" style="-fx-background-color: #ab19a7; -fx-background-radius: 10;" stylesheets="@AdresatDashboard.css" text="Shto Qytetarin" textFill="WHITE" />
       <TextField fx:id="Adresa" layoutX="646.0" layoutY="49.0" visible="false" />
+      <ChoiceBox fx:id="qytetiChoiceBox" layoutX="227.0" layoutY="137.0" prefHeight="25.0" prefWidth="149.0" />
    </children>
    <opaqueInsets>
       <Insets />

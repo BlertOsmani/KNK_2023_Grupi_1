@@ -60,14 +60,14 @@
             </opaqueInsets>
         </TableView>
         <Button fx:id="filterBtn" layoutX="1409.0" layoutY="213.0" mnemonicParsing="false" onAction="#filterQytetariTable" prefHeight="31.0" prefWidth="59.0" styleClass="filter" text="Filter" />
-        <Pane layoutX="-1.0" layoutY="27.0" prefHeight="561.0" prefWidth="200.0" style="-fx-background-color: #474749;">
+        <Pane layoutX="-1.0" layoutY="27.0" prefHeight="887.0" prefWidth="200.0" style="-fx-background-color: #474749;">
             <children>
                 <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" mnemonicParsing="false" onAction="#openAdresatDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" text="Adresat" textFill="WHITE">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" mnemonicParsing="false"  prefHeight="38.0" prefWidth="165.0" styleClass="active" stylesheets="@QytetaretDashboard.css" text="Qytetaret" textFill="WHITE" wrapText="true">
+                <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="165.0" styleClass="active" stylesheets="@QytetaretDashboard.css" text="Qytetaret" textFill="WHITE" wrapText="true">
                     <font>
                         <Font size="15.0" />
                     </font>
@@ -81,6 +81,26 @@
         </Pane>
       <DatePicker fx:id="ditelindja" layoutX="753.0" layoutY="177.0" />
       <Pagination fx:id="pagination" layoutX="741.0" layoutY="535.0" prefHeight="38.0" prefWidth="165.0" />
+      <Button fx:id="shfaqAdresenBtn" layoutX="227.0" layoutY="46.0" mnemonicParsing="false" onAction="#shfaqAdresen" prefHeight="31.0" prefWidth="123.0" style="-fx-background-radius: 10; -fx-background-color: #ab19a7;" text="Shfaq Adresen" textFill="WHITE" />
+      <TableView fx:id="adresaTable" layoutX="219.0" layoutY="605.0" prefHeight="280.0" prefWidth="1251.0" styleClass="Table" visible="false">
+         <columns>
+            <TableColumn fx:id="adresaId" prefWidth="62.39999008178711" styleClass="column" text="Id" />
+            <TableColumn fx:id="adresaQyteti" prefWidth="127.19998168945312" styleClass="column" text="Qyteti" />
+            <TableColumn fx:id="adresaKomuna" prefWidth="102.4000244140625" styleClass="column" text="Komuna" />
+            <TableColumn fx:id="adresaFshati" prefWidth="112.80001831054688" styleClass="column" text="Fshati" />
+            <TableColumn fx:id="adresaRruga" prefWidth="142.66668701171875" styleClass="column" text="Rruga" />
+            <TableColumn fx:id="adresaObjekti" minWidth="0.0" prefWidth="114.0" styleClass="column" text="Objekti" />
+            <TableColumn fx:id="adresaHyrja" styleClass="column" prefWidth="75.0" text="Hyrja" />
+            <TableColumn fx:id="adresaNumri" minWidth="0.0" prefWidth="140.79998779296875" styleClass="column" text="Numri" />
+            <TableColumn fx:id="adresaNumriPostal" minWidth="0.0" prefWidth="124.79998779296875" styleClass="column" text="Numri Postal" />
+            <TableColumn fx:id="adresallojiVendbanimit" styleClass="column" prefWidth="75.0" text="Lloji i Vendbanimit" />
+         </columns>
+         <opaqueInsets>
+            <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+         </opaqueInsets>
+      </TableView>
+      <Pagination fx:id="pagination2" layoutX="724.0" layoutY="903.0" prefHeight="45.0" prefWidth="200.0" />
+   
     </children>
     <opaqueInsets>
         <Insets />

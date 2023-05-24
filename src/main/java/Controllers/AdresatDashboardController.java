@@ -11,6 +11,7 @@ import Models.AdresaModel;
 import Qytetari.Qytetari;
 import Repositories.AdresaRepository;
 import Repositories.QytetariRepository;
+import Repositories.QytetetRepository;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -149,7 +150,7 @@ public class AdresatDashboardController implements Initializable {
     public Label objektiLabel;
 
     @FXML
-    public TextField qyteti;
+    private ChoiceBox<String> qytetiChoiceBox;
 
     @FXML
     public Label qytetiLabel;
@@ -341,6 +342,7 @@ public class AdresatDashboardController implements Initializable {
 
             @Override
             protected void updateItem(Void item, boolean empty) {
+
                 super.updateItem(item, empty);
                 if (empty) {
                     setGraphic(null);
@@ -357,7 +359,8 @@ public class AdresatDashboardController implements Initializable {
         }
         List<AdresaModel> adresaModelList = null;
         try {
-            adresaModelList = AdresaRepository.getAdresses(connection);
+
+            adresaModelList = AdresaRepository.getAdresses(connection, 0);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -372,7 +375,14 @@ public class AdresatDashboardController implements Initializable {
             adresaTable.setItems(FXCollections.observableArrayList(adresaObservableList.subList(fromIndex,toIndex)));
             return new Pane();
         });
+        ObservableList<String> qytetetList = null;
+        try {
+            qytetetList = FXCollections.observableList(QytetetRepository.getQytetet());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
+        qytetiChoiceBox.setItems(qytetetList);
 
     }
 
@@ -419,19 +429,45 @@ public class AdresatDashboardController implements Initializable {
     @FXML
     private void filterAdresaTable(ActionEvent event) throws SQLException {
         // Get the filter values from the text fields
-        String qytetiFilter = qyteti.getText();
+        String qytetiFilter = qytetiChoiceBox.getValue();
         String komunaFilter = komuna.getText();
         String fshatiFilter = fshati.getText();
         String rrugaFilter = rruga.getText();
         String objektiFilter = objekti.getText();
         String hyrjaFilter = hyrja.getText();
+        int numriFilter = 0;
+        String numriText = numri.getText();
+        if (!numriText.isEmpty()) {
+            numriFilter = Integer.parseInt(numriText);
+        }
+
+        int numriPostalFilter = 0;
+        String numriPostalText = numriPostal.getText();
+        if (!numriPostalText.isEmpty()) {
+            numriPostalFilter = Integer.parseInt(numriPostalText);
+        }
+
+        String llojiVendbanimitFilter = llojiVendbanimit.getValue();
+        if (llojiVendbanimitFilter != null) {
+            if (llojiVendbanimitFilter.equals("I perhershem")) {
+                llojiVendbanimitFilter = "1";
+            } else if (llojiVendbanimitFilter.equals("I perkohshem")) {
+                llojiVendbanimitFilter = "0";
+            } else {
+                llojiVendbanimitFilter = ""; // or any other default value you want to set
+            }
+        }
+        else{
+            llojiVendbanimitFilter = "";
+        }
+
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        CreateAdresaDto adresaDto = new CreateAdresaDto(qytetiFilter, komunaFilter, fshatiFilter, rrugaFilter, objektiFilter, hyrjaFilter, 0, 0, "");
+        CreateAdresaDto adresaDto = new CreateAdresaDto(qytetiFilter, komunaFilter, fshatiFilter, rrugaFilter, objektiFilter, hyrjaFilter, numriFilter, numriPostalFilter, llojiVendbanimitFilter);
         List<AdresaModel> adresaModelList = null;
         try {
             adresaModelList = AdresaRepository.filterTable(connection, adresaDto);
