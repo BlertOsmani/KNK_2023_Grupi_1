@@ -28,4 +28,6 @@ module com.example.knk_2023_grupi_1 {
     opens EditQytetari to javafx.fxml;
     exports Dashboard;
     opens Dashboard to javafx.fxml;
+    exports Help;
+    opens Help to javafx.fxml;
 }
