@@ -78,6 +78,16 @@ public class QytetaretDashboardController implements Initializable {
 
     @FXML
     public TableColumn<QytetariModel, Void> qytetariAksionet;
+    public TableColumn <AdresaModel, Integer> Id;
+    public TableColumn <AdresaModel, String> Qyteti;
+    public TableColumn <AdresaModel, String> Fshati;
+    public TableColumn <AdresaModel, String> Rruga;
+    public TableColumn <AdresaModel, String> Objekti;
+    public TableColumn <AdresaModel, String> Komuna;
+    public TableColumn <AdresaModel, Integer> Numri;
+
+    public TableColumn <AdresaModel, Integer>NumriPostal;
+    public TableColumn LlojiVendbanimit;
     @FXML
     private Button adresatBtn;
 
@@ -133,6 +143,41 @@ public class QytetaretDashboardController implements Initializable {
     public Pagination pagination;
     @FXML
     private AnchorPane anchorPane;
+    @FXML
+    public TableView<AdresaModel> adresaTable;
+    @FXML
+    public TableColumn<AdresaModel, String> adresaFshati;
+
+    @FXML
+    public TableColumn<AdresaModel, String> adresaHyrja;
+
+    @FXML
+    public TableColumn<AdresaModel, String> adresaKomuna;
+
+    @FXML
+    public TableColumn<AdresaModel, Integer> adresaNumri;
+
+    @FXML
+    public TableColumn<AdresaModel, Integer> adresaNumriPostal;
+
+    @FXML
+    public TableColumn<AdresaModel, String> adresaObjekti;
+
+    @FXML
+    public TableColumn<AdresaModel, String> adresaQyteti;
+
+    @FXML
+    public TableColumn<AdresaModel, String> adresaRruga;
+
+    @FXML
+    public TableColumn<AdresaModel, String> adresaVendbanimi;
+
+    @FXML
+    public TableColumn<AdresaModel, Integer> adresaId;
+    @FXML
+    public TableColumn<AdresaModel, String> adresallojiVendbanimit;
+    @FXML
+    private Pagination pagination2;
 
    /* @FXML
     void filterQytetariTable(ActionEvent event) {
@@ -317,6 +362,46 @@ public class QytetaretDashboardController implements Initializable {
             int fromIndex = pageIndex * itemsPerPage;
             int toIndex = Math.min(fromIndex + itemsPerPage, qytetariObservableList.size());
             qytetariTable.setItems(FXCollections.observableArrayList(qytetariObservableList.subList(fromIndex, toIndex)));
+            return new Pane();
+        });
+    }
+    @FXML
+    void shfaqAdresen(ActionEvent event){
+        QytetariModel qytetariModel = qytetariTable.getSelectionModel().getSelectedItem();
+
+        adresallojiVendbanimit.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().LlojiVendbanimit));
+        adresaRruga.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Rruga));
+        adresaFshati.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Fshati));
+        adresaNumri.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().Numri).asObject());
+        adresaKomuna.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Komuna));
+        adresaHyrja.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Hyrja));
+        adresaNumriPostal.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().NumriPostal).asObject());
+        adresaObjekti.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Objekti));
+        adresaQyteti.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().Qyteti));
+        adresaId.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().Id).asObject());
+        Connection connection = null;
+        try {
+            connection = ConnectionUtil.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        List<AdresaModel> adresaModelList = null;
+        try {
+            adresaModelList = AdresaRepository.getAdresses(connection, qytetariModel.Adresa);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        ObservableList<AdresaModel> adresaModelObservableList = FXCollections.observableList(adresaModelList);
+        int itemsPerPage = 10;
+        int pageCount = (adresaModelObservableList.size() + itemsPerPage - 1) / itemsPerPage;
+        pagination2.setPageCount(pageCount);
+        pagination2.setPageFactory(pageIndex->{
+            int fromIndex = pageIndex * itemsPerPage;
+            int toIndex = Math.min(fromIndex + itemsPerPage,adresaModelObservableList.size());
+            adresaTable.setItems(FXCollections.observableArrayList(adresaModelObservableList.subList(fromIndex,toIndex)));
+            adresaTable.setVisible(true);
+            pagination2.setVisible(true);
             return new Pane();
         });
     }

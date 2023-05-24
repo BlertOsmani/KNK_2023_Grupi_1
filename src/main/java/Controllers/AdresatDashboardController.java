@@ -342,6 +342,7 @@ public class AdresatDashboardController implements Initializable {
 
             @Override
             protected void updateItem(Void item, boolean empty) {
+
                 super.updateItem(item, empty);
                 if (empty) {
                     setGraphic(null);
@@ -358,7 +359,8 @@ public class AdresatDashboardController implements Initializable {
         }
         List<AdresaModel> adresaModelList = null;
         try {
-            adresaModelList = AdresaRepository.getAdresses(connection);
+
+            adresaModelList = AdresaRepository.getAdresses(connection, 0);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -2,6 +2,7 @@ package Repositories;
 
 import DbConnection.ConnectionUtil;
 import Models.AdresaModel;
+import Models.QytetariModel;
 import Models.dto.CreateAdresaDto;
 
 import java.sql.*;
@@ -25,37 +26,63 @@ public class AdresaRepository
             statement.setString(9, adresaDto.LlojiVendbanimit);
             statement.executeUpdate();
     }
-        public static List<AdresaModel> getAdresses(Connection connection) throws SQLException {
-                List<AdresaModel> adresaList = new ArrayList<>();
-                String sql = "SELECT * FROM adresa";
-                PreparedStatement statement = connection.prepareStatement(sql);
+        public static List<AdresaModel> getAdresses(Connection connection, int id ) throws SQLException {
+                if (id == 0) {
+                        List<AdresaModel> adresaList = new ArrayList<>();
+                        String sql = "SELECT * FROM adresa";
+                        PreparedStatement statement = connection.prepareStatement(sql);
 
-                // Set the SQL parameters for pagination
+                        // Set the SQL parameters for pagination
 
 
-                ResultSet resultSet = statement.executeQuery();
-                while (resultSet.next()) {
-                        // Retrieve the address data from the result set
-                        int id = resultSet.getInt("Id");
-                        String qyteti = resultSet.getString("Qyteti");
-                        String komuna = resultSet.getString("Komuna");
-                        String fshati = resultSet.getString("Fshati");
-                        String rruga = resultSet.getString("Rruga");
-                        String objekti = resultSet.getString("Objekti");
-                        String hyrja = resultSet.getString("Hyrja");
-                        int numri = resultSet.getInt("Numri");
-                        int numriPostal = resultSet.getInt("NumriPostal");
-                        String llojiVendbanimit = resultSet.getString("LlojiVendbanimit").equals("1") ? "I perhershem" : "I perkohshem";
+                        ResultSet resultSet = statement.executeQuery();
+                        while (resultSet.next()) {
+                                // Retrieve the address data from the result set
+                                int Id = resultSet.getInt("Id");
+                                String qyteti = resultSet.getString("Qyteti");
+                                String komuna = resultSet.getString("Komuna");
+                                String fshati = resultSet.getString("Fshati");
+                                String rruga = resultSet.getString("Rruga");
+                                String objekti = resultSet.getString("Objekti");
+                                String hyrja = resultSet.getString("Hyrja");
+                                int numri = resultSet.getInt("Numri");
+                                int numriPostal = resultSet.getInt("NumriPostal");
+                                String llojiVendbanimit = resultSet.getString("LlojiVendbanimit").equals("1") ? "I perhershem" : "I perkohshem";
 
-                        // Create an instance of AdresaModel and add it to the list
-                        AdresaModel adresa = new AdresaModel(id, qyteti, komuna, fshati, rruga, objekti, hyrja, numri, numriPostal, llojiVendbanimit);
-                        adresaList.add(adresa);
+                                // Create an instance of AdresaModel and add it to the list
+                                AdresaModel adresa = new AdresaModel(Id, qyteti, komuna, fshati, rruga, objekti, hyrja, numri, numriPostal, llojiVendbanimit);
+                                adresaList.add(adresa);
+                        }
+
+                        resultSet.close();
+                        statement.close();
+
+                        return adresaList;
+                } else{
+                        List<AdresaModel> adresaList = new ArrayList<>();
+                        String sql = "Select * from adresa where id = ?";
+                        PreparedStatement statement = connection.prepareStatement(sql);
+                        statement.setInt(1, id);
+                        ResultSet resultSet = statement.executeQuery();
+                        while (resultSet.next()) {
+                                int Id = resultSet.getInt("Id");
+                                String qyteti = resultSet.getString("Qyteti");
+                                String komuna = resultSet.getString("Komuna");
+                                String fshati = resultSet.getString("Fshati");
+                                String rruga = resultSet.getString("Rruga");
+                                String objekti = resultSet.getString("Objekti");
+                                String hyrja = resultSet.getString("Hyrja");
+                                int numri = resultSet.getInt("Numri");
+                                int numriPostal = resultSet.getInt("NumriPostal");
+                                String llojiVendbanimit = resultSet.getString("LlojiVendbanimit").equals("1") ? "I perhershem" : "I perkohshem";
+
+                                AdresaModel adresa = new AdresaModel(Id, qyteti, komuna, fshati, rruga, objekti, hyrja, numri, numriPostal, llojiVendbanimit);
+                                adresaList.add(adresa);
+                        }
+                        resultSet.close();
+                        statement.close();
+                        return adresaList;
                 }
-
-                resultSet.close();
-                statement.close();
-
-                return adresaList;
         }
 
         public void update(AdresaModel editAdresaModel, Connection connection) throws SQLException {
