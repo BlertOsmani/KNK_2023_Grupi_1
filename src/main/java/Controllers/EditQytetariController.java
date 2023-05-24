@@ -197,13 +197,13 @@ public class EditQytetariController {
         ditelindja.setValue(LocalDate.parse(Ditelindja, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         email.setText(GetEmail);
         nrTel.setText(String.valueOf(GetNrTel));
-        if(GetGjinia == "Femer"){
-            femer.setSelected(false);
-            mashkull.setSelected(true);
-        }
-        else{
+        if(GetGjinia.equals("Femer")){
             femer.setSelected(true);
             mashkull.setSelected(false);
+        }
+        else{
+            femer.setSelected(false);
+            mashkull.setSelected(true);
         }
         adresaId.setText(String.valueOf(adresa));
     }

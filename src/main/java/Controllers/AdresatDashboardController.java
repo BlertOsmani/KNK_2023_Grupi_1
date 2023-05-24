@@ -435,13 +435,39 @@ public class AdresatDashboardController implements Initializable {
         String rrugaFilter = rruga.getText();
         String objektiFilter = objekti.getText();
         String hyrjaFilter = hyrja.getText();
+        int numriFilter = 0;
+        String numriText = numri.getText();
+        if (!numriText.isEmpty()) {
+            numriFilter = Integer.parseInt(numriText);
+        }
+
+        int numriPostalFilter = 0;
+        String numriPostalText = numriPostal.getText();
+        if (!numriPostalText.isEmpty()) {
+            numriPostalFilter = Integer.parseInt(numriPostalText);
+        }
+
+        String llojiVendbanimitFilter = llojiVendbanimit.getValue();
+        if (llojiVendbanimitFilter != null) {
+            if (llojiVendbanimitFilter.equals("I perhershem")) {
+                llojiVendbanimitFilter = "1";
+            } else if (llojiVendbanimitFilter.equals("I perkohshem")) {
+                llojiVendbanimitFilter = "0";
+            } else {
+                llojiVendbanimitFilter = ""; // or any other default value you want to set
+            }
+        }
+        else{
+            llojiVendbanimitFilter = "";
+        }
+
         Connection connection = null;
         try {
             connection = ConnectionUtil.getConnection();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        CreateAdresaDto adresaDto = new CreateAdresaDto(qytetiFilter, komunaFilter, fshatiFilter, rrugaFilter, objektiFilter, hyrjaFilter, 0, 0, "");
+        CreateAdresaDto adresaDto = new CreateAdresaDto(qytetiFilter, komunaFilter, fshatiFilter, rrugaFilter, objektiFilter, hyrjaFilter, numriFilter, numriPostalFilter, llojiVendbanimitFilter);
         List<AdresaModel> adresaModelList = null;
         try {
             adresaModelList = AdresaRepository.filterTable(connection, adresaDto);

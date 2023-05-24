@@ -5,7 +5,7 @@ import Models.AdresaModel;
 import Models.QytetariModel;
 import Models.dto.CreateAdresaDto;
 import Models.dto.CreateQytetariDto;
-
+import java.sql.Connection;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +29,11 @@ public class QytetariRepository {
                     statement.executeUpdate();
     }
 
-    public static boolean qytetariExists(String nrPersonal,Connection connection) throws SQLException {
-            String sql = "Select * from qytetari where NrPersonal = ?";
+    public static boolean qytetariExists(String nrPersonal, int adresa,Connection connection) throws SQLException {
+            String sql = "Select * from qytetari where NrPersonal = ? and Adresa = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, nrPersonal);
+            statement.setInt(2, adresa);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
                     return true;
@@ -220,4 +221,18 @@ public class QytetariRepository {
         }
         return 0;
     }
+    public int countMosha(int moshaFillim, int moshaFundi) throws SQLException {
+        Connection connection = ConnectionUtil.getConnection();
+        String sql = "SELECT COUNT(*) AS total FROM qytetari WHERE TIMESTAMPDIFF(YEAR, STR_TO_DATE(ditelindja, '%d/%m/%Y'), CURRENT_DATE()) >= ? and TIMESTAMPDIFF(YEAR, STR_TO_DATE(ditelindja, '%d/%m/%Y'), CURRENT_DATE()) < ? ";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, moshaFillim);
+        statement.setInt(2, moshaFundi);
+        ResultSet rs = statement.executeQuery();
+        int count = 0;
+        if (rs.next()) {
+            count = rs.getInt("total");
+        }
+        return count;
+    }
+
 }

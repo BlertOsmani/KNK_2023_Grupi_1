@@ -1,10 +1,8 @@
 package Controllers;
 
-import Adresa.Adresa;
 import AdresatDashboard.AdresatDashboard;
 import Dashboard.Dashboard;
 import DbConnection.ConnectionUtil;
-import Models.QytetetModel;
 import Models.dto.CreateAdresaDto;
 import QytetaretDashboard.QytetaretDashboard;
 import Qytetari.Qytetari;
@@ -12,7 +10,6 @@ import Repositories.AdresaRepository;
 import Repositories.QytetetRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableListBase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
