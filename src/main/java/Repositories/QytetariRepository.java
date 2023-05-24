@@ -29,10 +29,11 @@ public class QytetariRepository {
                     statement.executeUpdate();
     }
 
-    public static boolean qytetariExists(String nrPersonal,Connection connection) throws SQLException {
-            String sql = "Select * from qytetari where NrPersonal = ?";
+    public static boolean qytetariExists(String nrPersonal, int adresa,Connection connection) throws SQLException {
+            String sql = "Select * from qytetari where NrPersonal = ? and Adresa = ?";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, nrPersonal);
+            statement.setInt(2, adresa);
             ResultSet resultSet = statement.executeQuery();
             if(resultSet.next()){
                     return true;
