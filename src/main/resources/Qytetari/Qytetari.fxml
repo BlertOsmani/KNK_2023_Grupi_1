@@ -46,7 +46,7 @@
                 <Font size="15.0" />
             </font>
         </Label>
-        <Button fx:id="Ruaj" layoutX="264.0" layoutY="524.0" mnemonicParsing="false" onAction="#ruaj" prefHeight="40.0" prefWidth="486.0" style="-fx-background-color: #429750; -fx-background-radius: 5;" text="Save" textAlignment="CENTER" textFill="WHITE">
+        <Button fx:id="Ruaj" layoutX="268.0" layoutY="534.0" mnemonicParsing="false" onAction="#ruaj" prefHeight="40.0" prefWidth="486.0" style="-fx-background-color: #429750; -fx-background-radius: 5;" text="Save" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font size="15.0" />
             </font>
@@ -175,7 +175,7 @@
             <Font size="15.0" />
          </font>
       </TextField>
-      <Label fx:id="errorQytetariEkziston" alignment="CENTER" layoutX="345.0" layoutY="531.0" prefHeight="18.0" prefWidth="244.0" style="-fx-background-color: red; -fx-background-radius: 5;" text="Qytetari Ekziston" textFill="WHITE" visible="false">
+      <Label fx:id="errorQytetariEkziston" alignment="CENTER" layoutX="389.0" layoutY="90.0" prefHeight="18.0" prefWidth="244.0" style="-fx-background-color: red; -fx-background-radius: 5;" text="Qytetari Ekziston" textFill="WHITE" visible="false">
          <font>
             <Font size="16.0" />
          </font>
