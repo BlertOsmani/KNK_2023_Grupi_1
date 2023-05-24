@@ -45,8 +45,6 @@ public class LoginController {
                int validlogin = loginRepository.login(loginModel, connection);
                 if(validlogin != -1) {
                     try {
-                        Session session = new Session(validlogin,username.getText());
-                        Main.setSession(session);
                         FXMLLoader fxmlLoader = new FXMLLoader(Dashboard.class.getResource("Dashboard.fxml"));
                         Pane pane = fxmlLoader.load();
                         Scene scene = new Scene(pane);

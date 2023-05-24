@@ -80,11 +80,7 @@ public class DashboardController {
     private BarChart<String, Number> barChart;
 
     public void initialize() throws SQLException, IOException {
-        Session session = Main.getSession();
-        if(session != null) {
-            String username = session.Username;
-            int userId = session.Id;
-            User.setText(username);
+
 
 
             anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
@@ -133,15 +129,8 @@ public class DashboardController {
 
 
         }
-        else{
-            FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Login.fxml"));
-            Pane pane = fxmlLoader.load();
-            Scene scene = new Scene(pane, 1400, 600);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
-        }
-    }
+
+
     @FXML
     void openAdresatDashboard(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
