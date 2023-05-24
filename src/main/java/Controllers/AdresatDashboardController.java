@@ -11,6 +11,7 @@ import Models.AdresaModel;
 import Qytetari.Qytetari;
 import Repositories.AdresaRepository;
 import Repositories.QytetariRepository;
+import Repositories.QytetetRepository;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -149,7 +150,7 @@ public class AdresatDashboardController implements Initializable {
     public Label objektiLabel;
 
     @FXML
-    public TextField qyteti;
+    private ChoiceBox<String> qytetiChoiceBox;
 
     @FXML
     public Label qytetiLabel;
@@ -372,7 +373,14 @@ public class AdresatDashboardController implements Initializable {
             adresaTable.setItems(FXCollections.observableArrayList(adresaObservableList.subList(fromIndex,toIndex)));
             return new Pane();
         });
+        ObservableList<String> qytetetList = null;
+        try {
+            qytetetList = FXCollections.observableList(QytetetRepository.getQytetet());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
+        qytetiChoiceBox.setItems(qytetetList);
 
     }
 
@@ -419,7 +427,7 @@ public class AdresatDashboardController implements Initializable {
     @FXML
     private void filterAdresaTable(ActionEvent event) throws SQLException {
         // Get the filter values from the text fields
-        String qytetiFilter = qyteti.getText();
+        String qytetiFilter = qytetiChoiceBox.getValue();
         String komunaFilter = komuna.getText();
         String fshatiFilter = fshati.getText();
         String rrugaFilter = rruga.getText();
