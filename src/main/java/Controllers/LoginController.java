@@ -1,6 +1,8 @@
 package Controllers;
 
 import DbConnection.ConnectionUtil;
+import Models.Main;
+import Models.Session;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import AdresatDashboard.AdresatDashboard;
@@ -14,9 +16,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import Dashboard.Dashboard;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.security.Security;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -38,10 +42,12 @@ public class LoginController {
             if (connection != null) {
                 LoginModel loginModel = new LoginModel(username.getText(), password.getText());
                 LoginRepository loginRepository = new LoginRepository();
-                boolean validlogin = loginRepository.login(loginModel, connection);
-                if(validlogin) {
+               int validlogin = loginRepository.login(loginModel, connection);
+                if(validlogin != -1) {
                     try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
+                        Session session = new Session(validlogin,username.getText());
+                        Main.setSession(session);
+                        FXMLLoader fxmlLoader = new FXMLLoader(Dashboard.class.getResource("Dashboard.fxml"));
                         Pane pane = fxmlLoader.load();
                         Scene scene = new Scene(pane);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

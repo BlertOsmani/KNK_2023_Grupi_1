@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class LoginRepository {
-    public boolean login(LoginModel loginModel, Connection connection) {
+    public int login(LoginModel loginModel, Connection connection) {
         String sql = "SELECT * FROM user WHERE Username = ? and Password = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -19,19 +19,22 @@ public class LoginRepository {
             if (!resultSet.next()) {
                 // No rows returned, so username is incorrect
                 System.out.println("Username or password is incorrect.");
-                return false;
+                return -1;
             } else {
+                int Id = resultSet.getInt("Id");
 
                     // Password is correct, so login is successful
                     System.out.println("Login successful!");
                     // Open adminDashboard tab here
-                    return true;
+                    return Id;
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return -1;
         }
     }
+
+
 
 
 

@@ -9,8 +9,8 @@ CREATE TABLE `adresa` (
   `Numri` int DEFAULT NULL,
   `NumriPostal` int DEFAULT NULL,
   `LlojiVendbanimit` char(1) DEFAULT NULL,
-  `GjeresiaGjeografike` varchar(50) DEFAULT NULL,
-  `GjatesiaGjeografike` varchar(50) DEFAULT NULL,
+  `Created_at` datetime,
+  `User` int ,
   PRIMARY KEY (`Id`)
 );
 
@@ -28,6 +28,7 @@ CREATE TABLE `qytetari` (
   `Gjinia` varchar(20) DEFAULT NULL,
   `Adresa` int DEFAULT NULL,
   `Created_at` datetime DEFAULT NULL,
+  `User` int ,
   PRIMARY KEY (`Id`),
 	FOREIGN KEY (`Adresa`) REFERENCES `adresa` (`Id`)
 );

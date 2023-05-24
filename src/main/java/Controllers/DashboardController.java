@@ -1,5 +1,8 @@
 package Controllers;
 
+import Login.Login;
+import Models.Main;
+import Models.Session;
 import Repositories.AdresaRepository;
 import Repositories.QytetariRepository;
 import Adresa.Adresa;
@@ -61,6 +64,8 @@ public class DashboardController {
         private Label numriAdresave;
         @FXML
         private Label numriQytetareve;
+        @FXML
+        private Label User;
 
         @FXML
         public AnchorPane anchorPane;
@@ -74,58 +79,68 @@ public class DashboardController {
     @FXML
     private BarChart<String, Number> barChart;
 
-    public void initialize() throws SQLException {
-        anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            if(event.getCode() == KeyCode.F12){
-                translateEN(new ActionEvent());
-            }
-            else if(event.getCode() == KeyCode.F11){
-                translateAL(new ActionEvent());
-            }
-        });
-        AdresaRepository adresaRepository = new AdresaRepository();
-        adresaCount.setText(String.valueOf(adresaRepository.countAdresa()));
+    public void initialize() throws SQLException, IOException {
+        Session session = Main.getSession();
+        if(session != null) {
+            String username = session.Username;
+            int userId = session.Id;
+            User.setText(username);
 
 
-        QytetariRepository qytetariRepository = new QytetariRepository();
-        qytetariCount.setText(String.valueOf(qytetariRepository.countQytetaret()));
+            anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+                if (event.getCode() == KeyCode.F12) {
+                    translateEN(new ActionEvent());
+                } else if (event.getCode() == KeyCode.F11) {
+                    translateAL(new ActionEvent());
+                }
+            });
+            AdresaRepository adresaRepository = new AdresaRepository();
+            adresaCount.setText(String.valueOf(adresaRepository.countAdresa()));
 
-        // Create data for the chart
-        ObservableList<XYChart.Series<String, Number>> barChartData = FXCollections.observableArrayList();
-        XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.getData().add(new XYChart.Data<>("Nr.Total i Qytetareve", qytetariRepository.countQytetaret()));
-        series.getData().add(new XYChart.Data<>("Nr.Total i Adresave", adresaRepository.countAdresa()));
-        series.getData().add(new XYChart.Data<>("Nr.Total i Banoreve nga Fshati", qytetariRepository.countBanoretNgaFshati()));
-        series.getData().add(new XYChart.Data<>("Nr.Total i Banoreve nga Qyteti", qytetariRepository.countBanoretNgaQyteti()));
-        barChartData.add(series);
-        // Set the data to the Bar Chart
-        barChart.setData(barChartData);
 
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Nr nga gjinia mashkullore (" + qytetariRepository.countGjinia("Mashkull") + ")", qytetariRepository.countGjinia("Mashkull")),
-                new PieChart.Data("Nr nga gjinia femerore (" + qytetariRepository.countGjinia("Femer") + ")", qytetariRepository.countGjinia("Femer"))
-        );
+            QytetariRepository qytetariRepository = new QytetariRepository();
+            qytetariCount.setText(String.valueOf(qytetariRepository.countQytetaret()));
+
+            // Create data for the chart
+            ObservableList<XYChart.Series<String, Number>> barChartData = FXCollections.observableArrayList();
+            XYChart.Series<String, Number> series = new XYChart.Series<>();
+            series.getData().add(new XYChart.Data<>("Nr.Total i Qytetareve", qytetariRepository.countQytetaret()));
+            series.getData().add(new XYChart.Data<>("Nr.Total i Adresave", adresaRepository.countAdresa()));
+            series.getData().add(new XYChart.Data<>("Nr.Total i Banoreve nga Fshati", qytetariRepository.countBanoretNgaFshati()));
+            series.getData().add(new XYChart.Data<>("Nr.Total i Banoreve nga Qyteti", qytetariRepository.countBanoretNgaQyteti()));
+            barChartData.add(series);
+            // Set the data to the Bar Chart
+            barChart.setData(barChartData);
+
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                    new PieChart.Data("Nr nga gjinia mashkullore (" + qytetariRepository.countGjinia("Mashkull") + ")", qytetariRepository.countGjinia("Mashkull")),
+                    new PieChart.Data("Nr nga gjinia femerore (" + qytetariRepository.countGjinia("Femer") + ")", qytetariRepository.countGjinia("Femer"))
+            );
 
 // Set the data to the PieChart
-        gjiniaChart.setData(pieChartData);
+            gjiniaChart.setData(pieChartData);
 
 
-
-        ObservableList<XYChart.Series<String, Number>> moshatChartData = FXCollections.observableArrayList();
-        XYChart.Series<String, Number> moshatSeries = new XYChart.Series<>();
-        moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 0-18", qytetariRepository.countMosha(0,18)));
-        moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 18-40", qytetariRepository.countMosha(18,40)));
-        moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 40-65", qytetariRepository.countMosha(40, 65)));
-        moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 65+", qytetariRepository.countMosha(65, 200)));
-        moshatChartData.add(moshatSeries);
-        // Set the data to the Bar Chart
-        moshatChart.setData(moshatChartData);
-
+            ObservableList<XYChart.Series<String, Number>> moshatChartData = FXCollections.observableArrayList();
+            XYChart.Series<String, Number> moshatSeries = new XYChart.Series<>();
+            moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 0-18", qytetariRepository.countMosha(0, 18)));
+            moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 18-40", qytetariRepository.countMosha(18, 40)));
+            moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 40-65", qytetariRepository.countMosha(40, 65)));
+            moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 65+", qytetariRepository.countMosha(65, 200)));
+            moshatChartData.add(moshatSeries);
+            // Set the data to the Bar Chart
+            moshatChart.setData(moshatChartData);
 
 
-
-
-
+        }
+        else{
+            FXMLLoader fxmlLoader = new FXMLLoader(Login.class.getResource("Login.fxml"));
+            Pane pane = fxmlLoader.load();
+            Scene scene = new Scene(pane, 1400, 600);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        }
     }
     @FXML
     void openAdresatDashboard(ActionEvent event) throws IOException {

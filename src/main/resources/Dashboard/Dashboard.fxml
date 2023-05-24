@@ -17,7 +17,7 @@
 <AnchorPane fx:id="anchorPane" prefHeight="588.0" prefWidth="1484.0" stylesheets="@../AdresatDashboard/AdresatDashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.DashboardController">
     <Pane prefHeight="1184.0" prefWidth="1484.0">
 
-        <MenuBar layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1484.0" style="-fx-background-color: #474749;">
+        <MenuBar fx:id="User" layoutX="-1.0" layoutY="1.0" prefHeight="26.0" prefWidth="1484.0" style="-fx-background-color: #474749;">
 
             <menus>
                 <Menu mnemonicParsing="false" text="File">
@@ -35,21 +35,26 @@
         </MenuBar>
         <Pane layoutX="-1.0" layoutY="27.0" prefHeight="1157.0" prefWidth="200.0" style="-fx-background-color: #474749;">
             <children>
-                <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="105.0" mnemonicParsing="false" onAction="#openAdresatDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" text="Adresat" textFill="WHITE">
+                <Button fx:id="adresatBtn" alignment="CENTER" layoutX="18.0" layoutY="138.0" mnemonicParsing="false" onAction="#openAdresatDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" text="Adresat" textFill="WHITE">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="165.0" mnemonicParsing="false" onAction="#openQytetaretDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" text="Qytetaret" textFill="WHITE" wrapText="true">
+                <Button fx:id="qytetaretBtn" layoutX="18.0" layoutY="198.0" mnemonicParsing="false" onAction="#openQytetaretDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="unactive" text="Qytetaret" textFill="WHITE" wrapText="true">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Button>
-                <Button fx:id="dashboardBtn" alignment="CENTER" layoutX="18.0" layoutY="44.0" mnemonicParsing="false" onAction="#openDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="active" text="Dashboard" textFill="WHITE">
+                <Button fx:id="dashboardBtn" alignment="CENTER" layoutX="18.0" layoutY="77.0" mnemonicParsing="false" onAction="#openDashboard" prefHeight="38.0" prefWidth="165.0" styleClass="active" text="Dashboard" textFill="WHITE">
                     <font>
                         <Font size="15.0" />
                     </font>
                 </Button>
+            <Label layoutX="18.0" layoutY="11.0" prefHeight="38.0" prefWidth="165.0" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
             </children>
         </Pane>
       <Pane layoutX="245.0" layoutY="50.0" prefHeight="83.0" prefWidth="254.0" style="-fx-background-color: #474749; -fx-background-radius: 10px;">
