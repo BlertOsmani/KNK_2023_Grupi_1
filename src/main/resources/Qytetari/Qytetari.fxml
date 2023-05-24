@@ -91,6 +91,11 @@
                         <MenuItem mnemonicParsing="false" onAction="#translateEn" styleClass="menu-item" text="English" />
                     </items>
                 </Menu>
+            <Menu fx:id="helpMenu" mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
             </menus>
             <effect>
                 <DropShadow height="4.62" radius="1.225" width="2.28">
