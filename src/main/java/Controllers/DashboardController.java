@@ -68,6 +68,9 @@ public class DashboardController {
         @FXML
         private PieChart gjiniaChart;
 
+        @FXML
+        private BarChart moshatChart;
+
     @FXML
     private BarChart<String, Number> barChart;
 
@@ -105,6 +108,22 @@ public class DashboardController {
 
 // Set the data to the PieChart
         gjiniaChart.setData(pieChartData);
+
+
+
+        ObservableList<XYChart.Series<String, Number>> moshatChartData = FXCollections.observableArrayList();
+        XYChart.Series<String, Number> moshatSeries = new XYChart.Series<>();
+        moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 0-18", qytetariRepository.countMosha(0,18)));
+        moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 18-40", qytetariRepository.countMosha(18,40)));
+        moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 40-65", qytetariRepository.countMosha(40, 65)));
+        moshatSeries.getData().add(new XYChart.Data<>("Grupmosha 65+", qytetariRepository.countMosha(65, 200)));
+        moshatChartData.add(moshatSeries);
+        // Set the data to the Bar Chart
+        moshatChart.setData(moshatChartData);
+
+
+
+
 
 
     }
