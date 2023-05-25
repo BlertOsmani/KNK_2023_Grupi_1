@@ -16,7 +16,7 @@ import static javafx.application.Application.launch;
 public class Help extends Application {
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        FXMLLoader fxmlLoader = new FXMLLoader(AdresatDashboard.class.getResource("AdresatDashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Help.class.getResource("Help.fxml"));
         Pane pane = fxmlLoader.load();
         ScrollPane scrollPane = new ScrollPane(pane);
         scrollPane.setFitToWidth(true);

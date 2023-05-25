@@ -454,7 +454,7 @@ public class AdresatDashboardController implements Initializable {
             } else if (llojiVendbanimitFilter.equals("I perkohshem")) {
                 llojiVendbanimitFilter = "0";
             } else {
-                llojiVendbanimitFilter = ""; // or any other default value you want to set
+                llojiVendbanimitFilter = "";
             }
         }
         else{
