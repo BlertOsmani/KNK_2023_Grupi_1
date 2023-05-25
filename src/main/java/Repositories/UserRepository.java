@@ -41,18 +41,4 @@ public class UserRepository {
             return null;
         }
     }
-    public static String getPassword(String username) throws SQLException {
-        Connection connection = ConnectionUtil.getConnection();
-        String sql = "Select * from user where username = ?";
-        PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1, username);
-        ResultSet resultSet = statement.executeQuery();
-        if(resultSet.next()){
-            String password = resultSet.getString("Password");
-            return password;
-        }
-        else{
-            return null;
-        }
-    }
 }
