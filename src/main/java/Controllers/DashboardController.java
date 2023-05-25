@@ -80,9 +80,6 @@ public class DashboardController {
     private BarChart<String, Number> barChart;
 
     public void initialize() throws SQLException, IOException {
-
-
-
             anchorPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
                 if (event.getCode() == KeyCode.F12) {
                     translateEN(new ActionEvent());

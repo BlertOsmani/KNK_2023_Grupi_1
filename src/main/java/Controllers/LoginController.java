@@ -4,6 +4,7 @@ import DbConnection.ConnectionUtil;
 import Models.Main;
 import Models.Session;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Pane;
 import AdresatDashboard.AdresatDashboard;
 import Models.LoginModel;
@@ -47,7 +48,11 @@ public class LoginController {
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(Dashboard.class.getResource("Dashboard.fxml"));
                         Pane pane = fxmlLoader.load();
-                        Scene scene = new Scene(pane);
+                        ScrollPane scrollPane = new ScrollPane(pane);
+                        scrollPane.setFitToWidth(true);
+                        scrollPane.setFitToHeight(true);
+
+                        Scene scene = new Scene(scrollPane, 1400, 600);
                         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setScene(scene);
                         stage.show();
